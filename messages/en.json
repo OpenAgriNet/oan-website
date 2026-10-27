@@ -32,5 +32,111 @@
     "community": "Community",
     "resources": "Resources",
     "events": "Events"
+  },
+  "Home": {
+    "hero": {
+      "badge": "OpenAgriNet",
+      "title": "Open infrastructure for <accent>accessible agricultural</accent> knowledge",
+      "description": "OpenAgriNet enables institutions to build, share and deploy trusted agricultural knowledge, so that every farmer can access relevant information in their language.",
+      "imageAlt": "A farmer using a smartphone in a green paddy field"
+    },
+    "why": {
+      "title": "Why <accent>OAN,</accent> Why <accent>NOW?</accent>",
+      "lead": "Agriculture is changing fast. Farmers need trusted information, <br></br>in their language, at the right time. OAN makes that possible",
+      "cards": {
+        "accessible": {
+          "title": "Make Agricultural Intelligence Accessible",
+          "description": "Bring trusted agricultural knowledge, services and information together so farmers can access what they need, when they need it."
+        },
+        "localized": {
+          "title": "Localized Intelligence at Scale",
+          "description": "Most digital solutions are not designed for regional and local languages/dialects"
+        },
+        "timely": {
+          "title": "Turn Timely Intelligence into Better Decisions",
+          "description": "Deliver relevant, contextual and timely insights that help farmers make informed decisions at the moments that matter."
+        },
+        "coalition": {
+          "title": "From Fragmentation to Coalition",
+          "description": "Connect governments, institutions, innovators and service providers through an open network—enabling farmers to discover the right information, service or provider through a connected experience."
+        }
+      }
+    },
+    "how": {
+      "eyebrow": "How OAN Works",
+      "title": "One network. <accent>Built for many solutions.</accent>",
+      "description": "OpenAgriNet gives institutions a shared foundation to create <br></br>agricultural services for different needs, regions and communities.",
+      "cue": "It starts with reusable building blocks.",
+      "imageAlt": "Connected building blocks representing the OpenAgriNet network",
+      "cueAria": "Scroll to the building blocks"
+    },
+    "blocks": {
+      "eyebrow": "Building Blocks",
+      "title": "The building blocks that power <accent>OpenAgriNet</accent>",
+      "description": "OpenAgriNet brings together reusable building blocks that help institutions create <br></br>agricultural knowledge services for different contexts and communities.",
+      "explore": "Explore",
+      "imageAlt": "A farmer using a tablet in a green paddy field",
+      "cards": {
+        "languageAi": {
+          "title": "Language AI",
+          "description": "Farmer-facing interface across voice and text modes",
+          "tag": "Voice, Text"
+        },
+        "authMemory": {
+          "title": "Authentication & Memory",
+          "description": "Identity, session, and conversational memory layer",
+          "tag": "Memory"
+        },
+        "inferenceAi": {
+          "title": "Inference AI",
+          "description": "Core reasoning engine, split into three functional sub-blocks",
+          "tag": "Observe, Advise, Act"
+        },
+        "beckn": {
+          "title": "Beckn Open Network",
+          "description": "N×N interoperability across buyer and seller networks"
+        },
+        "providerOs": {
+          "title": "Provider OS",
+          "description": "Operating system layer for providers participating in the network",
+          "tag": "BPP API Automation"
+        },
+        "observability": {
+          "title": "Observability",
+          "description": "Monitoring and observability layer across the system"
+        },
+        "resolver": {
+          "title": "Resolver",
+          "description": "Resolution layer grounded in land and GIS data"
+        }
+      },
+      "exploreAria": "Explore {title}"
+    },
+    "scale": {
+      "eyebrow": "The Scale of Agriculture",
+      "title": "A Massive opportunity to shape <br></br>a better tomorrow",
+      "stats": {
+        "farmers": {
+          "value": "600M+",
+          "label": "Smallholder Farmers"
+        },
+        "people": {
+          "value": "1.23B",
+          "label": "People in Agri-food System"
+        },
+        "market": {
+          "value": "$25B+",
+          "label": "Global AgTech Market"
+        }
+      },
+      "fact": "<lead>26%</lead> of the global labour force works in agriculture"
+    },
+    "cta": {
+      "eyebrow": "Explore OpenAgriNet",
+      "title": "Ready to turn <accent>knowledge into action?</accent>",
+      "description": "Discover how OpenAgriNet's open capabilities, practical tools and collaborative ecosystem can help <br></br>you build connected agricultural solutions. Explore Building Blocks Join the Community",
+      "explore": "Explore Building Blocks",
+      "join": "Join the Community"
+    }
   }
 }
