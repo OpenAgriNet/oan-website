@@ -107,12 +107,30 @@
       "exploreAria": "Explore {title}",
       "viewAll": "View All",
       "items": {
-        "whitepapers": { "title": "Whitepapers & Research", "description": "Research and insights on open agriculture and OAN." },
-        "policy": { "title": "Policy Frameworks", "description": "Policies, standards and governance resources." },
-        "playbooks": { "title": "Playbooks", "description": "Step-by-step guides for implementation." },
-        "technical": { "title": "Technical Guides", "description": "Technical documentation and integration guides." },
-        "reference": { "title": "Reference Architectures", "description": "System architecture and design references." },
-        "caseStudies": { "title": "Case Studies", "description": "Real-world examples and learnings." }
+        "whitepapers": {
+          "title": "Whitepapers & Research",
+          "description": "Research and insights on open agriculture and OAN."
+        },
+        "policy": {
+          "title": "Policy Frameworks",
+          "description": "Policies, standards and governance resources."
+        },
+        "playbooks": {
+          "title": "Playbooks",
+          "description": "Step-by-step guides for implementation."
+        },
+        "technical": {
+          "title": "Technical Guides",
+          "description": "Technical documentation and integration guides."
+        },
+        "reference": {
+          "title": "Reference Architectures",
+          "description": "System architecture and design references."
+        },
+        "caseStudies": {
+          "title": "Case Studies",
+          "description": "Real-world examples and learnings."
+        }
       }
     }
   },
@@ -389,6 +407,81 @@
       "titleAccent": "agriculture together",
       "description": "Connect with the OpenAgriNet community and explore opportunities to build, implement, contribute, research and collaborate.",
       "action": "Get Involved"
+    }
+  },
+  "Events": {
+    "hero": {
+      "eyebrow": "Events",
+      "titleLine1": "Connecting ideas,",
+      "titleLine2": "people and possibilities.",
+      "description": "Discover events, workshops and conversations bringing together innovators, institutions and ecosystem partners to advance open digital agriculture.",
+      "imageAlt": "A speaker presenting to farmers seated under a canopy beside a paddy field"
+    },
+    "upcoming": {
+      "eyebrow": "UPCOMING EVENTS",
+      "title": "Explore what’s coming up.",
+      "description": "Stay connected with upcoming events, workshops and discussions bringing\ntogether the OpenAgriNet ecosystem.",
+      "linkLabel": "View Details",
+      "action": "View All Events",
+      "items": {
+        "webinar": {
+          "type": "WEBINAR",
+          "date": "25 Aug 2026, 10:30 AM",
+          "title": "Open Digital Ecosystems for Sustainable Agriculture",
+          "description": "A discussion on how open networks, data and AI can enable inclusive and sustainable agriculture.",
+          "tag": "Ongoing",
+          "imageAlt": "A seedling in a field connected to digital icons for weather, farming and data"
+        },
+        "workshop": {
+          "type": "WORKSHOP",
+          "date": "25 Aug 2026, 10:30 AM",
+          "title": "Building Solutions with OpenAgriNet",
+          "description": "A hands-on workshop for developers, innovators and government partners to explore OpenAgriNet building blocks and real-world use cases.",
+          "tag": "New Delhi",
+          "imageAlt": "A farmer using a tablet in a green paddy field"
+        },
+        "conference": {
+          "type": "CONFERENCE",
+          "date": "25 Aug 2026, 10:30 AM",
+          "title": "OpenAgriNet Ecosystem Summit 2026",
+          "description": "Bringing together policymakers, institutions, innovators and ecosystem partners to accelerate open digital agriculture.",
+          "tag": "Bengaluru, India",
+          "imageAlt": "A speaker at a podium addressing a conference audience"
+        }
+      }
+    },
+    "past": {
+      "eyebrow": "PAST EVENTS",
+      "title": "Moments that brought us together.",
+      "description": "Explore highlights from past events, workshops and conversations where the OpenAgriNet community came together to share ideas, exchange knowledge and drive innovation in agriculture.",
+      "linkLabel": "View Highlights",
+      "action": "View All Past Events",
+      "items": {
+        "digitalAgriculture": {
+          "type": "CONFERENCE-PAST EVENTS",
+          "date": "25 Aug 2026, 10:30 AM",
+          "title": "Building Digital Agriculture Solutions",
+          "description": "An interactive workshop focused on practical tools and connected agricultural services.",
+          "tag": "Pune, India",
+          "imageAlt": "A smiling farmer working on a laptop in a green field"
+        },
+        "workshop": {
+          "type": "WORKSHOP-PAST EVENTS",
+          "date": "25 Aug 2026, 10:30 AM",
+          "title": "Building Solutions with OpenAgriNet",
+          "description": "A hands-on workshop for developers, innovators and government partners to explore OpenAgriNet building blocks and real-world use cases.",
+          "tag": "New Delhi",
+          "imageAlt": "A farmer and a field officer looking at a tablet in a paddy field"
+        },
+        "conference": {
+          "type": "CONFERENCE-PAST EVENTS",
+          "date": "25 Aug 2026, 10:30 AM",
+          "title": "OpenAgriNet Ecosystem Summit 2026",
+          "description": "Bringing together policymakers, institutions, innovators and ecosystem partners to accelerate open digital agriculture.",
+          "tag": "Bengaluru, India",
+          "imageAlt": "A speaker at a podium addressing a conference audience"
+        }
+      }
     }
   }
 }
