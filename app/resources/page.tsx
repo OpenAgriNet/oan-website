@@ -1,5 +1,13 @@
-import PageSkeleton from '@/components/PageSkeleton';
+import ExploreCtaSection from '@/components/home/ExploreCtaSection';
+import ExploreResourcesSection from '@/components/resources/ExploreResourcesSection';
+import ResourcesHeroSection from '@/components/resources/ResourcesHeroSection';
 
 export default function ResourcesPage() {
-  return <PageSkeleton titleKey="resources" />;
+  return (
+    <>
+      <ResourcesHeroSection />
+      <ExploreResourcesSection />
+      <ExploreCtaSection />
+    </>
+  );
 }

@@ -7,10 +7,10 @@ import SiteContainer from '@/components/layout/SiteContainer';
 type CardItem = { key: string; icon: string; image: string; imagePosition?: string };
 
 const cards: CardItem[] = [
-  { key: 'accessible', image: '/images/home/why-accessible.png', imagePosition: '50% 5%', icon: '/icons/why/list.svg' },
-  { key: 'localized', image: '/images/home/why-localized.png', icon: '/icons/why/language.svg' },
-  { key: 'timely', image: '/images/home/why-timely.png', icon: '/icons/why/calendar.svg' },
-  { key: 'coalition', image: '/images/home/why-coalition.png', icon: '/icons/why/token.svg' },
+  { key: 'accessible', image: '/images/home/why-accessible.webp', imagePosition: '50% 5%', icon: '/icons/why/list.svg' },
+  { key: 'localized', image: '/images/home/why-localized.webp', icon: '/icons/why/language.svg' },
+  { key: 'timely', image: '/images/home/why-timely.webp', icon: '/icons/why/calendar.svg' },
+  { key: 'coalition', image: '/images/home/why-coalition.webp', icon: '/icons/why/token.svg' },
 ];
 
 export default async function WhyOanSection() {

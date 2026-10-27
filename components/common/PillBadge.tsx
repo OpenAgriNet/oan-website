@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 
 type Props = {
   children: ReactNode;
-  icon?: string;
+  icon?: string | null;
 };
 
 export default function PillBadge({ children, icon = '/icons/star-outline.png' }: Props) {
@@ -22,19 +22,21 @@ export default function PillBadge({ children, icon = '/icons/star-outline.png' }
         color: 'common.white',
       }}
     >
-      <Box
-        aria-hidden
-        sx={{
-          width: 20,
-          height: 20,
-          flexShrink: 0,
-          bgcolor: 'currentColor',
-          maskImage: `url(${icon})`,
-          maskSize: 'contain',
-          maskRepeat: 'no-repeat',
-          maskPosition: 'center',
-        }}
-      />
+      {icon && (
+        <Box
+          aria-hidden
+          sx={{
+            width: 20,
+            height: 20,
+            flexShrink: 0,
+            bgcolor: 'currentColor',
+            maskImage: `url(${icon})`,
+            maskSize: 'contain',
+            maskRepeat: 'no-repeat',
+            maskPosition: 'center',
+          }}
+        />
+      )}
       <Typography variant="badge" sx={{ whiteSpace: 'nowrap' }}>
         {children}
       </Typography>

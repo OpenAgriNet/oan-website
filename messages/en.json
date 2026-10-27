@@ -33,6 +33,28 @@
     "resources": "Resources",
     "events": "Events"
   },
+  "Resources": {
+    "hero": {
+      "badge": "RESOURCES",
+      "title": "Knowledge and resources<br></br> <accent>to power open agriculture.</accent>",
+      "description": "A central repository for OAN knowledge and implementation resources."
+    },
+    "explore": {
+      "eyebrow": "Explore Resources",
+      "title": "Everything you need<br></br>to learn, build and implement.",
+      "description": "Explore a comprehensive collection of research, technical documentation, policy frameworks and practical resources designed to help institutions, developers and ecosystem partners understand, adopt and implement OpenAgriNet. Discover valuable insights, implementation guides, reference architectures and real-world examples that support innovation, collaboration and the development of connected digital agricultural services.",
+      "exploreAria": "Explore {title}",
+      "viewAll": "View All",
+      "items": {
+        "whitepapers": { "title": "Whitepapers & Research", "description": "Research and insights on open agriculture and OAN." },
+        "policy": { "title": "Policy Frameworks", "description": "Policies, standards and governance resources." },
+        "playbooks": { "title": "Playbooks", "description": "Step-by-step guides for implementation." },
+        "technical": { "title": "Technical Guides", "description": "Technical documentation and integration guides." },
+        "reference": { "title": "Reference Architectures", "description": "System architecture and design references." },
+        "caseStudies": { "title": "Case Studies", "description": "Real-world examples and learnings." }
+      }
+    }
+  },
   "Home": {
     "hero": {
       "badge": "OpenAgriNet",
