@@ -57,12 +57,21 @@ export default async function AboutTeamSection() {
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'row' },
             justifyContent: 'space-between',
-            alignItems: 'flex-start',
+            alignItems: { xs: 'stretch', sm: 'flex-start' },
             gap: 2,
           }}
         >
-          <Box sx={{ maxWidth: 873, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '16px' }}>
-            <SectionEyebrow>{t('eyebrow')}</SectionEyebrow>
+          <Box
+            sx={{
+              maxWidth: 873,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: { xs: 'center', sm: 'flex-start' },
+              textAlign: { xs: 'center', sm: 'left' },
+              gap: '16px',
+            }}
+          >
+            <SectionEyebrow align={{ xs: 'center', sm: 'left' }}>{t('eyebrow')}</SectionEyebrow>
             <Typography
               variant="headline"
               component="h2"
@@ -80,7 +89,7 @@ export default async function AboutTeamSection() {
               {t.rich('description', { br: () => <br /> })}
             </Typography>
           </Box>
-          <ActionButton href="#" tone="secondary" sx={{ px: '22px', fontWeight: 700, lineHeight: '20px', flexShrink: 0 }}>
+          <ActionButton href="#" tone="secondary" sx={{ px: '22px', fontWeight: 700, lineHeight: '20px', flexShrink: 0, width: { xs: '100%', sm: 'auto' } }}>
             {t('cta')}
           </ActionButton>
         </Box>
@@ -102,8 +111,7 @@ export default async function AboutTeamSection() {
               key={key}
               sx={{
                 width: { xs: '100%', sm: 'calc(50% - 8px)', md: 'calc(33.333% - 16px)', lg: 'calc(20% - 24px)' },
-                maxWidth: { xs: 320, sm: 'none' },
-                display: 'flex',
+                                display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 gap: 2,
