@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import PillBadge from '@/components/common/PillBadge';
+import { edgeFade } from '@/components/common/edgeFade';
 import SiteContainer from '@/components/layout/SiteContainer';
 
 export default async function AboutHeroSection() {
@@ -29,6 +30,7 @@ export default async function AboutHeroSection() {
             order: { xs: 2, md: 0 },
             width: '100%',
             height: { xs: 200, sm: 280, md: 'auto' },
+            '@media (min-width: 1441px)': { maskImage: edgeFade },
           }}
         >
           <Image
