@@ -18,10 +18,12 @@ import SiteContainer from './SiteContainer';
 import { isActive, navItems } from './navItems';
 
 const linkSx = {
-  color: 'text.primary',
+  color: 'text.heading',
   textDecoration: 'none',
   whiteSpace: 'nowrap',
-  '&:hover, &[aria-current="page"]': { color: 'primary.main' },
+  '&:hover': { color: 'primary.main' },
+  // Figma: the current page's link is orange and bold; the drawer's label is a nested Typography
+  '&[aria-current="page"], &[aria-current="page"] .MuiTypography-root': { color: 'secondary.main', fontWeight: 700 },
 };
 
 export default function Header() {

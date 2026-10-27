@@ -49,6 +49,9 @@ declare module '@mui/material/styles' {
     factLead: CSSProperties;
     factText: CSSProperties;
     actionLabel: CSSProperties;
+    displayTitle: CSSProperties;
+    label: CSSProperties;
+    buttonLabel: CSSProperties;
   }
   interface TypographyVariantsOptions {
     navLink?: CSSProperties;
@@ -74,6 +77,9 @@ declare module '@mui/material/styles' {
     factLead?: CSSProperties;
     factText?: CSSProperties;
     actionLabel?: CSSProperties;
+    displayTitle?: CSSProperties;
+    label?: CSSProperties;
+    buttonLabel?: CSSProperties;
   }
 }
 
@@ -102,6 +108,9 @@ declare module '@mui/material/Typography' {
     factLead: true;
     factText: true;
     actionLabel: true;
+    displayTitle: true;
+    label: true;
+    buttonLabel: true;
   }
 }
 
@@ -149,6 +158,9 @@ const theme = createTheme({
     factLead: { fontFamily: fonts.primary, fontSize: 20, lineHeight: '26px', fontWeight: 700, letterSpacing: 0 },
     factText: { fontFamily: fonts.primary, fontSize: 18, lineHeight: '26px', fontWeight: 400, letterSpacing: 0 },
     actionLabel: { fontFamily: fonts.primary, fontSize: 14, lineHeight: 1.2, fontWeight: 600, letterSpacing: 0 },
+    displayTitle: { fontFamily: fonts.primary, fontSize: 36, lineHeight: 1.2, fontWeight: 800, letterSpacing: '0.2px' },
+    label: { fontFamily: fonts.primary, fontSize: 14, lineHeight: 1.2, fontWeight: 700, letterSpacing: 0 },
+    buttonLabel: { fontFamily: fonts.primary, fontSize: 14, lineHeight: '20px', fontWeight: 700, letterSpacing: 0 },
   },
   components: {
     MuiTypography: {
@@ -177,6 +189,9 @@ const theme = createTheme({
           factLead: 'span',
           factText: 'span',
           actionLabel: 'span',
+          displayTitle: 'h1',
+          label: 'span',
+          buttonLabel: 'span',
         },
       },
     },
