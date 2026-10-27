@@ -15,13 +15,13 @@ declare module '@mui/material/styles' {
   }
   interface Palette {
     footer: { background: string; text: string; divider: string };
-    card: { shadow: string; iconBackground: string; hoverOverlay: string; border: string; hoverBackground: string };
+    card: { shadow: string; iconBackground: string; hoverOverlay: string; border: string; hoverBackground: string; arrowBackground: string; outline: string };
     statCard: { background: string; border: string };
     scrollCue: { circle: string; glow: string };
   }
   interface PaletteOptions {
     footer?: { background: string; text: string; divider: string };
-    card?: { shadow: string; iconBackground: string; hoverOverlay: string; border: string; hoverBackground: string };
+    card?: { shadow: string; iconBackground: string; hoverOverlay: string; border: string; hoverBackground: string; arrowBackground: string; outline: string };
     statCard?: { background: string; border: string };
     scrollCue?: { circle: string; glow: string };
   }
@@ -120,7 +120,7 @@ const theme = createTheme({
     background: { default: '#FFFFFF', paper: '#FFFFFF', header: '#F9F9F9', section: '#F4F6F1', subtle: '#FAFBFA' },
     statCard: { background: '#FAFBF6', border: '#EAEFE3' },
     scrollCue: { circle: '#FFFFFF', glow: 'rgba(134, 219, 168, 0.6)' },
-    card: { shadow: 'rgba(0, 0, 0, 0.07)', iconBackground: '#DAEFC0', hoverOverlay: '#006D75', border: '#E5E5E5', hoverBackground: '#EBF6DB' },
+    card: { shadow: 'rgba(0, 0, 0, 0.07)', iconBackground: '#DAEFC0', hoverOverlay: '#006D75', border: '#E5E5E5', hoverBackground: '#EBF6DB', arrowBackground: '#E7F7E9', outline: 'rgba(27, 81, 56, 0.1)' },
     footer: { background: '#1B5138', text: '#FFFFFF', divider: 'rgba(255, 255, 255, 0.1)' },
   },
   typography: {
