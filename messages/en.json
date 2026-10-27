@@ -33,6 +33,67 @@
     "resources": "Resources",
     "events": "Events"
   },
+  "AboutUs": {
+    "hero": {
+      "badge": "ABOUT OPENAGRINET",
+      "title": "Building an open future for<br></br> <accent>agricultural knowledge</accent>",
+      "description": "OpenAgriNet is an open digital ecosystem designed to help institutions make trusted agricultural knowledge accessible to farmers—across languages, regions and channels."
+    },
+    "story": {
+      "eyebrow": "Our Beginning",
+      "title": "The story behind <accent>OpenAgriNet</accent>",
+      "description": "OpenAgriNet (OAN) was envisioned to create a more connected, inclusive and resilient agricultural ecosystem by leveraging open, interoperable digital infrastructure. Recognising the need for trusted and accessible digital services for farmers, OAN brings together diverse stakeholders, technologies and capabilities to work as one network. Our goal is to empower farmers with better information, services and opportunities, while enabling a more collaborative and efficient agricultural ecosystem."
+    },
+    "inception": {
+      "eyebrow": "Inception Story",
+      "title": "From fragmented information <br></br>to connected agricultural <br></br>intelligence",
+      "description": "Agricultural knowledge, services and technologies often remain scattered across different platforms, making access difficult for farmers.",
+      "p1": "OpenAgriNet (OAN) was conceived to bridge this gap by connecting agricultural knowledge, data and services through an open, AI-powered digital network.",
+      "p2": "It enables farmers to access trusted advice, discover relevant services and take action through simple, natural interactions.",
+      "p3": "OAN aims to create an open, scalable agricultural ecosystem that can be adopted across regions, institutions and use cases."
+    },
+    "team": {
+      "eyebrow": "Our Team",
+      "title": "People driving <accent>OpenAgriNet</accent>",
+      "description": "OAN is being built by a multidisciplinary team bringing together expertise across digital public infrastructure, agriculture, artificial intelligence, technology, ecosystem development and implementation.<br></br>Our team works across the network—from architecture and technology to ecosystem partnerships, product development and field implementation.",
+      "cta": "Meet the Team",
+      "members": {
+        "ravi": { "name": "Ravi Kumar", "role": "Program Director" },
+        "meeraOne": { "name": "Meera Srinivasan", "role": "Product Lead" },
+        "meeraTwo": { "name": "Meera Srinivasan", "role": "Product Lead" },
+        "meenu": { "name": "Meenu Bansal", "role": "Product Lead" },
+        "karthika": { "name": "Karthika", "role": "UI/UX Designer" }
+      }
+    },
+    "partners": {
+      "eyebrow": "Our Partners",
+      "title": "Powering OAN <accent>Together</accent>",
+      "description": "OAN brings together institutions, researchers, technology innovators, development partners and implementation organisations—combining their capabilities to build an open, interoperable and AI-enabled agricultural ecosystem.",
+      "groups": {
+        "institutions": "Institutions & Ecosystem Anchors",
+        "research": "Agriculture, Research & Knowledge"
+      },
+      "logos": {
+        "ekstep": "EkStep",
+        "fide": "FIDE",
+        "coss": "COSS",
+        "ondc": "ONDC",
+        "cdpi": "CDPI",
+        "cgiar": "CGIAR",
+        "irri": "IRRI",
+        "kalro": "KALRO",
+        "digitalIndia": "Digital India",
+        "iffcoKisan": "IFFCO Kisan"
+      },
+      "cta": "View All"
+    },
+    "cta": {
+      "title": "Build With <accent>OpenAgriNet</accent>",
+      "description": "Explore how OAN’s open building blocks can help create connected agricultural services for farmers and ecosystem participants.",
+      "explore": "Explore Building Blocks",
+      "join": "Join the Community"
+    }
+  },
   "Resources": {
     "hero": {
       "badge": "RESOURCES",
