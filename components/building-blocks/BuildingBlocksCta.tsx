@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
-import CtaButton from '@/components/common/CtaButton';
+import ActionButton from '@/components/common/ActionButton';
 import SectionEyebrow from '@/components/common/SectionEyebrow';
 
 export default async function BuildingBlocksCta() {
@@ -59,9 +59,10 @@ export default async function BuildingBlocksCta() {
             </Typography>
           </Box>
           <Typography sx={{ fontSize: 14, lineHeight: 1.4, color: 'text.heading' }}>{t('description')}</Typography>
-          <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
-            <CtaButton>{t('primaryAction')}</CtaButton>
-            <CtaButton color="secondary">{t('secondaryAction')}</CtaButton>
+          {/* In Figma the button row is wider than the 423px text column */}
+          <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, width: { sm: 'max-content' } }}>
+            <ActionButton>{t('primaryAction')}</ActionButton>
+            <ActionButton tone="secondary">{t('secondaryAction')}</ActionButton>
           </Box>
         </Box>
       </Box>

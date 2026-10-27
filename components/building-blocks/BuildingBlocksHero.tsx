@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
-import EyebrowPill from '@/components/common/EyebrowPill';
+import PillBadge from '@/components/common/PillBadge';
 
 export default async function BuildingBlocksHero() {
   const t = await getTranslations('BuildingBlocks.hero');
@@ -52,8 +52,8 @@ export default async function BuildingBlocksHero() {
               gap: 2,
             }}
           >
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <EyebrowPill>{t('eyebrow')}</EyebrowPill>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '12px' }}>
+              <PillBadge icon={null}>{t('eyebrow')}</PillBadge>
               <Typography variant="displayTitle" sx={{ color: 'text.heading', fontSize: { xs: 28, sm: 36 } }}>
                 {t('titleLine1')}
                 <br />

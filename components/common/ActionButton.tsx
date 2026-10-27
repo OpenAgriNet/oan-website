@@ -3,14 +3,19 @@ import Button, { type ButtonProps } from '@mui/material/Button';
 import Link from 'next/link';
 import MaskIcon from './MaskIcon';
 
-type Props = Omit<ButtonProps<typeof Link>, 'component' | 'variant' | 'color'> & {
+type Props = Omit<ButtonProps, 'variant' | 'color' | 'href' | 'LinkComponent'> & {
   tone?: 'primary' | 'secondary';
+  // Renders a link when set, otherwise a plain button
+  href?: string;
 };
+
+// Figma button components 110/111: hover is Smart Animate, ease-in-out, 300ms
+const transition = '300ms ease-in-out';
 
 export default function ActionButton({ tone = 'primary', sx, children, ...props }: Props) {
   return (
     <Button
-      component={Link}
+      LinkComponent={Link}
       variant="contained"
       color={tone}
       disableElevation
@@ -19,14 +24,15 @@ export default function ActionButton({ tone = 'primary', sx, children, ...props 
         (theme) => ({
           ...theme.typography.actionLabel,
           minHeight: 52,
-          px: '25px',
+          // 23px + the 1px border keeps Figma's 24px padding
+          px: '23px',
           borderRadius: '0 8px 0 8px',
           whiteSpace: 'nowrap',
           cursor: 'pointer',
-          border: '2px solid',
+          border: '1px solid',
           borderColor: `${tone}.main`,
-          transition: 'background-color 0.25s ease, color 0.25s ease',
-          '& .arrow': { width: 0, ml: 0, opacity: 0, overflow: 'hidden', transition: 'width 0.25s ease, margin 0.25s ease, opacity 0.25s ease' },
+          transition: `background-color ${transition}, color ${transition}`,
+          '& .arrow': { width: 0, ml: 0, opacity: 0, overflow: 'hidden', transition: `width ${transition}, margin ${transition}, opacity ${transition}` },
           '&:hover, &:focus-visible': {
             bgcolor: 'background.paper',
             color: `${tone}.main`,
