@@ -1,0 +1,36 @@
+{
+  "Metadata": {
+    "title": "OpenAgriNet",
+    "description": "Open infrastructure for accessible agricultural knowledge"
+  },
+  "Nav": {
+    "brand": "OpenAgriNet",
+    "buildingBlocks": "Building Blocks",
+    "aboutUs": "About Us",
+    "community": "Community",
+    "resources": "Resources",
+    "events": "Events",
+    "language": "Language",
+    "home": "OpenAgriNet home",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "Footer": {
+    "copyright": "@{year} OpenAgriNet. All rights reserved.",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "contact": "Contact",
+    "separator": " - "
+  },
+  "LocaleSwitcher": {
+    "en": "EN"
+  },
+  "Pages": {
+    "home": "Home",
+    "buildingBlocks": "Building Blocks",
+    "aboutUs": "About Us",
+    "community": "Community",
+    "resources": "Resources",
+    "events": "Events"
+  }
+}
