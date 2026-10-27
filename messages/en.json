@@ -138,5 +138,92 @@
       "explore": "Explore Building Blocks",
       "join": "Join the Community"
     }
+  },
+  "BuildingBlocks": {
+    "hero": {
+      "eyebrow": "BUILDING BLOCKS",
+      "titleLine1": "Reusable capabilities.",
+      "titleLine2": "Built to work together.",
+      "description": "The Open Agriculture Network (OAN) is composed of seven foundational building blocks that together enable farmers, service providers, buyers, government agencies, and ecosystem participants to interact through an AI-powered and interoperable digital infrastructure.",
+      "imageAlt": "Connected building blocks showing farmland, crops and agricultural services around the OpenAgriNet core"
+    },
+    "overview": {
+      "title": "One Network, Supporting Every Step",
+      "description": "These building blocks work together to support the full journey from farmer engagement and advisory services to transaction execution and network participation."
+    },
+    "capabilitiesLabel": "KEY CAPABILITIES",
+    "blocks": {
+      "languageAi": {
+        "title": "Language AI",
+        "description": "Enables natural, conversational interactions for farmers across multiple Indian languages, making agricultural knowledge more accessible and inclusive.",
+        "capabilities": [
+          "Multi-language\nunderstanding",
+          "Voice and text interaction",
+          "Agriculture domain knowledge"
+        ]
+      },
+      "authMemory": {
+        "title": "Authentication & Memory",
+        "description": "Manages identity, securely stores farmer and user context, and enables personalised, privacy-preserving experiences across the network.",
+        "capabilities": [
+          "Secure\nauthentication",
+          "Context and preference storage",
+          "Privacy and consent management"
+        ]
+      },
+      "inferenceAi": {
+        "title": "Inference AI",
+        "description": "Uses advanced AI models to interpret agricultural data and knowledge, and provide relevant, reliable and context-aware recommendations.",
+        "capabilities": [
+          "Observe\ninformation",
+          "Advise with\ninsights",
+          "Act with recommendations"
+        ]
+      },
+      "becknNetwork": {
+        "title": "Beckn Open Network",
+        "description": "Enables an open and interoperable digital network for buyers, sellers, service providers and government systems, ensuring fair, inclusive and seamless access to agricultural services.",
+        "capabilities": [
+          "Secure\nauthentication",
+          "Interoperability across participants",
+          "Seamless transactions"
+        ]
+      },
+      "providerOs": {
+        "title": "Provider OS",
+        "description": "Simplifies onboarding and participation for service providers, agri-input companies, advisory organisations and other ecosystem partners to manage their offerings and engage with the network.",
+        "capabilities": [
+          "Easy\nonboarding",
+          "Service management",
+          "Tracking participation"
+        ]
+      },
+      "observability": {
+        "title": "Observability",
+        "description": "Provides real-time visibility into system performance, usage patterns and reliability, helping to continuously improve services and deliver better user experiences.",
+        "capabilities": [
+          "System\nmonitoring",
+          "Reliability and uptime",
+          "Usage and impact analytics"
+        ]
+      },
+      "resolver": {
+        "title": "Resolver",
+        "description": "Connects user queries and needs to the most relevant services, providers and resources across the network, ensuring that every farmer and stakeholder can easily find the right support.",
+        "capabilities": [
+          "Smart\nrouting",
+          "Connect to trusted partners",
+          "Improved user outcomes"
+        ]
+      }
+    },
+    "cta": {
+      "eyebrow": "OpenAgriNet",
+      "titleLine1": "Build With",
+      "titleLine2": "OpenAgriNet",
+      "description": "Explore how OAN’s open building blocks can help create connected agricultural services for farmers and ecosystem participants.",
+      "primaryAction": "Explore Building Blocks",
+      "secondaryAction": "Join the Community"
+    }
   }
 }
