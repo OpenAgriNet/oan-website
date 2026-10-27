@@ -247,5 +247,87 @@
       "primaryAction": "Explore Building Blocks",
       "secondaryAction": "Join the Community"
     }
+  },
+  "Community": {
+    "hero": {
+      "eyebrow": "COMMUNITY",
+      "titleLine1": "Join the",
+      "titleLine2": "Movement",
+      "description": "OAN is not a platform owned by a single organization. It is a collaborative ecosystem shaping the future of open digital networks.",
+      "imageAlt": "A farmer and a field officer smiling while looking at a tablet in a green paddy field"
+    },
+    "involved": {
+      "eyebrow": "GET INVOLVED",
+      "titleStart": "Be part of the ",
+      "titleAccent": "OpenAgriNet",
+      "titleEnd": " ecosystem",
+      "description": "Explore the different ways you can contribute, collaborate and help shape an open digital future for agriculture.",
+      "waysTitle": "Ways to get involved",
+      "tabs": {
+        "build": {
+          "title": "Build",
+          "summary": "Create applications and integrations.",
+          "badge": "01 BUILD",
+          "heading": "Build with OpenAgriNet",
+          "description": "Create innovative applications and integrations\nusing OpenAgriNet’s open capabilities to solve\nreal-world agricultural challenges.",
+          "ways": [
+            {
+              "title": "Develop farmer-facing applications",
+              "description": "Build solutions that directly benefit farmers\nand the agricultural ecosystem."
+            },
+            {
+              "title": "Create integrations with OAN capabilities",
+              "description": "Use open APIs and building blocks to extend\nexisting systems"
+            },
+            {
+              "title": "Build reusable digital solutions",
+              "description": "Share and scale solutions for broader impact"
+            }
+          ],
+          "action": "Explore Build Opportunities"
+        },
+        "implement": {
+          "title": "Implement",
+          "summary": "Deploy OAN capabilities.",
+          "badge": "02 IMPLEMENT",
+          "heading": "Implement with OpenAgriNet",
+          "description": "Bring OpenAgriNet capabilities into real-world agricultural\nservices and programmes. Deploy open, interoperable solutions\nthat connect institutions, technology and farmers.",
+          "ways": [
+            {
+              "title": "Deploy OAN Capabilities",
+              "description": "Integrate OAN building blocks into existing\nagricultural platforms and services."
+            },
+            {
+              "title": "Enable Field Implementations",
+              "description": "Bring digital agricultural solutions to farmers\nthrough practical use cases and local programmes."
+            },
+            {
+              "title": "Scale Connected Services",
+              "description": "Expand successful implementations across institutions,\nregions and farming communities."
+            }
+          ],
+          "action": "Explore Implementation Opportunities"
+        },
+        "contribute": {
+          "title": "Contribute",
+          "summary": "Contribute code, standards, data or expertise."
+        },
+        "research": {
+          "title": "Research",
+          "summary": "Advance DPI, AI and interoperability thinking."
+        },
+        "partner": {
+          "title": "Partner",
+          "summary": "Collaborate on pilots and implementations."
+        }
+      }
+    },
+    "cta": {
+      "eyebrow": "JOIN OUR COMMUNITY",
+      "titleStart": "Let’s build the future of ",
+      "titleAccent": "agriculture together",
+      "description": "Connect with the OpenAgriNet community and explore opportunities to build, implement, contribute, research and collaborate.",
+      "action": "Get Involved"
+    }
   }
 }

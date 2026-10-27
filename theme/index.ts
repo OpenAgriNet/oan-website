@@ -51,7 +51,6 @@ declare module '@mui/material/styles' {
     actionLabel: CSSProperties;
     displayTitle: CSSProperties;
     label: CSSProperties;
-    buttonLabel: CSSProperties;
   }
   interface TypographyVariantsOptions {
     navLink?: CSSProperties;
@@ -79,7 +78,6 @@ declare module '@mui/material/styles' {
     actionLabel?: CSSProperties;
     displayTitle?: CSSProperties;
     label?: CSSProperties;
-    buttonLabel?: CSSProperties;
   }
 }
 
@@ -110,7 +108,6 @@ declare module '@mui/material/Typography' {
     actionLabel: true;
     displayTitle: true;
     label: true;
-    buttonLabel: true;
   }
 }
 
@@ -125,6 +122,7 @@ const theme = createTheme({
   palette: {
     primary: { main: '#1B5138' },
     secondary: { main: '#B45F06' },
+    success: { main: '#128937' },
     text: { primary: '#2B2D2F', muted: '#9E9E9E', heading: '#232323', title: '#171717' },
     background: { default: '#FFFFFF', paper: '#FFFFFF', header: '#F9F9F9', section: '#F4F6F1', subtle: '#FAFBFA' },
     statCard: { background: '#FAFBF6', border: '#EAEFE3' },
@@ -157,10 +155,9 @@ const theme = createTheme({
     statLabel: { fontFamily: fonts.primary, fontSize: 14, lineHeight: '20px', fontWeight: 400, letterSpacing: 0 },
     factLead: { fontFamily: fonts.primary, fontSize: 20, lineHeight: '26px', fontWeight: 700, letterSpacing: 0 },
     factText: { fontFamily: fonts.primary, fontSize: 18, lineHeight: '26px', fontWeight: 400, letterSpacing: 0 },
-    actionLabel: { fontFamily: fonts.primary, fontSize: 14, lineHeight: 1.2, fontWeight: 600, letterSpacing: 0 },
+    actionLabel: { fontFamily: fonts.primary, fontSize: 14, lineHeight: '20px', fontWeight: 700, letterSpacing: 0 },
     displayTitle: { fontFamily: fonts.primary, fontSize: 36, lineHeight: 1.2, fontWeight: 800, letterSpacing: '0.2px' },
     label: { fontFamily: fonts.primary, fontSize: 14, lineHeight: 1.2, fontWeight: 700, letterSpacing: 0 },
-    buttonLabel: { fontFamily: fonts.primary, fontSize: 14, lineHeight: '20px', fontWeight: 700, letterSpacing: 0 },
   },
   components: {
     MuiTypography: {
@@ -191,7 +188,6 @@ const theme = createTheme({
           actionLabel: 'span',
           displayTitle: 'h1',
           label: 'span',
-          buttonLabel: 'span',
         },
       },
     },
