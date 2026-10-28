@@ -21,8 +21,10 @@ export default function BuildingBlockCard({ icon, number, title, description, ca
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        gap: '20px',
-        p: 2,
+        // Mobile Figma: tighter padding and spacing
+        gap: { xs: '12px', sm: '20px' },
+        px: { xs: '12px', sm: 2 },
+        py: 2,
         bgcolor: 'background.paper',
         border: '1px solid',
         borderColor: 'rgba(var(--mui-palette-primary-mainChannel) / 0.1)',
@@ -47,7 +49,7 @@ export default function BuildingBlockCard({ icon, number, title, description, ca
       {/* Grows so the divider and chips line up across cards in the same row */}
       <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: 1 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <img src={icon} alt="" width={52} height={52} />
+          <Box component="img" src={icon} alt="" sx={{ width: { xs: 42, sm: 52 }, height: 'auto' }} />
           <Box sx={{ display: 'grid', alignItems: 'center', justifyItems: 'end', '& > *': { gridArea: '1 / 1' } }}>
             <Box data-hover="out" sx={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'primary.main' }}>
               <Box sx={{ width: 10, height: 2, bgcolor: 'currentColor' }} />
@@ -58,17 +60,17 @@ export default function BuildingBlockCard({ icon, number, title, description, ca
             <img data-hover="in" src="/icons/arrow-right-badge.svg" alt="" width={44} height={44} />
           </Box>
         </Box>
-        <Typography variant="cardTitle" sx={{ color: 'text.heading', fontSize: 18 }}>
+        <Typography variant="cardTitle" sx={{ color: 'text.heading', fontSize: { xs: 16, sm: 18 } }}>
           {title}
         </Typography>
-        <Typography sx={{ fontSize: 14, lineHeight: 1.2, color: 'text.heading' }}>{description}</Typography>
+        <Typography sx={{ fontSize: { xs: 12, sm: 14 }, lineHeight: 1.2, color: 'text.heading' }}>{description}</Typography>
       </Box>
       <Box sx={{ height: '1px', bgcolor: 'rgba(var(--mui-palette-text-primaryChannel) / 0.1)' }} />
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-        <Typography variant="label" sx={{ color: 'primary.main' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 1, sm: 2 } }}>
+        <Typography variant="label" sx={{ color: 'primary.main', fontSize: { xs: 12, sm: 14 } }}>
           {capabilitiesLabel}
         </Typography>
-        <Box component="ul" sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: '12px', m: 0, p: 0 }}>
+        <Box component="ul" sx={{ display: 'flex', gap: { xs: 1, sm: '12px' }, m: 0, p: 0 }}>
           {capabilities.map((capability) => (
             <Box
               component="li"
@@ -78,15 +80,18 @@ export default function BuildingBlockCard({ icon, number, title, description, ca
                 minWidth: 0,
                 display: 'flex',
                 alignItems: 'center',
-                p: '12px',
+                p: { xs: '4px', sm: '12px' },
                 borderRadius: '4px',
                 bgcolor: 'rgba(var(--mui-palette-primary-mainChannel) / 0.05)',
                 color: 'primary.main',
                 listStyle: 'none',
               }}
             >
-              {/* Line breaks in the copy follow Figma; they only apply once chips sit side by side */}
-              <Typography variant="chip" sx={{ fontWeight: 500, letterSpacing: '0.24px', whiteSpace: { xs: 'normal', sm: 'pre-line' } }}>
+              {/* Line breaks in the copy follow Figma */}
+              <Typography
+                variant="chip"
+                sx={{ fontWeight: 500, fontSize: { xs: 10, sm: 12 }, letterSpacing: { xs: '0.2px', sm: '0.24px' }, whiteSpace: 'pre-line' }}
+              >
                 {capability}
               </Typography>
             </Box>

@@ -9,7 +9,7 @@ export default async function BuildingBlocksGrid() {
   const t = await getTranslations('BuildingBlocks');
 
   return (
-    <Box component="section" id="building-blocks" sx={{ position: 'relative', pt: '60px', pb: '66px' }}>
+    <Box component="section" id="building-blocks" sx={{ position: 'relative', pt: { xs: '48px', sm: '60px' }, pb: { xs: '40px', sm: '66px' } }}>
       <Image
         src="/images/building-blocks-grid-bg.png"
         alt=""
@@ -17,7 +17,7 @@ export default async function BuildingBlocksGrid() {
         sizes="100vw"
         style={{ objectFit: 'fill' }}
       />
-      <SiteContainer sx={{ position: 'relative' }}>
+      <SiteContainer sx={{ position: 'relative', px: { xs: '20px', sm: 4, md: 5, lg: 10 } }}>
         <Box
           sx={{
             display: 'grid',
