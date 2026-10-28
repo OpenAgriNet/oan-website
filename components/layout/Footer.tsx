@@ -9,6 +9,9 @@ import Logo from './Logo';
 import SiteContainer from './SiteContainer';
 import { isActive, navItems } from './navItems';
 
+// Row-major slot in the mobile two-column grid
+const mobileOrder = { buildingBlocks: 0, community: 1, aboutUs: 2, events: 3, resources: 4 };
+
 export default function Footer() {
   const t = useTranslations('Nav');
   const tFooter = useTranslations('Footer');
@@ -16,8 +19,10 @@ export default function Footer() {
   const legal = [tFooter('privacy'), tFooter('terms'), tFooter('contact')];
 
   return (
-    <Box component="footer" sx={{ bgcolor: 'footer.background', color: 'footer.text', py: 4 }}>
-      <SiteContainer sx={{ display: 'flex', flexDirection: 'column', gap: '29px' }}>
+    <Box component="footer" sx={{ bgcolor: 'footer.background', color: 'footer.text', py: 4, pb: { xs: '30px', sm: 4 } }}>
+      <SiteContainer
+        sx={{ px: { xs: '20px', sm: 4, md: 5, lg: 10 }, display: 'flex', flexDirection: 'column', gap: '29px' }}
+      >
         <Box
           sx={{
             display: 'flex',
@@ -28,7 +33,17 @@ export default function Footer() {
           }}
         >
           <Logo variant="white" />
-          <Box component="nav" sx={{ display: 'flex', flexWrap: 'wrap', columnGap: 4, rowGap: 1.5 }}>
+          <Box
+            component="nav"
+            sx={{
+              // Figma mobile: two columns (Building Blocks / About Us / Resources | Community / Events), 52px row pitch
+              display: { xs: 'grid', sm: 'flex' },
+              gridTemplateColumns: '153px 1fr',
+              flexWrap: 'wrap',
+              columnGap: { sm: 4 },
+              rowGap: { xs: '32px', sm: 1.5 },
+            }}
+          >
             {navItems.map(({ href, key }) => {
               const active = isActive(pathname, href);
               return (
@@ -43,6 +58,8 @@ export default function Footer() {
                     fontWeight: active ? 700 : undefined,
                     textDecoration: 'none',
                     whiteSpace: 'nowrap',
+                    order: { xs: mobileOrder[key], sm: 0 },
+                    fontSize: { xs: 12, sm: 14 },
                     '&:hover': { textDecoration: 'underline' },
                   }}
                 >
@@ -58,7 +75,7 @@ export default function Footer() {
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'row' },
             justifyContent: 'space-between',
-            gap: 1,
+            gap: { xs: '12px', sm: 1 },
           }}
         >
           <Typography variant="footnote">{tFooter('copyright', { year: new Date().getFullYear() })}</Typography>

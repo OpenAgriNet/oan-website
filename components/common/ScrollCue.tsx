@@ -67,7 +67,11 @@ export default function ScrollCue({ label, ariaLabel, targetId }: Props) {
           '&:active .ScrollCue-circle': { transform: 'scale(0.96)' },
         }}
       >
-        <Typography variant="cueLabel" aria-hidden sx={{ color: 'text.primary', whiteSpace: 'nowrap' }}>
+        <Typography
+          variant="cueLabel"
+          aria-hidden
+          sx={{ color: 'text.primary', whiteSpace: 'nowrap', fontSize: { xs: 14, sm: 16 } }}
+        >
           {label}
         </Typography>
         <Box
@@ -95,8 +99,8 @@ export default function ScrollCue({ label, ariaLabel, targetId }: Props) {
           <Box
             className="ScrollCue-circle"
             sx={{
-              width: 42,
-              height: 42,
+              width: { xs: 24, sm: 42 },
+              height: { xs: 24, sm: 42 },
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -107,7 +111,12 @@ export default function ScrollCue({ label, ariaLabel, targetId }: Props) {
               transition: 'box-shadow 0.3s ease',
             }}
           >
-            <MaskIcon className="ScrollCue-arrow" src="/icons/arrow-down.svg" size={21} />
+            <MaskIcon
+              className="ScrollCue-arrow"
+              src="/icons/arrow-down.svg"
+              size={21}
+              sx={{ width: { xs: 12, sm: 21 }, height: { xs: 12, sm: 21 } }}
+            />
           </Box>
         </Box>
       </ButtonBase>

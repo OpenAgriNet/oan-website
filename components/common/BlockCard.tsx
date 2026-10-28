@@ -45,7 +45,8 @@ export default function BlockCard({ icon, title, description, exploreLabel, expl
         '& .BlockCard-explore': { transform: 'translateY(4px)' },
         '&:has(:focus-visible)': revealed,
         '@media (hover: hover)': { '&:hover': revealed },
-        '@media (hover: none)': { pb: '44px', '& .BlockCard-explore': { opacity: 1, transform: 'none' } },
+        // Touch devices show the Explore link permanently; the Figma phone layout (< 600px) leaves it out
+        '@media (hover: none) and (min-width: 600px)': { pb: '44px', '& .BlockCard-explore': { opacity: 1, transform: 'none' } },
         '@media (prefers-reduced-motion: reduce)': {
           transition: 'none',
           '& .BlockCard-reveal': { transition: 'none' },

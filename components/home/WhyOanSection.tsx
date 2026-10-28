@@ -18,7 +18,7 @@ export default async function WhyOanSection() {
 
   return (
     <Box component="section" sx={{ bgcolor: 'background.section' }}>
-      <SiteContainer sx={{ pt: { xs: 6, lg: '60px' }, pb: { xs: 6, lg: 7 }, px: { lg: 14 } }}>
+      <SiteContainer sx={{ pt: { xs: '20px', sm: 6, lg: '60px' }, pb: { xs: '39px', sm: 6, lg: 7 }, px: { xs: '20px', sm: 4, md: 5, lg: 14 } }}>
         <Box
           sx={{
             display: 'flex',
@@ -27,10 +27,10 @@ export default async function WhyOanSection() {
             justifyContent: 'space-between',
             gap: 2,
             minHeight: { lg: 70 },
-            mb: { xs: 3, lg: '31px' },
+            mb: { xs: '28px', sm: 3, lg: '31px' },
           }}
         >
-          <Typography variant="sectionTitle" sx={{ color: 'text.title', fontSize: { xs: 24, md: 28 } }}>
+          <Typography variant="sectionTitle" sx={{ color: 'text.title', fontSize: { xs: 20, sm: 24, md: 28 } }}>
             {t.rich('title', {
               accent: (chunks) => (
                 <Box component="span" sx={{ color: 'secondary.main', fontWeight: 900 }}>
@@ -39,7 +39,17 @@ export default async function WhyOanSection() {
               ),
             })}
           </Typography>
-          <Typography variant="sectionLead" sx={{ color: 'common.black', width: { lg: 529 }, flexShrink: 0 }}>
+          <Typography
+            variant="sectionLead"
+            sx={{
+              color: 'common.black',
+              width: { lg: 529 },
+              maxWidth: { xs: 335, sm: 'none' },
+              flexShrink: 0,
+              fontSize: { xs: 12, sm: 16 },
+              lineHeight: { xs: '16px', sm: 1.4 },
+            }}
+          >
             {t.rich('lead', {
               br: () => <Box component="br" sx={{ display: { xs: 'none', lg: 'inline' } }} />,
             })}
@@ -50,6 +60,8 @@ export default async function WhyOanSection() {
             display: 'grid',
             gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' },
             gap: 2,
+            // Figma mobile: every card is 242px tall
+            gridAutoRows: { xs: 'minmax(242px, auto)', sm: 'auto' },
           }}
         >
           {cards.map((card) => (
