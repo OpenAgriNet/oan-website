@@ -14,7 +14,7 @@ export default function PillBadge({ children, icon = '/icons/star-outline.png' }
         display: 'inline-flex',
         alignItems: 'center',
         gap: '7px',
-        height: 30,
+        height: { xs: 24, sm: 30 },
         pl: '11px',
         pr: '12px',
         borderRadius: '100px',
@@ -26,8 +26,8 @@ export default function PillBadge({ children, icon = '/icons/star-outline.png' }
         <Box
           aria-hidden
           sx={{
-            width: 20,
-            height: 20,
+            width: { xs: 16, sm: 20 },
+            height: { xs: 16, sm: 20 },
             flexShrink: 0,
             bgcolor: 'currentColor',
             maskImage: `url(${icon})`,
@@ -37,7 +37,7 @@ export default function PillBadge({ children, icon = '/icons/star-outline.png' }
           }}
         />
       )}
-      <Typography variant="badge" sx={{ whiteSpace: 'nowrap' }}>
+      <Typography variant="badge" sx={{ whiteSpace: 'nowrap', fontSize: { xs: 10, sm: 14 } }}>
         {children}
       </Typography>
     </Box>

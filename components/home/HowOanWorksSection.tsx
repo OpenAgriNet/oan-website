@@ -18,9 +18,9 @@ export default async function HowOanWorksSection() {
           maxWidth: 1440,
           minHeight: { lg: 549 },
           mx: 'auto',
-          px: { xs: 2, sm: 4, md: 5, lg: 0 },
-          pt: { xs: 6, lg: '1px' },
-          pb: { xs: 4, lg: 0 },
+          px: { xs: '20px', sm: 4, md: 5, lg: 0 },
+          pt: { xs: '21px', sm: 6, lg: '1px' },
+          pb: { xs: '30px', sm: 4, lg: 0 },
         }}
       >
         <Box
@@ -29,17 +29,25 @@ export default async function HowOanWorksSection() {
             flexDirection: { xs: 'column', md: 'row' },
             alignItems: { xs: 'flex-start', md: 'center' },
             justifyContent: 'space-between',
-            gap: { xs: 4, md: 5 },
+            gap: { xs: '16px', sm: 4, md: 5 },
             pl: { lg: '112px' },
             pr: { lg: '104px' },
           }}
         >
-          <Box sx={{ position: 'relative', top: { lg: 1 }, maxWidth: 573, display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-              <SectionEyebrow>{t('eyebrow')}</SectionEyebrow>
+          <Box sx={{ position: 'relative', top: { lg: 1 }, maxWidth: { xs: 335, sm: 573 }, display: 'flex', flexDirection: 'column', gap: 2, textAlign: { xs: 'center', sm: 'left' } }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: '17px', sm: 3 } }}>
+              {/* Figma mobile: centered 11px eyebrow */}
+              <Box sx={{ '& .MuiTypography-root': { fontSize: { xs: 11, sm: 14 } }, '& > div': { height: { xs: 30, sm: 33 } } }}>
+                <SectionEyebrow align={{ xs: 'center', sm: 'left' }}>{t('eyebrow')}</SectionEyebrow>
+              </Box>
               <Typography
                 variant="sectionHeading"
-                sx={{ color: 'primary.main', fontSize: { xs: 26, sm: 30, md: 34 }, fontWeight: 700, letterSpacing: '0.5px' }}
+                sx={{
+                  color: { xs: 'text.heading', sm: 'primary.main' },
+                  fontSize: { xs: 24, sm: 30, md: 34 },
+                  fontWeight: { xs: 600, sm: 700 },
+                  letterSpacing: '0.5px',
+                }}
               >
                 {t.rich('title', {
                   accent: (chunks) => (
@@ -50,7 +58,13 @@ export default async function HowOanWorksSection() {
                 })}
               </Typography>
             </Box>
-            <Typography variant="sectionLead" sx={{ color: 'text.heading', position: 'relative', top: { lg: 1 }, lineHeight: '22px' }}>
+            <Typography variant="sectionLead" sx={{
+                color: 'text.heading',
+                position: 'relative',
+                top: { lg: 1 },
+                fontSize: { xs: 12, sm: 16 },
+                lineHeight: { xs: '17px', sm: '22px' },
+              }}>
               {t.rich('description', {
                 br: () => <Box component="br" sx={{ display: { xs: 'none', lg: 'inline' } }} />,
               })}
@@ -60,10 +74,11 @@ export default async function HowOanWorksSection() {
             sx={{
               position: 'relative',
               flexShrink: 0,
-              width: { xs: '100%', md: 'min(46%, 563px)', lg: 563 },
+              width: { xs: '103%', sm: '100%', md: 'min(46%, 563px)', lg: 563 },
               maxWidth: 563,
               aspectRatio: '1374 / 1145',
               alignSelf: { xs: 'center', md: 'auto' },
+              order: { xs: -1, sm: 0 },
             }}
           >
             <Image
@@ -93,7 +108,7 @@ export default async function HowOanWorksSection() {
             transform: { lg: 'translateX(-50%)' },
             display: 'flex',
             justifyContent: 'center',
-            mt: { xs: 4, lg: 0 },
+            mt: { xs: '25px', sm: 4, lg: 0 },
           }}
         >
           <ScrollCue label={t('cue')} ariaLabel={t('cueAria')} targetId={BUILDING_BLOCKS_ID} />

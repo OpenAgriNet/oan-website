@@ -34,7 +34,13 @@ export default function Header() {
   return (
     <AppBar position="sticky" elevation={0} sx={{ bgcolor: 'background.header', color: 'text.primary' }}>
       <SiteContainer
-        sx={{ minHeight: { xs: 72, md: 90 }, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+        sx={{
+          minHeight: { xs: 52, sm: 72, md: 90 },
+          px: { xs: '20px', sm: 4, md: 5, lg: 10 },
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
       >
         <Logo />
         <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 4 }}>
@@ -57,9 +63,9 @@ export default function Header() {
         <IconButton
           aria-label={t('openMenu')}
           onClick={() => setOpen(true)}
-          sx={{ display: { md: 'none' }, color: 'text.primary', mr: -1 }}
+          sx={{ display: { md: 'none' }, color: { xs: 'text.heading', sm: 'text.primary' }, mr: { xs: '-9px', sm: -1 } }}
         >
-          <MenuIcon />
+          <MenuIcon sx={{ fontSize: { xs: 27, sm: 24 } }} />
         </IconButton>
       </SiteContainer>
       <Drawer
