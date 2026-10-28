@@ -21,18 +21,46 @@ export default async function ExploreResourcesSection() {
   return (
     <Box component="section" sx={{ bgcolor: 'background.default' }}>
       <SiteContainer
-        sx={{ py: { xs: 5, lg: '60px' }, display: 'flex', flexDirection: 'column', gap: { xs: 4, lg: '40px' } }}
+        sx={{
+          px: { xs: '20px', sm: 4, md: 5, lg: 10 },
+          pt: { xs: '32px', sm: 5, lg: '60px' },
+          pb: { xs: '22px', sm: 5, lg: '60px' },
+          display: 'flex',
+          flexDirection: 'column',
+          gap: { xs: '24px', sm: 4, lg: '40px' },
+        }}
       >
         <Box sx={{ display: 'flex', flexDirection: { xs: 'column', lg: 'row' }, gap: { xs: 3, lg: 2 } }}>
-          <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 3 }}>
-            <SectionEyebrow>{t('eyebrow')}</SectionEyebrow>
-            <Typography variant="headline" sx={{ color: 'text.heading', fontSize: { xs: 24, md: 28 } }}>
+          <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: { xs: '16px', sm: 3 } }}>
+            {/* Figma mobile: 11px eyebrow in a 30px box */}
+            <Box sx={{ '& .MuiTypography-root': { fontSize: { xs: 11, sm: 14 } }, '& > div': { height: { xs: 30, sm: 33 } } }}>
+              <SectionEyebrow>{t('eyebrow')}</SectionEyebrow>
+            </Box>
+            <Typography
+              variant="headline"
+              sx={{
+                color: 'text.heading',
+                fontSize: { xs: 20, sm: 24, md: 28 },
+                // Figma mobile: letter spacing is 2% of the font size
+                letterSpacing: { xs: '0.4px', sm: '0.56px' },
+              }}
+            >
               {t.rich('title', {
-                br: () => <Box component="br" sx={{ display: { xs: 'none', sm: 'inline' } }} />,
+                br: () => <br />,
               })}
             </Typography>
           </Box>
-          <Typography variant="blockBody" sx={{ color: 'text.heading', lineHeight: 1.4, width: { lg: 603 }, flexShrink: 0 }}>
+          <Typography
+            variant="blockBody"
+            sx={{
+              color: 'text.heading',
+              lineHeight: { xs: '17px', sm: 1.4 },
+              fontSize: { xs: 12, sm: 14 },
+              width: { lg: 603 },
+              maxWidth: { xs: 335, sm: 'none' },
+              flexShrink: 0,
+            }}
+          >
             {t('description')}
           </Typography>
         </Box>
@@ -56,7 +84,17 @@ export default async function ExploreResourcesSection() {
               />
             ))}
           </Box>
-          <ActionButton href="#" sx={{ px: '22px', fontWeight: 700 }}>
+          <ActionButton
+            href="#"
+            sx={{
+              px: '22px',
+              fontWeight: 700,
+              // Figma mobile: full-width 42px button with a 12px label
+              width: { xs: '100%', sm: 'auto' },
+              minHeight: { xs: 42, sm: 52 },
+              fontSize: { xs: 12, sm: 14 },
+            }}
+          >
             {t('viewAll')}
           </ActionButton>
         </Box>
