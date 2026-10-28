@@ -22,14 +22,28 @@ export default async function ResourcesHeroSection() {
           minHeight: { md: 300, lg: 311 },
         }}
       >
+        {/* Figma mobile: 375x312 artwork behind the copy; scales in proportion, never cropped */}
+        <Box
+          aria-hidden
+          sx={{ display: { xs: 'block', sm: 'none' }, position: 'relative', width: '100%', aspectRatio: '750 / 624' }}
+        >
+          <Image
+            src="/images/resources/hero-bg-mobile.png"
+            alt=""
+            fill
+            sizes="100vw"
+            style={{ objectFit: 'contain', objectPosition: 'center bottom' }}
+          />
+        </Box>
         <Box
           aria-hidden
           sx={{
-            position: { xs: 'relative', md: 'absolute' },
+            display: { xs: 'none', sm: 'block' },
+            position: { sm: 'relative', md: 'absolute' },
             inset: { md: 0 },
             order: { xs: 2, md: 0 },
             width: '100%',
-            height: { xs: 170, sm: 240, md: 'auto' },
+            height: { sm: 240, md: 'auto' },
             '@media (min-width: 1441px)': { maskImage: edgeFade },
           }}
         >
@@ -42,13 +56,27 @@ export default async function ResourcesHeroSection() {
             style={{ objectFit: 'cover', objectPosition: 'right bottom' }}
           />
         </Box>
-        <SiteContainer sx={{ position: 'relative', zIndex: 1, order: { xs: 1, md: 0 }, pt: { xs: 4, md: '73px' }, pb: { xs: 3, md: '73px' }, pl: { lg: '150px' } }}>
-          <Box sx={{ maxWidth: 516, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '16px' }}>
+        <SiteContainer
+          sx={{
+            // On phones the copy overlays the artwork, which sets the section height
+            position: { xs: 'absolute', sm: 'relative' },
+            top: { xs: 0 },
+            left: { xs: 0 },
+            right: { xs: 0 },
+            zIndex: 1,
+            order: { xs: 1, md: 0 },
+            px: { xs: '20px', sm: 4, md: 5, lg: 10 },
+            pt: { xs: '42.5px', sm: 4, md: '73px' },
+            pb: { xs: 3, md: '73px' },
+            pl: { lg: '150px' },
+          }}
+        >
+          <Box sx={{ maxWidth: { xs: 335, sm: 516 }, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '16px' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '12px' }}>
               <PillBadge icon={null}>{t('badge')}</PillBadge>
               <Typography
                 variant="heroTitle"
-                sx={{ color: 'text.heading', fontSize: { xs: 28, sm: 32, md: 36 }, whiteSpace: { md: 'nowrap' } }}
+                sx={{ color: 'text.heading', fontSize: { xs: 24, sm: 32, md: 36 }, whiteSpace: { md: 'nowrap' } }}
               >
                 {t.rich('title', {
                   accent: (chunks) => (
@@ -60,7 +88,10 @@ export default async function ResourcesHeroSection() {
                 })}
               </Typography>
             </Box>
-            <Typography variant="heroBody" sx={{ color: 'text.heading' }}>
+            <Typography
+              variant="heroBody"
+              sx={{ color: 'text.heading', fontSize: { xs: 12, sm: 14 }, lineHeight: { xs: '18px', sm: 1.5 } }}
+            >
               {t('description')}
             </Typography>
           </Box>
