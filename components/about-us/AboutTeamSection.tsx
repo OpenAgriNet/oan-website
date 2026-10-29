@@ -140,6 +140,13 @@ export default async function AboutTeamSection() {
                 bgcolor: 'background.paper',
                 boxShadow: '0 4px 24px var(--mui-palette-card-shadow)',
                 textAlign: 'center',
+                position: 'relative',
+                transition: 'transform 200ms ease-out, box-shadow 200ms ease-out',
+                // Hover zoom for pointer devices only, so touch screens never get a stuck state
+                '@media (hover: hover)': {
+                  '&:hover': { transform: 'scale(1.03)', boxShadow: '0 8px 28px rgba(0, 0, 0, 0.14)', zIndex: 1 },
+                },
+                '@media (prefers-reduced-motion: reduce)': { transition: 'none', '&:hover': { transform: 'none' } },
               }}
             >
               <Image
