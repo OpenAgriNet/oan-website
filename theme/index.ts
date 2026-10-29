@@ -7,6 +7,8 @@ declare module '@mui/material/styles' {
     header: string;
     section: string;
     subtle: string;
+    sky: string;
+    panel: string;
   }
   interface TypeText {
     muted: string;
@@ -127,7 +129,7 @@ const theme = createTheme({
     secondary: { main: '#B45F06' },
     success: { main: '#128937' },
     text: { primary: '#2B2D2F', muted: '#9E9E9E', heading: '#232323', title: '#171717', caption: '#737373' },
-    background: { default: '#FFFFFF', paper: '#FFFFFF', header: '#F9F9F9', section: '#F4F6F1', subtle: '#FAFBFA' },
+    background: { default: '#FFFFFF', paper: '#FFFFFF', header: '#F9F9F9', section: '#F4F6F1', subtle: '#FAFBFA', sky: '#ECF7FE', panel: '#FAFDFE' },
     statCard: { background: '#FAFBF6', border: '#EAEFE3' },
     scrollCue: { circle: '#FFFFFF', glow: 'rgba(134, 219, 168, 0.6)' },
     tag: { background: '#EBF9F1', text: '#1F9254' },
