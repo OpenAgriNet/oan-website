@@ -18,7 +18,15 @@ type Props = {
   // When `image` is the full artwork: the strip of it (in source pixels) that the desktop design shows
   crop?: { width: number; height: number; top: number; stripHeight: number };
   // Mobile Figma layout (below 600px): a tinted band behind the text, and the photo placed lower down
-  mobile?: { height: number; tintHeight: number; photo: { right: number; top: number; width: number } };
+  mobile?: {
+    height: number;
+    tintHeight: number;
+    photo: { right: number; top: number; width: number };
+    // Space above the pill (default 43px)
+    textTop?: number;
+    // Drawn over the photo, e.g. a fade from the tint colour
+    overlay?: string;
+  };
 };
 
 export default function PageHero({ eyebrow, titleLine1, titleLine2, description, image, imageAlt, height, overlay, crop, mobile }: Props) {
@@ -58,6 +66,9 @@ export default function PageHero({ eyebrow, titleLine1, titleLine2, description,
           >
             <Image src={image} alt={imageAlt} fill priority sizes={`${mobile.photo.width}px`} />
           </Box>
+        )}
+        {mobile?.overlay && (
+          <Box aria-hidden sx={{ display: xsOnly, position: 'absolute', top: 0, left: 0, right: 0, height: mobile.height, background: mobile.overlay }} />
         )}
         <Box
           sx={{
@@ -119,7 +130,7 @@ export default function PageHero({ eyebrow, titleLine1, titleLine2, description,
             // At 1440px the text starts at x=150, as in Figma
             pl: { xs: mobile ? '20px' : 2, sm: 4, md: 5, lg: 'max(80px, calc(50% - 570px))' },
             pr: { xs: mobile ? '20px' : 2, sm: 4, md: 5, lg: 0 },
-            pt: { xs: mobile ? '43px' : 6, sm: 6, lg: 0 },
+            pt: { xs: mobile ? `${mobile.textTop ?? 43}px` : 6, sm: 6, lg: 0 },
             pb: { xs: mobile ? 0 : 4, sm: 4, lg: 0 },
           }}
         >
@@ -132,7 +143,7 @@ export default function PageHero({ eyebrow, titleLine1, titleLine2, description,
               // Mobile Figma: a smaller pill
               ...(mobile && {
                 '& > :first-child': { height: { xs: 22, sm: 30 } },
-                '& .MuiTypography-badge': { fontSize: { xs: 10, sm: 14 } },
+                '& .MuiTypography-badge': { fontSize: { xs: 10, sm: 14 }, textTransform: { xs: 'uppercase', sm: 'none' } },
               }),
             }}
           >

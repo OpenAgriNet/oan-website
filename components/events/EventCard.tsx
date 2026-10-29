@@ -33,6 +33,13 @@ export default function EventCard({ image, imageAlt, type, date, title, descript
         borderColor: 'card.border',
         borderRadius: '16px',
         bgcolor: 'background.paper',
+        position: 'relative',
+        transition: 'transform 200ms ease-out, box-shadow 200ms ease-out',
+        // Same hover zoom as the About Us team cards; pointer devices only, so touch screens never get a stuck state
+        '@media (hover: hover)': {
+          '&:hover': { transform: 'scale(1.03)', boxShadow: '0 8px 28px rgba(0, 0, 0, 0.14)', zIndex: 1 },
+        },
+        '@media (prefers-reduced-motion: reduce)': { transition: 'none', '&:hover': { transform: 'none' } },
       }}
     >
       <Box sx={{ position: 'relative', height: 196, borderRadius: '8px', overflow: 'hidden', flexShrink: 0 }}>
@@ -58,7 +65,9 @@ export default function EventCard({ image, imageAlt, type, date, title, descript
               {title}
             </Typography>
           </Box>
-          <Typography sx={{ fontSize: 13, lineHeight: 1.4, color: 'text.heading', minHeight: '4.2em' }}>{description}</Typography>
+          <Typography sx={{ fontSize: 13, lineHeight: 1.4, color: 'text.heading', minHeight: { xs: '5.6em', sm: '4.2em' } }}>
+            {description}
+          </Typography>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
           <Box
