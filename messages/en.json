@@ -85,7 +85,9 @@
         "digitalIndia": "Digital India",
         "iffcoKisan": "IFFCO Kisan"
       },
-      "cta": "View All"
+      "cta": "View All",
+      "previous": "Previous logos",
+      "next": "Next logos"
     },
     "cta": {
       "eyebrow": "OpenAgriNet",

@@ -5,6 +5,7 @@ import { getTranslations } from 'next-intl/server';
 import ActionButton from '@/components/common/ActionButton';
 import SectionEyebrow from '@/components/common/SectionEyebrow';
 import SiteContainer from '@/components/layout/SiteContainer';
+import PartnerLogos from './PartnerLogos';
 
 const dir = '/images/about-us/partners';
 
@@ -17,6 +18,7 @@ const groups = [
       { key: 'coss', width: 75.5, height: 81.87 },
       { key: 'ondc', width: 124.5, height: 59.25 },
       { key: 'cdpi', width: 155, height: 48.15 },
+      // { key: 'cgiar', width: 74.75, height: 88.57 }, // test logo
     ],
   },
   {
@@ -27,6 +29,7 @@ const groups = [
       { key: 'kalro', width: 133.25, height: 65.28 },
       { key: 'digitalIndia', file: 'digital-india', width: 169.19, height: 81.21 },
       { key: 'iffcoKisan', file: 'iffco-kissan', width: 129, height: 54 },
+      // { key: 'cdpi', width: 155, height: 48.15 }, // test logo
     ],
   },
 ] as const;
@@ -113,54 +116,16 @@ export default async function AboutPartnersSection() {
             <Typography variant="cardTitle" component="h3" sx={{ color: 'text.heading', lineHeight: '19px' }}>
               {t(`groups.${key}`)}
             </Typography>
-            <Box
-              component="ul"
-              sx={{
-                listStyle: 'none',
-                m: 0,
-                p: 0,
-                display: 'flex',
-                flexWrap: 'wrap',
-                justifyContent: 'center',
-                gap: { xs: '16px 20px', sm: 2, md: 3, lg: '30px' },
-              }}
-            >
-              {logos.map((logo) => (
-                <Box
-                  component="li"
-                  key={logo.key}
-                  sx={{
-                    // Figma mobile: two 82px cards per row, an odd last card spans the full width
-                    width: { xs: 'calc(50% - 10px)', sm: 'calc(50% - 8px)', md: 'calc(33.333% - 16px)', lg: 'calc(20% - 24px)' },
-                    '&:last-child': {
-                      width: { xs: '100%', sm: 'calc(50% - 8px)', md: 'calc(33.333% - 16px)', lg: 'calc(20% - 24px)' },
-                    },
-                    '--logo-scale': { xs: 0.68, sm: 1 },
-                    minHeight: { xs: 82, sm: 120 },
-                    height: { xs: 82, sm: 'auto', lg: 120 },
-                    boxSizing: 'border-box',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    p: { xs: '0 16px', sm: 2 },
-                    border: '1px solid',
-                    borderColor: 'card.border',
-                    borderRadius: '12px 0',
-                    bgcolor: 'background.paper',
-                    boxShadow: '0 4px 24px var(--mui-palette-card-shadow)',
-                  }}
-                >
-                  <Image
-                    src={`${dir}/${'file' in logo ? logo.file : logo.key}.png`}
-                    alt={t(`logos.${logo.key}`)}
-                    width={logo.width}
-                    height={logo.height}
-                    sizes="170px"
-                    style={{ width: `calc(${logo.width}px * var(--logo-scale))`, maxWidth: '100%', height: 'auto' }}
-                  />
-                </Box>
-              ))}
-            </Box>
+            <PartnerLogos
+              label={t(`groups.${key}`)}
+              logos={logos.map((logo) => ({
+                key: logo.key,
+                src: `${dir}/${'file' in logo ? logo.file : logo.key}.png`,
+                alt: t(`logos.${logo.key}`),
+                width: logo.width,
+                height: logo.height,
+              }))}
+            />
           </Box>
         ))}
         <ActionButton
