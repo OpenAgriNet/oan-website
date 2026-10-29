@@ -35,10 +35,12 @@ export default async function AboutPartnersSection() {
   const t = await getTranslations('AboutUs.partners');
 
   return (
-    <Box component="section" sx={{ position: 'relative', bgcolor: 'background.default', overflow: 'hidden' }}>
+    // Figma mobile: a flat pale tint instead of the illustration
+    <Box component="section" sx={{ position: 'relative', bgcolor: { xs: 'background.subtle', sm: 'background.default' }, overflow: 'hidden' }}>
       <Box
         aria-hidden
         sx={{
+          display: { xs: 'none', sm: 'block' },
           position: 'absolute',
           top: { xs: 0, lg: '10px' },
           left: { xs: 0, lg: '-12.78%' },
@@ -58,22 +60,38 @@ export default async function AboutPartnersSection() {
       <SiteContainer
         sx={{
           position: 'relative',
-          pt: { xs: 5, lg: '54px' },
-          pb: { xs: 5, lg: '58px' },
+          px: { xs: '20px', sm: 4, md: 5, lg: 10 },
+          pt: { xs: '24px', sm: 5, lg: '54px' },
+          pb: { xs: '32px', sm: 5, lg: '58px' },
           pl: { lg: '82px' },
           pr: { lg: '99px' },
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: { xs: 4, lg: '40px' },
+          gap: { xs: '24px', sm: 4, lg: '40px' },
         }}
       >
         <Box sx={{ width: '100%', maxWidth: 683, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '8px' }}>
-          <SectionEyebrow align="center">{t('eyebrow')}</SectionEyebrow>
+          {/* Figma mobile: 12px eyebrow in a 30px box, 6px above the title */}
+          <Box
+            sx={{
+              mb: { xs: '-2px', sm: 0 },
+              '& .MuiTypography-root': { fontSize: { xs: 12, sm: 14 } },
+              '& > div': { height: { xs: 30, sm: 33 } },
+            }}
+          >
+            <SectionEyebrow align="center">{t('eyebrow')}</SectionEyebrow>
+          </Box>
           <Typography
             variant="headline"
             component="h2"
-            sx={{ color: 'text.heading', fontWeight: 800, fontSize: { xs: 22, sm: 26, md: 28 }, lineHeight: { md: '34px' } }}
+            sx={{
+              color: 'text.heading',
+              fontWeight: 800,
+              fontSize: { xs: 20, sm: 26, md: 28 },
+              lineHeight: { md: '34px' },
+              letterSpacing: { xs: '0.4px', sm: '0.56px' },
+            }}
           >
             {t.rich('title', {
               accent: (chunks) => (
@@ -83,12 +101,15 @@ export default async function AboutPartnersSection() {
               ),
             })}
           </Typography>
-          <Typography variant="blockBody" sx={{ color: 'common.black', lineHeight: '20px' }}>
+          <Typography
+            variant="blockBody"
+            sx={{ color: 'common.black', fontSize: { xs: 12, sm: 14 }, lineHeight: { xs: '17px', sm: '20px' } }}
+          >
             {t('description')}
           </Typography>
         </Box>
         {groups.map(({ key, logos }) => (
-          <Box key={key} sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 3 }}>
+          <Box key={key} sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: { xs: '16px', sm: 3 } }}>
             <Typography variant="cardTitle" component="h3" sx={{ color: 'text.heading', lineHeight: '19px' }}>
               {t(`groups.${key}`)}
             </Typography>
@@ -101,7 +122,7 @@ export default async function AboutPartnersSection() {
                 display: 'flex',
                 flexWrap: 'wrap',
                 justifyContent: 'center',
-                gap: { xs: 2, md: 3, lg: '30px' },
+                gap: { xs: '16px 20px', sm: 2, md: 3, lg: '30px' },
               }}
             >
               {logos.map((logo) => (
@@ -109,14 +130,19 @@ export default async function AboutPartnersSection() {
                   component="li"
                   key={logo.key}
                   sx={{
-                    width: { xs: 'calc(50% - 8px)', md: 'calc(33.333% - 16px)', lg: 'calc(20% - 24px)' },
-                    minHeight: 120,
-                    height: { lg: 120 },
+                    // Figma mobile: two 82px cards per row, an odd last card spans the full width
+                    width: { xs: 'calc(50% - 10px)', sm: 'calc(50% - 8px)', md: 'calc(33.333% - 16px)', lg: 'calc(20% - 24px)' },
+                    '&:last-child': {
+                      width: { xs: '100%', sm: 'calc(50% - 8px)', md: 'calc(33.333% - 16px)', lg: 'calc(20% - 24px)' },
+                    },
+                    '--logo-scale': { xs: 0.68, sm: 1 },
+                    minHeight: { xs: 82, sm: 120 },
+                    height: { xs: 82, sm: 'auto', lg: 120 },
                     boxSizing: 'border-box',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    p: 2,
+                    p: { xs: '0 16px', sm: 2 },
                     border: '1px solid',
                     borderColor: 'card.border',
                     borderRadius: '12px 0',
@@ -130,14 +156,25 @@ export default async function AboutPartnersSection() {
                     width={logo.width}
                     height={logo.height}
                     sizes="170px"
-                    style={{ width: logo.width, maxWidth: '100%', height: 'auto' }}
+                    style={{ width: `calc(${logo.width}px * var(--logo-scale))`, maxWidth: '100%', height: 'auto' }}
                   />
                 </Box>
               ))}
             </Box>
           </Box>
         ))}
-        <ActionButton href="#" sx={{ px: '22px', fontWeight: 700, lineHeight: '20px', minWidth: 200 }}>
+        <ActionButton
+          href="#"
+          sx={{
+            px: '22px',
+            fontWeight: 700,
+            lineHeight: '20px',
+            minWidth: 200,
+            width: { xs: '100%', sm: 'auto' },
+            minHeight: { xs: 42, sm: 52 },
+            fontSize: { xs: 12, sm: 14 },
+          }}
+        >
           {t('cta')}
         </ActionButton>
       </SiteContainer>

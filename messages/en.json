@@ -88,6 +88,7 @@
       "cta": "View All"
     },
     "cta": {
+      "eyebrow": "OpenAgriNet",
       "title": "Build With <accent>OpenAgriNet</accent>",
       "description": "Explore how OAN’s open building blocks can help create connected agricultural services for farmers and ecosystem participants.",
       "explore": "Explore Building Blocks",

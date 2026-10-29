@@ -43,13 +43,14 @@ export default async function AboutTeamSection() {
       <SiteContainer
         sx={{
           position: 'relative',
-          pt: { xs: 5, lg: '54px' },
-          pb: { xs: 5, lg: '58px' },
+          px: { xs: '20px', sm: 4, md: 5, lg: 10 },
+          pt: { xs: '26px', sm: 5, lg: '54px' },
+          pb: { xs: '32px', sm: 5, lg: '58px' },
           pl: { lg: '82px' },
           pr: { lg: '99px' },
           display: 'flex',
           flexDirection: 'column',
-          gap: { xs: 4, lg: '41px' },
+          gap: { xs: '24px', sm: 4, lg: '41px' },
         }}
       >
         <Box
@@ -58,7 +59,7 @@ export default async function AboutTeamSection() {
             flexDirection: { xs: 'column', sm: 'row' },
             justifyContent: 'space-between',
             alignItems: { xs: 'stretch', sm: 'flex-start' },
-            gap: 2,
+            gap: { xs: '16px', sm: 2 },
           }}
         >
           <Box
@@ -71,11 +72,18 @@ export default async function AboutTeamSection() {
               gap: '16px',
             }}
           >
-            <SectionEyebrow align={{ xs: 'center', sm: 'left' }}>{t('eyebrow')}</SectionEyebrow>
+            {/* Figma mobile: 12px eyebrow in a 30px box */}
+            <Box sx={{ '& .MuiTypography-root': { fontSize: { xs: 12, sm: 14 } }, '& > div': { height: { xs: 30, sm: 33 } } }}>
+              <SectionEyebrow align={{ xs: 'center', sm: 'left' }}>{t('eyebrow')}</SectionEyebrow>
+            </Box>
             <Typography
               variant="headline"
               component="h2"
-              sx={{ color: 'text.heading', fontWeight: 800, fontSize: { xs: 22, sm: 26, md: 28 }, lineHeight: { md: '34px' } }}
+              sx={{ color: 'text.heading', fontWeight: 800,
+                fontSize: { xs: 20, sm: 26, md: 28 },
+                lineHeight: { md: '34px' },
+                letterSpacing: { xs: '0.4px', sm: '0.56px' },
+              }}
             >
               {t.rich('title', {
                 accent: (chunks) => (
@@ -85,11 +93,18 @@ export default async function AboutTeamSection() {
                 ),
               })}
             </Typography>
-            <Typography variant="blockBody" sx={{ color: 'text.heading', lineHeight: '20px', maxWidth: 818 }}>
+            <Typography
+              variant="blockBody"
+              sx={{ color: 'text.heading', fontSize: { xs: 12, sm: 14 }, lineHeight: { xs: '17px', sm: '20px' }, maxWidth: 818 }}
+            >
               {t.rich('description', { br: () => <br /> })}
             </Typography>
           </Box>
-          <ActionButton href="#" tone="secondary" sx={{ px: '22px', fontWeight: 700, lineHeight: '20px', flexShrink: 0, width: { xs: '100%', sm: 'auto' } }}>
+          <ActionButton
+            href="#"
+            tone="secondary"
+            sx={{ px: '22px', fontWeight: 700, lineHeight: '20px', flexShrink: 0, width: { xs: '100%', sm: 'auto' }, minHeight: { xs: 42, sm: 52 }, fontSize: { xs: 12, sm: 14 } }}
+          >
             {t('cta')}
           </ActionButton>
         </Box>
@@ -102,7 +117,7 @@ export default async function AboutTeamSection() {
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'center',
-            gap: { xs: 2, md: 3, lg: '30px' },
+            gap: { xs: '30px', sm: 2, md: 3, lg: '30px' },
           }}
         >
           {members.map(({ key, image }) => (
