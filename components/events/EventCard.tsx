@@ -58,7 +58,9 @@ export default function EventCard({ image, imageAlt, type, date, title, descript
               {title}
             </Typography>
           </Box>
-          <Typography sx={{ fontSize: 13, lineHeight: 1.4, color: 'text.heading', minHeight: '4.2em' }}>{description}</Typography>
+          <Typography sx={{ fontSize: 13, lineHeight: 1.4, color: 'text.heading', minHeight: { xs: '5.6em', sm: '4.2em' } }}>
+            {description}
+          </Typography>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
           <Box
