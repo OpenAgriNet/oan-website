@@ -416,15 +416,69 @@
         },
         "contribute": {
           "title": "Contribute",
-          "summary": "Contribute code, standards, data or expertise."
+          "summary": "Contribute code, standards, data or expertise.",
+          "badge": "03 CONTRIBUTE",
+          "heading": "Contribute to OpenAgriNet",
+          "description": "Help shape OpenAgriNet by sharing code, standards, data\nand expertise with an open community working for farmers.",
+          "ways": [
+            {
+              "title": "Contribute code",
+              "description": "Improve OAN building blocks, tools and reference\nimplementations."
+            },
+            {
+              "title": "Shape open standards",
+              "description": "Help define specifications that keep services\ninteroperable."
+            },
+            {
+              "title": "Share data and expertise",
+              "description": "Bring domain knowledge and datasets that make\nsolutions more useful."
+            }
+          ],
+          "action": "Explore Contribution Opportunities"
         },
         "research": {
           "title": "Research",
-          "summary": "Advance DPI, AI and interoperability thinking."
+          "summary": "Advance DPI, AI and interoperability thinking.",
+          "badge": "04 RESEARCH",
+          "heading": "Research with OpenAgriNet",
+          "description": "Advance thinking on digital public infrastructure, AI and\ninteroperability for agriculture through open research.",
+          "ways": [
+            {
+              "title": "Study DPI for agriculture",
+              "description": "Explore how open infrastructure can improve\nagricultural services."
+            },
+            {
+              "title": "Advance responsible AI",
+              "description": "Research AI approaches that are safe, inclusive\nand useful for farmers."
+            },
+            {
+              "title": "Publish open insights",
+              "description": "Share findings that help the wider ecosystem\nlearn and improve."
+            }
+          ],
+          "action": "Explore Research Opportunities"
         },
         "partner": {
           "title": "Partner",
-          "summary": "Collaborate on pilots and implementations."
+          "summary": "Collaborate on pilots and implementations.",
+          "badge": "05 PARTNER",
+          "heading": "Partner with OpenAgriNet",
+          "description": "Work with OpenAgriNet on pilots and implementations that\nbring open, connected services to farming communities.",
+          "ways": [
+            {
+              "title": "Co-design pilots",
+              "description": "Test new solutions together with institutions\nand farmers."
+            },
+            {
+              "title": "Support implementations",
+              "description": "Bring resources and expertise to real-world\ndeployments."
+            },
+            {
+              "title": "Grow the network",
+              "description": "Connect organisations to expand the reach\nof open agricultural services."
+            }
+          ],
+          "action": "Explore Partnership Opportunities"
         }
       }
     },
