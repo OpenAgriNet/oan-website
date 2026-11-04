@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
-import { useRef, useState, type CSSProperties, type KeyboardEvent } from 'react';
+import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react';
 import { flushSync } from 'react-dom';
 import ActionButton from '@/components/common/ActionButton';
 import PillBadge from '@/components/common/PillBadge';
@@ -48,7 +48,15 @@ const viewTransitionStyles = {
     height: 'auto',
     objectFit: 'none',
   },
+  // The tab row animates itself (colours, shape and scroll), so show it live instead of cross-fading two snapshots
+  '::view-transition-old(involve-tabs)': { display: 'none' },
+  '::view-transition-new(involve-tabs)': { animation: 'none' },
 };
+
+// Close to CSS ease-in-out, so the scroll moves in step with the tab transitions
+const easeInOut = (t: number) => (1 - Math.cos(Math.PI * t)) / 2;
+
+const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // Mobile Figma: a smaller button with no hover arrow
 const mobileButton = {
@@ -64,12 +72,33 @@ export default function InvolvementTabs({ tabs, waysTitle }: Props) {
   const selectable = tabs.filter((tab) => tab.panel);
   const [activeKey, setActiveKey] = useState(selectable[0]?.key);
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const listRef = useRef<HTMLDivElement>(null);
   const active = selectable.find((tab) => tab.key === activeKey);
+
+  // Mobile: slide the selected tab to the middle of the sideways-scrolling row, in step with the 300ms tab change.
+  // The target is re-measured each frame because the tabs' padding animates over the same 300ms.
+  useEffect(() => {
+    const list = listRef.current;
+    const tab = activeKey ? tabRefs.current[activeKey] : null;
+    if (!list || !tab || list.scrollWidth <= list.clientWidth) return;
+    const target = () => {
+      const left = tab.getBoundingClientRect().left - list.getBoundingClientRect().left + list.scrollLeft;
+      return Math.min(list.scrollWidth - list.clientWidth, Math.max(0, left - (list.clientWidth - tab.offsetWidth) / 2));
+    };
+    const start = list.scrollLeft;
+    const began = performance.now();
+    const duration = prefersReducedMotion() ? 0 : 300;
+    let frame = requestAnimationFrame(function step(now) {
+      const progress = duration ? Math.min(1, (now - began) / duration) : 1;
+      list.scrollLeft = start + (target() - start) * easeInOut(progress);
+      if (progress < 1) frame = requestAnimationFrame(step);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [activeKey]);
 
   const select = (key: string) => {
     if (key === activeKey) return;
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!document.startViewTransition || reduceMotion) {
+    if (!document.startViewTransition || prefersReducedMotion()) {
       setActiveKey(key);
       return;
     }
@@ -96,7 +125,9 @@ export default function InvolvementTabs({ tabs, waysTitle }: Props) {
     >
       <GlobalStyles styles={viewTransitionStyles} />
       <Box
+        ref={listRef}
         role="tablist"
+        style={vt('tabs')}
         aria-orientation="vertical"
         onKeyDown={onKeyDown}
         sx={{
@@ -135,38 +166,43 @@ export default function InvolvementTabs({ tabs, waysTitle }: Props) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                // Mobile Figma gives the text 170px of the 246px tab, so the arrow sits right after it
-                gap: { xs: '2px', sm: 2 },
-                flex: { xs: '0 0 246px', sm: 'none' },
-                width: { xs: 246, sm: '100%' },
-                px: { xs: 1, sm: 2 },
+                gap: 2,
+                // Mobile Figma: compact 42px chips that hug an icon and the title; the selected one sits 4px closer to its icon
+                flex: { xs: '0 0 auto', sm: 'none' },
+                width: { xs: 'auto', sm: '100%' },
+                pl: { xs: selected ? '4px' : 1, sm: 2 },
+                pr: { xs: 1, sm: 2 },
                 py: { xs: 1, sm: 3 },
                 font: 'inherit',
                 textAlign: 'left',
                 border: '1px solid',
                 borderColor: selected ? 'primary.main' : 'rgba(var(--mui-palette-primary-mainChannel) / 0.1)',
-                borderTopLeftRadius: '12px',
-                borderBottomRightRadius: '12px',
+                borderTopLeftRadius: { xs: selected ? '4px' : '12px', sm: '12px' },
+                borderBottomRightRadius: { xs: selected ? '4px' : '12px', sm: '12px' },
                 bgcolor: selected ? 'card.iconBackground' : 'background.paper',
                 boxShadow: { xs: '0 4px 24px var(--mui-palette-card-shadow)', sm: '0 4px 12px var(--mui-palette-card-shadow)' },
                 cursor: tab.panel ? 'pointer' : 'default',
-                transition: `background-color ${transition}, border-color ${transition}`,
+                transition: `background-color ${transition}, border-color ${transition}, border-radius ${transition}, padding ${transition}`,
                 '&:focus-visible': { outline: '2px solid', outlineColor: 'primary.main', outlineOffset: '2px' },
                 '@media (prefers-reduced-motion: reduce)': { transition: 'none' },
               }}
             >
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, sm: 2 }, minWidth: 0 }}>
-                <Box component="img" src={tab.icon} alt="" sx={{ flexShrink: 0, width: { xs: 32, sm: 52 }, height: 'auto' }} />
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: '4px', sm: 1 }, minWidth: 0, color: 'text.heading' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: '4px', sm: 2 }, minWidth: 0 }}>
+                <Box component="img" src={tab.icon} alt="" sx={{ flexShrink: 0, width: { xs: 24, sm: 52 }, height: 'auto' }} />
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, minWidth: 0, color: 'text.heading' }}>
                   <Typography variant="cardTitle" component="span" sx={{ fontSize: { xs: 12, sm: 16 } }}>
                     {tab.title}
                   </Typography>
-                  <Typography variant="blockBody" component="span" sx={{ fontSize: { xs: 11, sm: 14 } }}>
+                  <Typography variant="blockBody" component="span" sx={{ display: { xs: 'none', sm: 'block' }, fontSize: 14 }}>
                     {tab.summary}
                   </Typography>
                 </Box>
               </Box>
-              <MaskIcon src="/icons/chevron-down.svg" size={18} sx={{ color: 'primary.main', transform: 'rotate(-90deg)' }} />
+              <MaskIcon
+                src="/icons/chevron-down.svg"
+                size={18}
+                sx={{ display: { xs: 'none', sm: 'block' }, color: 'primary.main', transform: 'rotate(-90deg)' }}
+              />
             </Box>
           );
         })}
