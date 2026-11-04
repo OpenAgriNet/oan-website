@@ -1,6 +1,10 @@
+import type { Metadata } from 'next';
+import { getPageMetadata } from '@/lib/metadata';
 import EventsHero from '@/components/events/EventsHero';
 import EventsSection from '@/components/events/EventsSection';
 import { pastEvents, upcomingEvents } from '@/components/events/eventItems';
+
+export const generateMetadata = (): Promise<Metadata> => getPageMetadata('events', '/events');
 
 export default function EventsPage() {
   return (

@@ -1,7 +1,31 @@
 {
   "Metadata": {
     "title": "OpenAgriNet",
-    "description": "Open infrastructure for accessible agricultural knowledge"
+    "description": "Open infrastructure for accessible agricultural knowledge",
+    "siteName": "OpenAgriNet",
+    "imageAlt": "OpenAgriNet - open infrastructure for accessible agricultural knowledge",
+    "pages": {
+      "buildingBlocks": {
+        "title": "Building Blocks | OpenAgriNet",
+        "description": "Explore the open, modular building blocks that power OpenAgriNet and make agricultural knowledge accessible to every farmer."
+      },
+      "aboutUs": {
+        "title": "About Us | OpenAgriNet",
+        "description": "Learn about OpenAgriNet, the coalition behind it, its story and the team building open agricultural infrastructure."
+      },
+      "community": {
+        "title": "Community | OpenAgriNet",
+        "description": "Join the OpenAgriNet community: build, implement and contribute to open infrastructure for agriculture."
+      },
+      "resources": {
+        "title": "Resources | OpenAgriNet",
+        "description": "Documentation, guides, code and media to help you learn about and implement OpenAgriNet."
+      },
+      "events": {
+        "title": "Events | OpenAgriNet",
+        "description": "Upcoming and past OpenAgriNet webinars, workshops and conferences."
+      }
+    }
   },
   "Nav": {
     "brand": "OpenAgriNet",

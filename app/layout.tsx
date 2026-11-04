@@ -5,6 +5,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
+import { siteUrl } from '@/lib/metadata';
 import theme from '@/theme';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -14,6 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('Metadata');
 
   return {
+    metadataBase: new URL(siteUrl),
     title: t('title'),
     description: t('description'),
   };
