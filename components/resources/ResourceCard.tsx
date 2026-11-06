@@ -1,9 +1,9 @@
 'use client';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Link from 'next/link';
 import IconBadge from '@/components/common/IconBadge';
 import MaskIcon from '@/components/common/MaskIcon';
+import { Link } from '@/i18n/navigation';
 
 const EASE = '0.3s cubic-bezier(0.4, 0, 0.2, 1)';
 
