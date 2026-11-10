@@ -1,12 +1,17 @@
 import type { Metadata } from 'next';
+import { setRequestLocale } from 'next-intl/server';
 import { getPageMetadata } from '@/lib/metadata';
 import EventsHero from '@/components/events/EventsHero';
 import EventsSection from '@/components/events/EventsSection';
 import { pastEvents, upcomingEvents } from '@/components/events/eventItems';
 
-export const generateMetadata = (): Promise<Metadata> => getPageMetadata('events', '/events');
+export const generateMetadata = ({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> =>
+  params.then(({ locale }) => getPageMetadata('events', '/events', locale));
 
-export default function EventsPage() {
+export default async function EventsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
     <>
       <EventsHero />

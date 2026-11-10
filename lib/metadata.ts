@@ -11,22 +11,23 @@ export const ogImage = { url: '/og-image.jpg', width: 1200, height: 630, type: '
 
 type PageKey = 'buildingBlocks' | 'aboutUs' | 'community' | 'resources' | 'events';
 
-export async function getPageMetadata(page: PageKey | 'home', path: string): Promise<Metadata> {
-  const t = await getTranslations('Metadata');
+export async function getPageMetadata(page: PageKey | 'home', path: string, locale: string): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: 'Metadata' });
   const title = page === 'home' ? t('title') : t(`pages.${page}.title`);
   const description = page === 'home' ? t('description') : t(`pages.${page}.description`);
   const alt = t('imageAlt');
+  const localizedPath = `/${locale}${path === '/' ? '' : path}`;
 
   return {
     title,
     description,
-    alternates: { canonical: path },
+    alternates: { canonical: localizedPath },
     openGraph: {
       type: 'website',
       siteName: t('siteName'),
       title,
       description,
-      url: path,
+      url: localizedPath,
       images: [{ ...ogImage, alt }],
     },
     twitter: { card: 'summary_large_image', title, description, images: [{ url: ogImage.url, alt }] },
