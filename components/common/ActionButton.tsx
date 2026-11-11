@@ -1,7 +1,7 @@
 'use client';
 import Button, { type ButtonProps } from '@mui/material/Button';
-import { Link } from '@/i18n/navigation';
 import MaskIcon from './MaskIcon';
+import { Link } from '@/i18n/navigation';
 
 type Props = Omit<ButtonProps, 'variant' | 'color' | 'href' | 'LinkComponent'> & {
   tone?: 'primary' | 'secondary';
