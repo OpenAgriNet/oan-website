@@ -16,7 +16,7 @@ export async function getPageMetadata(page: PageKey | 'home', path: string, loca
   const title = page === 'home' ? t('title') : t(`pages.${page}.title`);
   const description = page === 'home' ? t('description') : t(`pages.${page}.description`);
   const alt = t('imageAlt');
-  const localizedPath = `/${locale}${path === '/' ? '' : path}`;
+  const localizedPath = `/${locale}${path === '/' ? '' : path}/`;
 
   return {
     title,

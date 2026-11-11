@@ -1,5 +1,9 @@
 'use client';
 import Button, { type ButtonProps } from '@mui/material/Button';
+<<<<<<< HEAD
+=======
+import { Link } from '@/i18n/navigation';
+>>>>>>> 7754b8210287ce3f3af08dbc4c89bf408c1278e9
 import MaskIcon from './MaskIcon';
 import { Link } from '@/i18n/navigation';
 

@@ -18,7 +18,7 @@ const groups = [
       { key: 'coss', width: 75.5, height: 81.87 },
       { key: 'ondc', width: 124.5, height: 59.25 },
       { key: 'cdpi', width: 155, height: 48.15 },
-      // { key: 'cgiar', width: 74.75, height: 88.57 }, // test logo
+      { key: 'cgiar', width: 74.75, height: 88.57 }, // test logo
     ],
   },
   {
@@ -29,7 +29,7 @@ const groups = [
       { key: 'kalro', width: 133.25, height: 65.28 },
       { key: 'digitalIndia', file: 'digital-india', width: 169.19, height: 81.21 },
       { key: 'iffcoKisan', file: 'iffco-kissan', width: 129, height: 54 },
-      // { key: 'cdpi', width: 155, height: 48.15 }, // test logo
+      { key: 'cdpi', width: 155, height: 48.15 }, // test logo
     ],
   },
 ] as const;
