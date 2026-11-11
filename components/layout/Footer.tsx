@@ -2,9 +2,8 @@
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { Link, usePathname } from '@/i18n/navigation';
 import Logo from './Logo';
 import SiteContainer from './SiteContainer';
 import { isActive, navItems } from './navItems';
