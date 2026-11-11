@@ -1,6 +1,6 @@
 'use client';
 import Button, { type ButtonProps } from '@mui/material/Button';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import MaskIcon from './MaskIcon';
 
 type Props = Omit<ButtonProps, 'variant' | 'color' | 'href' | 'LinkComponent'> & {
