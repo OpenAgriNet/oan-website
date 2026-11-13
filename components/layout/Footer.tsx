@@ -3,10 +3,18 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
+import { Fragment } from 'react';
 import { Link, usePathname } from '@/i18n/navigation';
+import { siteLinks } from '@/lib/siteLinks';
 import Logo from './Logo';
 import SiteContainer from './SiteContainer';
 import { isActive, navItems } from './navItems';
+
+const legalLinks = [
+  { key: 'privacy', href: '/privacy-terms#privacy-policy' },
+  { key: 'terms', href: '/privacy-terms#terms-of-use' },
+  { key: 'contact', href: `mailto:${siteLinks.email}` },
+] as const;
 
 // Row-major slot in the mobile two-column grid
 const mobileOrder = { buildingBlocks: 0, community: 1, aboutUs: 2, events: 3, resources: 4 };
@@ -15,7 +23,6 @@ export default function Footer() {
   const t = useTranslations('Nav');
   const tFooter = useTranslations('Footer');
   const pathname = usePathname();
-  const legal = [tFooter('privacy'), tFooter('terms'), tFooter('contact')];
 
   return (
     <Box component="footer" sx={{ bgcolor: 'footer.background', color: 'footer.text', py: 4, pb: { xs: '30px', sm: 4 } }}>
@@ -78,7 +85,18 @@ export default function Footer() {
           }}
         >
           <Typography variant="footnote">{tFooter('copyright', { year: new Date().getFullYear() })}</Typography>
-          <Typography variant="footnote">{legal.join(tFooter('separator'))}</Typography>
+          <Typography variant="footnote" sx={{ '& a': { color: 'inherit', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } } }}>
+            {legalLinks.map(({ key, href }, index) => (
+              <Fragment key={key}>
+                {index > 0 && tFooter('separator')}
+                {href.startsWith('mailto:') ? (
+                  <a href={href}>{tFooter(key)}</a>
+                ) : (
+                  <Link href={href}>{tFooter(key)}</Link>
+                )}
+              </Fragment>
+            ))}
+          </Typography>
         </Box>
       </SiteContainer>
     </Box>

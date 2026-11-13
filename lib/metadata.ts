@@ -9,7 +9,7 @@ export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
 export const ogImage = { url: '/og-image.jpg', width: 1200, height: 630, type: 'image/jpeg' };
 
-type PageKey = 'buildingBlocks' | 'aboutUs' | 'community' | 'resources' | 'events';
+type PageKey = 'buildingBlocks' | 'aboutUs' | 'community' | 'resources' | 'events' | 'privacyTerms';
 
 export async function getPageMetadata(page: PageKey | 'home', path: string, locale: string): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'Metadata' });
