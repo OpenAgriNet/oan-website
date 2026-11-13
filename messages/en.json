@@ -137,6 +137,7 @@
       "description": "Explore a comprehensive collection of research, technical documentation, policy frameworks and practical resources designed to help institutions, developers and ecosystem partners understand, adopt and implement OpenAgriNet. Discover valuable insights, implementation guides, reference architectures and real-world examples that support innovation, collaboration and the development of connected digital agricultural services.",
       "exploreAria": "Explore {title}",
       "viewAll": "View All",
+      "upcoming": "Upcoming",
       "items": {
         "whitepapers": {
           "title": "Whitepapers & Research",
@@ -266,7 +267,7 @@
     "cta": {
       "eyebrow": "Explore OpenAgriNet",
       "title": "Ready to turn <accent>knowledge into action?</accent>",
-      "description": "Discover how OpenAgriNet's open capabilities, practical tools and collaborative ecosystem can help <br></br>you build connected agricultural solutions. Explore Building Blocks Join the Community",
+      "description": "Discover how OpenAgriNet's open capabilities, practical tools and collaborative ecosystem can help <br></br>you build connected agricultural solutions.",
       "explore": "Explore Building Blocks",
       "join": "Join the Community"
     }
