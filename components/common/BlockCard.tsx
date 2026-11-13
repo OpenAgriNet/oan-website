@@ -1,9 +1,9 @@
 import Box from '@mui/material/Box';
-import ButtonBase from '@mui/material/ButtonBase';
+// import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
 import type { ReactNode } from 'react';
 import IconBadge from './IconBadge';
-import MaskIcon from './MaskIcon';
+// import MaskIcon from './MaskIcon';
 
 type Props = {
   icon: ReactNode;
@@ -46,7 +46,8 @@ export default function BlockCard({ icon, title, description, exploreLabel, expl
         '&:has(:focus-visible)': revealed,
         '@media (hover: hover)': { '&:hover': revealed },
         // Touch devices show the Explore link permanently; the Figma phone layout (< 600px) leaves it out
-        '@media (hover: none) and (min-width: 600px)': { pb: '44px', '& .BlockCard-explore': { opacity: 1, transform: 'none' } },
+        // Hidden until the dedicated Building Block pages exist: reserved space for the Explore link on touch tablets
+        // '@media (hover: none) and (min-width: 600px)': { pb: '44px', '& .BlockCard-explore': { opacity: 1, transform: 'none' } },
         '@media (prefers-reduced-motion: reduce)': {
           transition: 'none',
           '& .BlockCard-reveal': { transition: 'none' },
@@ -85,6 +86,7 @@ export default function BlockCard({ icon, title, description, exploreLabel, expl
           </Typography>
         </Box>
       )}
+      {/* Explore link hidden until the dedicated Building Block pages exist
       <ButtonBase
         type="button"
         aria-label={exploreAriaLabel}
@@ -106,6 +108,7 @@ export default function BlockCard({ icon, title, description, exploreLabel, expl
         </Typography>
         <MaskIcon src="/icons/arrow-right.svg" size={20} />
       </ButtonBase>
+      */}
     </Box>
   );
 }
