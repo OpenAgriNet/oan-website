@@ -2,9 +2,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
-import ActionButton from '@/components/common/ActionButton';
 import SectionEyebrow from '@/components/common/SectionEyebrow';
 import EventCard from './EventCard';
+import EventsGrid from './EventsGrid';
 
 type Props = {
   section: 'upcoming' | 'past';
@@ -16,14 +16,6 @@ type Props = {
   // Figma spacing above and below the content on mobile
   mobilePt: number;
   mobilePb: number;
-};
-
-// Mobile Figma: a full-width, smaller button with no hover arrow
-const mobileButton = {
-  width: { xs: '100%', sm: 'auto' },
-  minHeight: { xs: 42, sm: 52 },
-  fontSize: { xs: 12, sm: 14 },
-  '& .arrow': { display: { xs: 'none', sm: 'block' } },
 };
 
 // Three cards and the side-by-side header need about 1100px; below that they wrap
@@ -87,14 +79,7 @@ export default async function EventsSection({ section, items, background, pt, pb
               {t('description')}
             </Typography>
           </Box>
-          <Box
-            sx={{
-              display: 'grid',
-              gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, minmax(0, 1fr))' },
-              gap: { xs: 3, sm: '30px' },
-              [wide]: { gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' },
-            }}
-          >
+          <EventsGrid actionLabel={t('action')}>
             {items.map((item) => (
               <EventCard
                 key={item.key}
@@ -108,8 +93,7 @@ export default async function EventsSection({ section, items, background, pt, pb
                 linkLabel={t('linkLabel')}
               />
             ))}
-          </Box>
-          <ActionButton sx={{ alignSelf: 'center', ...mobileButton }}>{t('action')}</ActionButton>
+          </EventsGrid>
         </Box>
       </Box>
     </Box>
