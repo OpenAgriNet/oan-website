@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import { getTranslations } from 'next-intl/server';
 import SectionEyebrow from '@/components/common/SectionEyebrow';
 import SiteContainer from '@/components/layout/SiteContainer';
+import { siteLinks } from '@/lib/siteLinks';
 import InvolvementTabs, { type InvolvementTab } from './InvolvementTabs';
 import { involvementOptions } from './involvementOptions';
 
@@ -22,7 +23,9 @@ export default async function GetInvolvedSection() {
             heading: t(`tabs.${tab.key}.heading`),
             description: t(`tabs.${tab.key}.description`),
             ways: t.raw(`tabs.${tab.key}.ways`) as { title: string; description: string }[],
-            action: t(`tabs.${tab.key}.action`),
+            // Client review: Build and Contribute go to Discord, the rest open an email
+            action: t('contact'),
+            href: tab.contact === 'discord' ? siteLinks.discord : `mailto:${siteLinks.communityEmail}`,
           }
         : undefined,
   }));

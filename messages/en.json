@@ -373,6 +373,7 @@
       "titleAccent": "OpenAgriNet",
       "titleEnd": " ecosystem",
       "description": "Explore the different ways you can contribute, collaborate and help shape an open digital future for agriculture.",
+      "contact": "Contact Us",
       "waysTitle": "Ways to get involved",
       "tabs": {
         "build": {
@@ -394,8 +395,7 @@
               "title": "Build reusable digital solutions",
               "description": "Share and scale solutions for broader impact"
             }
-          ],
-          "action": "Explore Build Opportunities"
+          ]
         },
         "implement": {
           "title": "Implement",
@@ -416,8 +416,7 @@
               "title": "Scale Connected Services",
               "description": "Expand successful implementations across institutions,\nregions and farming communities."
             }
-          ],
-          "action": "Explore Implementation Opportunities"
+          ]
         },
         "contribute": {
           "title": "Contribute",
@@ -438,8 +437,7 @@
               "title": "Share data and expertise",
               "description": "Bring domain knowledge and datasets that make\nsolutions more useful."
             }
-          ],
-          "action": "Explore Contribution Opportunities"
+          ]
         },
         "research": {
           "title": "Research",
@@ -460,8 +458,7 @@
               "title": "Publish open insights",
               "description": "Share findings that help the wider ecosystem\nlearn and improve."
             }
-          ],
-          "action": "Explore Research Opportunities"
+          ]
         },
         "partner": {
           "title": "Partner",
@@ -482,8 +479,7 @@
               "title": "Grow the network",
               "description": "Connect organisations to expand the reach\nof open agricultural services."
             }
-          ],
-          "action": "Explore Partnership Opportunities"
+          ]
         }
       }
     },

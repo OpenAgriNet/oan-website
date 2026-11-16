@@ -21,6 +21,7 @@ export type InvolvementTab = {
     description: string;
     ways: { title: string; description: string }[];
     action: string;
+    href: string;
   };
 };
 
@@ -339,8 +340,13 @@ export default function InvolvementTabs({ tabs, waysTitle }: Props) {
                     </Box>
                   </Box>
                 </Box>
-                {/* The button morphs its width while the label cross-fades */}
-                <ActionButton style={vt('action')} sx={mobileButton}>
+                {/* The button morphs its width while the label cross-fades; Discord opens in a new tab */}
+                <ActionButton
+                  href={active.panel.href}
+                  {...(active.panel.href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}
+                  style={vt('action')}
+                  sx={mobileButton}
+                >
                   <span style={vt('action-label', true)}>{active.panel.action}</span>
                 </ActionButton>
               </Box>
