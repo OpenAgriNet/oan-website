@@ -48,7 +48,13 @@
     "privacy": "Privacy",
     "terms": "Terms",
     "contact": "Contact",
-    "separator": " - "
+    "separator": " - ",
+    "social": {
+      "linkedin": "OpenAgriNet on LinkedIn",
+      "gitbook": "OpenAgriNet documentation on GitBook",
+      "youtube": "OpenAgriNet on YouTube",
+      "discord": "OpenAgriNet community on Discord"
+    }
   },
   "LocaleSwitcher": {
     "en": "EN"

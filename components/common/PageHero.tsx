@@ -147,7 +147,7 @@ export default function PageHero({ eyebrow, titleLine1, titleLine2, description,
               }),
             }}
           >
-            <PillBadge icon={null}>{eyebrow}</PillBadge>
+            <PillBadge>{eyebrow}</PillBadge>
             <Typography variant="displayTitle" sx={{ color: 'text.heading', fontSize: { xs: mobile ? 24 : 28, sm: 36 } }}>
               {titleLine1}
               {/* The mobile design lets the title wrap naturally */}

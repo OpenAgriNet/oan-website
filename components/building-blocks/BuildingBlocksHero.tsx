@@ -85,7 +85,7 @@ export default async function BuildingBlocksHero() {
                 '& .MuiTypography-badge': { fontSize: { xs: 10, sm: 14 } },
               }}
             >
-              <PillBadge icon={null}>{t('eyebrow')}</PillBadge>
+              <PillBadge>{t('eyebrow')}</PillBadge>
               <Typography variant="displayTitle" sx={{ color: 'text.heading', fontSize: { xs: 24, sm: 36 } }}>
                 {t('titleLine1')}
                 <br />

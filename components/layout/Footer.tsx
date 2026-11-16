@@ -26,6 +26,9 @@ function scrollToTop(event: MouseEvent) {
 // Row-major slot in the mobile two-column grid
 const mobileOrder = { buildingBlocks: 0, community: 1, aboutUs: 2, events: 3, resources: 4 };
 
+// Official OAN social channels, in Figma order (client review)
+const socialLinks = ['linkedin', 'gitbook', 'youtube', 'discord'] as const;
+
 export default function Footer() {
   const t = useTranslations('Nav');
   const tFooter = useTranslations('Footer');
@@ -87,24 +90,59 @@ export default function Footer() {
         <Box
           sx={{
             display: 'flex',
-            flexDirection: { xs: 'column', sm: 'row' },
+            // One row needs about 900px with the social icons; narrower screens put the copyright on top
+            flexDirection: { xs: 'column', md: 'row' },
             justifyContent: 'space-between',
-            gap: { xs: '12px', sm: 1 },
+            // Figma: the copyright lines up with the centre of the icon row
+            alignItems: { md: 'center' },
+            gap: { xs: '12px', md: 1 },
           }}
         >
           <Typography variant="footnote">{tFooter('copyright', { year: new Date().getFullYear() })}</Typography>
-          <Typography variant="footnote" sx={{ '& a': { color: 'inherit', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } } }}>
-            {legalLinks.map(({ key, href }, index) => (
-              <Fragment key={key}>
-                {index > 0 && tFooter('separator')}
-                {href.startsWith('mailto:') ? (
-                  <a href={href}>{tFooter(key)}</a>
-                ) : (
-                  <Link href={href}>{tFooter(key)}</Link>
-                )}
-              </Fragment>
-            ))}
-          </Typography>
+          {/* Figma: 32px social icons 4px apart, then the legal links 32px to their right */}
+          {/* Mobile Figma has no social icons yet: on phones they get their own row between the copyright and the legal links */}
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: { xs: 'column', sm: 'row' },
+              alignItems: { xs: 'flex-start', sm: 'center' },
+              gap: { xs: '12px', sm: 4 },
+            }}
+          >
+            <Box component="ul" sx={{ listStyle: 'none', m: 0, p: 0, display: 'flex', gap: '4px' }}>
+              {socialLinks.map((key) => (
+                <li key={key}>
+                  <Box
+                    component="a"
+                    href={siteLinks[key]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={tFooter(`social.${key}`)}
+                    sx={{
+                      display: 'block',
+                      borderRadius: '50%',
+                      '&:focus-visible': { outline: '2px solid', outlineColor: 'common.white', outlineOffset: '2px' },
+                    }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={`/icons/social/${key}.svg`} alt="" width={32} height={32} style={{ display: 'block' }} />
+                  </Box>
+                </li>
+              ))}
+            </Box>
+            <Typography variant="footnote" sx={{ '& a': { color: 'inherit', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } } }}>
+              {legalLinks.map(({ key, href }, index) => (
+                <Fragment key={key}>
+                  {index > 0 && tFooter('separator')}
+                  {href.startsWith('mailto:') ? (
+                    <a href={href}>{tFooter(key)}</a>
+                  ) : (
+                    <Link href={href}>{tFooter(key)}</Link>
+                  )}
+                </Fragment>
+              ))}
+            </Typography>
+          </Box>
         </Box>
       </SiteContainer>
     </Box>
