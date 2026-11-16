@@ -91,6 +91,8 @@
       "title": "People driving <accent>OpenAgriNet</accent>",
       "description": "OAN is being built by a multidisciplinary team bringing together expertise across digital public infrastructure, agriculture, artificial intelligence, technology, ecosystem development and implementation.<br></br>Our team works across the network—from architecture and technology to ecosystem partnerships, product development and field implementation.",
       "cta": "Meet the Team",
+      "previous": "Previous team members",
+      "next": "Next team members",
       "members": {
         "ravi": { "name": "Ravi Kumar", "role": "Program Director" },
         "meeraOne": { "name": "Meera Srinivasan", "role": "Product Lead" },
