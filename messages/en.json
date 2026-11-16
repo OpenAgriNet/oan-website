@@ -119,10 +119,7 @@
     },
     "cta": {
       "eyebrow": "OpenAgriNet",
-      "title": "Build With <accent>OpenAgriNet</accent>",
-      "description": "Explore how OAN’s open building blocks can help create connected agricultural services for farmers and ecosystem participants.",
-      "explore": "Explore Building Blocks",
-      "join": "Join the Community"
+      "explore": "Explore Building Blocks"
     }
   },
   "Resources": {
@@ -266,10 +263,7 @@
     },
     "cta": {
       "eyebrow": "Explore OpenAgriNet",
-      "title": "Ready to turn <accent>knowledge into action?</accent>",
-      "description": "Discover how OpenAgriNet's open capabilities, practical tools and collaborative ecosystem can help <br></br>you build connected agricultural solutions.",
-      "explore": "Explore Building Blocks",
-      "join": "Join the Community"
+      "explore": "Explore Building Blocks"
     }
   },
   "BuildingBlocks": {
@@ -352,11 +346,7 @@
     },
     "cta": {
       "eyebrow": "OpenAgriNet",
-      "titleLine1": "Build With",
-      "titleLine2": "OpenAgriNet",
-      "description": "Explore how OAN’s open building blocks can help create connected agricultural services for farmers and ecosystem participants.",
-      "primaryAction": "Explore Building Blocks",
-      "secondaryAction": "Join the Community"
+      "primaryAction": "Explore Building Blocks"
     }
   },
   "Community": {
@@ -488,7 +478,8 @@
       "titleStart": "Let’s build the future of ",
       "titleAccent": "agriculture together",
       "description": "Connect with the OpenAgriNet community and explore opportunities to build, implement, contribute, research and collaborate.",
-      "action": "Get Involved"
+      "action": "Get Involved",
+      "join": "Join Our Community"
     }
   },
   "Events": {
