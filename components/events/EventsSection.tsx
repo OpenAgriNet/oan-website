@@ -1,15 +1,17 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import SectionEyebrow from '@/components/common/SectionEyebrow';
 import EventCard from './EventCard';
 import EventsGrid from './EventsGrid';
-import type { EventItem } from './eventItems';
+import { eventHref, formatEventDate } from '@/lib/events';
+import type { EventSummary } from '@/lib/eventTypes';
 
 type Props = {
   section: 'upcoming' | 'past';
-  items: EventItem[];
+  // Event files from content/events/<locale> (see lib/events.ts)
+  items: EventSummary[];
   background?: string;
   // Figma spacing above and below the content at desktop width
   pt: number;
@@ -24,6 +26,7 @@ const wide = '@media (min-width: 1100px)';
 
 export default async function EventsSection({ section, items, background, pt, pb, mobilePt, mobilePb }: Props) {
   const t = await getTranslations(`Events.${section}`);
+  const locale = await getLocale();
 
   return (
     <Box component="section" sx={{ position: 'relative', overflow: 'hidden' }}>
@@ -83,15 +86,15 @@ export default async function EventsSection({ section, items, background, pt, pb
           <EventsGrid actionLabel={t('action')}>
             {items.map((item) => (
               <EventCard
-                key={item.key}
-                image={item.image}
-                href={item.href}
-                imageAlt={t(`items.${item.key}.imageAlt`)}
-                type={t(`items.${item.key}.type`)}
-                date={t(`items.${item.key}.date`)}
-                title={t(`items.${item.key}.title`)}
-                description={t(`items.${item.key}.description`)}
-                tag={t(`items.${item.key}.tag`)}
+                key={item.slug}
+                image={item.coverImage}
+                href={eventHref(item)}
+                imageAlt={item.imageAlt}
+                type={t(`categories.${item.category}`)}
+                date={formatEventDate(locale, item.date)}
+                title={item.title}
+                description={item.summary}
+                tag={item.tag}
                 linkLabel={t('linkLabel')}
               />
             ))}

@@ -11,7 +11,8 @@ type Props = {
   date: string;
   title: string;
   description: string;
-  tag: string;
+  // Small pill on the right, e.g. "Ongoing"; left out when the event file has no tag
+  tag?: string;
   linkLabel: string;
   // View Details / View Highlights shows only when the event has a link; external links open in a new tab
   href?: string;
@@ -94,6 +95,7 @@ export default function EventCard({ image, imageAlt, type, date, title, descript
               </Link>
             </Box>
           )}
+          {tag && (
           <Box
             component="span"
             className={inter.className}
@@ -112,6 +114,7 @@ export default function EventCard({ image, imageAlt, type, date, title, descript
           >
             {tag}
           </Box>
+          )}
         </Box>
       </Box>
     </Box>
