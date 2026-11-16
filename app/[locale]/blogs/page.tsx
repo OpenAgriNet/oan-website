@@ -12,10 +12,10 @@ export default async function BlogsPage({ params }: { params: Promise<{ locale: 
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const featured = getFeaturedBlogs().map(toSummary);
+  const featured = getFeaturedBlogs(locale).map(toSummary);
   const featuredSlugs = new Set(featured.map((b) => b.slug));
   // Featured blogs have their own section, so they are not repeated in the main list
-  const rest = getAllBlogs().filter((b) => !featuredSlugs.has(b.slug)).map(toSummary);
+  const rest = getAllBlogs(locale).filter((b) => !featuredSlugs.has(b.slug)).map(toSummary);
 
   return (
     <>

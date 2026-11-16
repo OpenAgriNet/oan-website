@@ -12,11 +12,11 @@ import { getBlogBySlug, getBlogSlugs } from '@/lib/blogs';
 export const dynamicParams = false;
 
 export const generateStaticParams = () =>
-  routing.locales.flatMap((locale) => getBlogSlugs().map((slug) => ({ locale, slug })));
+  routing.locales.flatMap((locale) => getBlogSlugs(locale).map((slug) => ({ locale, slug })));
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { locale, slug } = await params;
-  const blog = getBlogBySlug(slug);
+  const blog = getBlogBySlug(locale, slug);
   if (!blog) return {};
   const url = `/${locale}/blogs/${slug}/`;
   return {
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function BlogPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const blog = getBlogBySlug(slug);
+  const blog = getBlogBySlug(locale, slug);
   if (!blog || blog.type !== 'internal') notFound();
 
   return (

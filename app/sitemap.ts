@@ -9,6 +9,8 @@ export const dynamic = 'force-static';
 
 // Home plus every nav page, for each language; trailing slashes match the canonical URLs
 export default function sitemap(): MetadataRoute.Sitemap {
-  const paths = ['', ...navItems.map(({ href }) => href), ...getBlogSlugs().map((slug) => `/blogs/${slug}`)];
-  return routing.locales.flatMap((locale) => paths.map((path) => ({ url: `${siteUrl}/${locale}${path}/` })));
+  return routing.locales.flatMap((locale) => {
+    const paths = ['', ...navItems.map(({ href }) => href), ...getBlogSlugs(locale).map((slug) => `/blogs/${slug}`)];
+    return paths.map((path) => ({ url: `${siteUrl}/${locale}${path}/` }));
+  });
 }
