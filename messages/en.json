@@ -24,6 +24,10 @@
       "events": {
         "title": "Events | OpenAgriNet",
         "description": "Upcoming and past OpenAgriNet webinars, workshops and conferences."
+      },
+      "blogs": {
+        "title": "Blogs | OpenAgriNet",
+        "description": "Stories, technical write-ups and implementation notes from the OpenAgriNet ecosystem."
       }
     }
   },
@@ -37,7 +41,8 @@
     "language": "Language",
     "home": "OpenAgriNet home",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "blogs": "Blogs"
   },
   "Footer": {
     "copyright": "@{year} OpenAgriNet. All rights reserved.",
@@ -55,7 +60,8 @@
     "aboutUs": "About Us",
     "community": "Community",
     "resources": "Resources",
-    "events": "Events"
+    "events": "Events",
+    "blogs": "Blogs"
   },
   "AboutUs": {
     "hero": {
@@ -82,11 +88,26 @@
       "description": "OAN is being built by a multidisciplinary team bringing together expertise across digital public infrastructure, agriculture, artificial intelligence, technology, ecosystem development and implementation.<br></br>Our team works across the network—from architecture and technology to ecosystem partnerships, product development and field implementation.",
       "cta": "Meet the Team",
       "members": {
-        "ravi": { "name": "Ravi Kumar", "role": "Program Director" },
-        "meeraOne": { "name": "Meera Srinivasan", "role": "Product Lead" },
-        "meeraTwo": { "name": "Meera Srinivasan", "role": "Product Lead" },
-        "meenu": { "name": "Meenu Bansal", "role": "Product Lead" },
-        "karthika": { "name": "Karthika", "role": "UI/UX Designer" }
+        "ravi": {
+          "name": "Ravi Kumar",
+          "role": "Program Director"
+        },
+        "meeraOne": {
+          "name": "Meera Srinivasan",
+          "role": "Product Lead"
+        },
+        "meeraTwo": {
+          "name": "Meera Srinivasan",
+          "role": "Product Lead"
+        },
+        "meenu": {
+          "name": "Meenu Bansal",
+          "role": "Product Lead"
+        },
+        "karthika": {
+          "name": "Karthika",
+          "role": "UI/UX Designer"
+        }
       }
     },
     "partners": {
@@ -564,5 +585,31 @@
         }
       }
     }
+  },
+  "Blogs": {
+    "hero": {
+      "eyebrow": "Blogs",
+      "titleLine1": "Stories and insights",
+      "titleLine2": "from the field.",
+      "description": "Technology deep dives, implementation learnings and community stories from across OpenAgriNet.",
+      "imageAlt": "A speaker presenting to farmers seated under a canopy beside a paddy field"
+    },
+    "featured": {
+      "title": "Featured blogs"
+    },
+    "all": {
+      "title": "All blogs"
+    },
+    "categories": {
+      "all": "All",
+      "technology": "Technology",
+      "implementation": "Implementation",
+      "policy": "Policy",
+      "community": "Community"
+    },
+    "locationFilter": "Filter by location",
+    "readMore": "Read more",
+    "empty": "No blogs match these filters.",
+    "backToBlogs": "Back to all blogs"
   }
 }
