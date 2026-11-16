@@ -73,7 +73,7 @@ export default async function AboutHeroSection() {
         >
           <Box sx={{ maxWidth: { xs: 335, sm: 632 }, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: { xs: '17.5px', sm: '16px' } }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '12px' }}>
-              <PillBadge icon={null}>{t('badge')}</PillBadge>
+              <PillBadge>{t('badge')}</PillBadge>
               <Typography
                 variant="heroTitle"
                 component="h1"

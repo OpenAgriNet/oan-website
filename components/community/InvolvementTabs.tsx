@@ -286,7 +286,7 @@ export default function InvolvementTabs({ tabs, waysTitle }: Props) {
                 '& > :first-child': { height: { xs: 23, sm: 30 } },
               }}
             >
-              <PillBadge icon={null}>{active.panel.badge}</PillBadge>
+              <PillBadge>{active.panel.badge}</PillBadge>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 2, sm: 4, lg: '54px' }, width: '100%' }}>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, minHeight: { xs: 85, sm: 0, lg: 85 }, color: 'text.heading' }}>

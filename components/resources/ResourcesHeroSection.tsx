@@ -73,7 +73,7 @@ export default async function ResourcesHeroSection() {
         >
           <Box sx={{ maxWidth: { xs: 335, sm: 516 }, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '16px' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '12px' }}>
-              <PillBadge icon={null}>{t('badge')}</PillBadge>
+              <PillBadge>{t('badge')}</PillBadge>
               <Typography
                 variant="heroTitle"
                 sx={{ color: 'text.heading', fontSize: { xs: 24, sm: 32, md: 36 }, whiteSpace: { md: 'nowrap' } }}
