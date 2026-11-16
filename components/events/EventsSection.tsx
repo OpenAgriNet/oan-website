@@ -5,10 +5,11 @@ import { getTranslations } from 'next-intl/server';
 import SectionEyebrow from '@/components/common/SectionEyebrow';
 import EventCard from './EventCard';
 import EventsGrid from './EventsGrid';
+import type { EventItem } from './eventItems';
 
 type Props = {
   section: 'upcoming' | 'past';
-  items: readonly { key: string; image: string }[];
+  items: EventItem[];
   background?: string;
   // Figma spacing above and below the content at desktop width
   pt: number;
@@ -84,6 +85,7 @@ export default async function EventsSection({ section, items, background, pt, pb
               <EventCard
                 key={item.key}
                 image={item.image}
+                href={item.href}
                 imageAlt={t(`items.${item.key}.imageAlt`)}
                 type={t(`items.${item.key}.type`)}
                 date={t(`items.${item.key}.date`)}

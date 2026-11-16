@@ -507,9 +507,9 @@
       "items": {
         "webinar": {
           "type": "WEBINAR",
-          "date": "25 Aug 2026, 10:30 AM",
-          "title": "Open Digital Ecosystems for Sustainable Agriculture",
-          "description": "A discussion on how open networks, data and AI can enable inclusive and sustainable agriculture.",
+          "date": "17 Nov 2026, 3:30 PM",
+          "title": "OAN Under The Hood: Voice AI in the Field",
+          "description": "Discover what it takes to make Voice AI work in the field and how it powers DPI^AI.",
           "tag": "Ongoing",
           "imageAlt": "A seedling in a field connected to digital icons for weather, farming and data"
         },

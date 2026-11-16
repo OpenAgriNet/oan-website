@@ -13,12 +13,12 @@ type Props = {
   description: string;
   tag: string;
   linkLabel: string;
-  // Renders a link when set, otherwise a plain button (targets are not decided yet)
+  // View Details / View Highlights shows only when the event has a link; external links open in a new tab
   href?: string;
 };
 
 export default function EventCard({ image, imageAlt, type, date, title, description, tag, linkLabel, href }: Props) {
-  const linkProps = href ? { component: Link, href } : { component: 'button' as const, type: 'button' as const };
+  const external = href?.startsWith('http');
 
   return (
     <Box
@@ -70,34 +70,35 @@ export default function EventCard({ image, imageAlt, type, date, title, descript
           </Typography>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
-          <Box
-            {...linkProps}
-            sx={{
-              position: 'relative',
-              p: 0,
-              border: 0,
-              bgcolor: 'transparent',
-              font: 'inherit',
-              fontSize: 16,
-              lineHeight: 1.5,
-              fontWeight: 700,
-              color: 'primary.main',
-              textDecoration: 'underline',
-              textUnderlinePosition: 'from-font',
-              whiteSpace: 'nowrap',
-              cursor: 'pointer',
-              '&:focus-visible': { outline: '2px solid', outlineColor: 'primary.main', outlineOffset: '2px', borderRadius: '2px' },
-            }}
-          >
-            {linkLabel}
-            <Box component="span" sx={visuallyHidden}>
-              {`: ${title}`}
+          {href && (
+            <Box
+              sx={{
+                position: 'relative',
+                '& a': {
+                  fontSize: 16,
+                  lineHeight: 1.5,
+                  fontWeight: 700,
+                  color: 'primary.main',
+                  textDecoration: 'underline',
+                  textUnderlinePosition: 'from-font',
+                  whiteSpace: 'nowrap',
+                  '&:focus-visible': { outline: '2px solid', outlineColor: 'primary.main', outlineOffset: '2px', borderRadius: '2px' },
+                },
+              }}
+            >
+              <Link href={href} {...(external && { target: '_blank', rel: 'noopener noreferrer' })}>
+                {linkLabel}
+                <Box component="span" sx={visuallyHidden}>
+                  {`: ${title}`}
+                </Box>
+              </Link>
             </Box>
-          </Box>
+          )}
           <Box
             component="span"
             className={inter.className}
             sx={{
+              ml: 'auto',
               px: '12px',
               py: 1,
               borderRadius: '22px',
