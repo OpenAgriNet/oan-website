@@ -21,6 +21,7 @@ export type InvolvementTab = {
     description: string;
     ways: { title: string; description: string }[];
     action: string;
+    href: string;
   };
 };
 
@@ -285,7 +286,7 @@ export default function InvolvementTabs({ tabs, waysTitle }: Props) {
                 '& > :first-child': { height: { xs: 23, sm: 30 } },
               }}
             >
-              <PillBadge icon={null}>{active.panel.badge}</PillBadge>
+              <PillBadge>{active.panel.badge}</PillBadge>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 2, sm: 4, lg: '54px' }, width: '100%' }}>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, minHeight: { xs: 85, sm: 0, lg: 85 }, color: 'text.heading' }}>
@@ -339,8 +340,13 @@ export default function InvolvementTabs({ tabs, waysTitle }: Props) {
                     </Box>
                   </Box>
                 </Box>
-                {/* The button morphs its width while the label cross-fades */}
-                <ActionButton style={vt('action')} sx={mobileButton}>
+                {/* The button morphs its width while the label cross-fades; Discord opens in a new tab */}
+                <ActionButton
+                  href={active.panel.href}
+                  {...(active.panel.href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}
+                  style={vt('action')}
+                  sx={mobileButton}
+                >
                   <span style={vt('action-label', true)}>{active.panel.action}</span>
                 </ActionButton>
               </Box>

@@ -1,11 +1,8 @@
 'use client';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import CardCarousel from '@/components/common/CardCarousel';
 
 export type PartnerLogo = { key: string; src: string; alt: string; width: number; height: number };
 
@@ -92,102 +89,18 @@ export default function PartnerLogos({ logos, label }: Props) {
 
 function LogoCarousel({ logos, label }: Props) {
   const t = useTranslations('AboutUs.partners');
-  const track = useRef<HTMLUListElement>(null);
-  const [edge, setEdge] = useState({ start: true, end: false });
-
-  const update = useCallback(() => {
-    const el = track.current;
-    if (!el) return;
-    setEdge({ start: el.scrollLeft <= 1, end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 1 });
-  }, []);
-
-  useEffect(() => {
-    const el = track.current;
-    if (!el) return;
-    update();
-    const observer = new ResizeObserver(update);
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [update]);
-
-  const scrollByPage = (direction: 1 | -1) => {
-    const el = track.current;
-    if (!el) return;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    el.scrollBy({ left: direction * el.clientWidth, behavior: reduce ? 'auto' : 'smooth' });
-  };
-
-  const arrowSx = {
-    position: 'absolute',
-    top: '50%',
-    zIndex: 2,
-    width: 36,
-    height: 36,
-    color: 'primary.main',
-    bgcolor: 'background.paper',
-    border: '1px solid',
-    borderColor: 'card.border',
-    boxShadow: '0 4px 12px var(--mui-palette-card-shadow)',
-    '&:hover': { bgcolor: 'background.paper', borderColor: 'primary.main' },
-    '&.Mui-disabled': { opacity: 0, pointerEvents: 'none' },
-  } as const;
 
   return (
-    <Box
-      role="group"
-      aria-roledescription="carousel"
-      aria-label={label}
-      sx={{ position: 'relative', '--carousel-count': { xs: 2, md: 3, lg: 5 }, '--carousel-gap': { xs: '20px', sm: '16px', md: '24px', lg: '30px' } }}
+    <CardCarousel
+      label={label}
+      previousLabel={t('previous')}
+      nextLabel={t('next')}
+      sx={{ '--carousel-count': { xs: 2, md: 3, lg: 5 }, '--carousel-gap': { xs: '20px', sm: '16px', md: '24px', lg: '30px' } }}
+      itemSx={cardSx}
     >
-      <IconButton
-        aria-label={t('previous')}
-        disabled={edge.start}
-        onClick={() => scrollByPage(-1)}
-        sx={{ ...arrowSx, left: 0, transform: 'translate(-50%, -50%)' }}
-      >
-        <ChevronLeftIcon />
-      </IconButton>
-      <Box
-        ref={track}
-        component="ul"
-        onScroll={update}
-        sx={{
-          listStyle: 'none',
-          // Padding gives the hover zoom and shadow room inside the scroll area; the negative margin keeps the layout unchanged
-          m: '-12px -8px',
-          p: '12px 8px',
-          display: 'flex',
-          gap: 'var(--carousel-gap)',
-          overflowX: 'auto',
-          scrollSnapType: 'x mandatory',
-          scrollPaddingInline: '8px',
-          scrollbarWidth: 'none',
-          '&::-webkit-scrollbar': { display: 'none' },
-        }}
-      >
-        {logos.map((logo) => (
-          <Box
-            component="li"
-            key={logo.key}
-            sx={{
-              ...cardSx,
-              flex: '0 0 auto',
-              scrollSnapAlign: 'start',
-              width: 'calc((100% - (var(--carousel-count) - 1) * var(--carousel-gap)) / var(--carousel-count))',
-            }}
-          >
-            <LogoImage logo={logo} />
-          </Box>
-        ))}
-      </Box>
-      <IconButton
-        aria-label={t('next')}
-        disabled={edge.end}
-        onClick={() => scrollByPage(1)}
-        sx={{ ...arrowSx, right: 0, transform: 'translate(50%, -50%)' }}
-      >
-        <ChevronRightIcon />
-      </IconButton>
-    </Box>
+      {logos.map((logo) => (
+        <LogoImage key={logo.key} logo={logo} />
+      ))}
+    </CardCarousel>
   );
 }

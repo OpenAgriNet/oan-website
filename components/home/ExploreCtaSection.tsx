@@ -18,6 +18,8 @@ const buttonSx = {
 
 export default async function ExploreCtaSection() {
   const t = await getTranslations('Home.cta');
+  // Title, description and button text are shared by every page's bottom banner
+  const shared = await getTranslations('Community.cta');
 
   return (
     <Box component="section" sx={{ position: 'relative', bgcolor: 'background.default', overflow: 'hidden' }}>
@@ -58,17 +60,14 @@ export default async function ExploreCtaSection() {
               color: 'text.heading',
               mt: { xs: '16.5px', sm: 2, lg: '17px' },
               fontSize: { xs: 20, sm: 26, md: 28 },
-              // Figma mobile: the title breaks after "knowledge"
+              // Figma mobile: the title sits in a 300px column
               maxWidth: { xs: 300, sm: 'none' },
             }}
           >
-            {t.rich('title', {
-              accent: (chunks) => (
-                <Box component="span" sx={{ color: 'secondary.main', fontWeight: 800, letterSpacing: 0 }}>
-                  {chunks}
-                </Box>
-              ),
-            })}
+            {shared('titleStart')}
+            <Box component="span" sx={{ color: 'secondary.main', fontWeight: 800, letterSpacing: 0 }}>
+              {shared('titleAccent')}
+            </Box>
           </Typography>
           <Typography
             variant="sectionIntro"
@@ -81,16 +80,16 @@ export default async function ExploreCtaSection() {
               fontWeight: 400,
             }}
           >
-            {t.rich('description', {
-              br: () => <Box component="br" sx={{ display: { xs: 'none', md: 'inline' } }} />,
-            })}
+            {shared('description')}
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', gap: { xs: '16px', sm: '18px' }, width: { xs: '100%', sm: 'auto' }, maxWidth: { xs: 335, sm: 'none' }, mt: { xs: '16px', sm: 3, lg: '15px' } }}>
+            {/* "Explore Building Blocks" removed as per client review; only Join Our Community stays
             <ActionButton href="/building-blocks" tone="primary" sx={buttonSx}>
               {t('explore')}
             </ActionButton>
+            */}
             <ActionButton href="/community" tone="secondary" sx={buttonSx}>
-              {t('join')}
+              {shared('join')}
             </ActionButton>
           </Box>
         </Box>

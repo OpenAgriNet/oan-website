@@ -1,19 +1,20 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { getTranslations } from 'next-intl/server';
-import ActionButton from '@/components/common/ActionButton';
+// import ActionButton from '@/components/common/ActionButton';
 import SectionEyebrow from '@/components/common/SectionEyebrow';
 import SiteContainer from '@/components/layout/SiteContainer';
 import ResourceCard from './ResourceCard';
 
-const items = [
+// Add a resource's `href` once the client shares it; cards without one show the Upcoming tag instead of the arrow
+const items: { key: string; icon: string; href?: string }[] = [
   { key: 'whitepapers', icon: '/icons/resources/file-text.svg' },
   { key: 'policy', icon: '/icons/resources/film.svg' },
   { key: 'playbooks', icon: '/icons/resources/folder.svg' },
   { key: 'technical', icon: '/icons/resources/flag.svg' },
   { key: 'reference', icon: '/icons/resources/folder-plus.svg' },
   { key: 'caseStudies', icon: '/icons/resources/hexagon.svg' },
-] as const;
+];
 
 export default async function ExploreResourcesSection() {
   const t = await getTranslations('Resources.explore');
@@ -73,17 +74,19 @@ export default async function ExploreResourcesSection() {
               gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' },
             }}
           >
-            {items.map(({ key, icon }) => (
+            {items.map(({ key, icon, href }) => (
               <ResourceCard
                 key={key}
                 icon={icon}
                 title={t(`items.${key}.title`)}
                 description={t(`items.${key}.description`)}
-                href="#"
+                href={href}
+                upcomingLabel={t('upcoming')}
                 exploreAriaLabel={t('exploreAria', { title: t(`items.${key}.title`) })}
               />
             ))}
           </Box>
+          {/* View All hidden until the resources have content
           <ActionButton
             href="#"
             sx={{
@@ -97,6 +100,7 @@ export default async function ExploreResourcesSection() {
           >
             {t('viewAll')}
           </ActionButton>
+          */}
         </Box>
       </SiteContainer>
     </Box>
