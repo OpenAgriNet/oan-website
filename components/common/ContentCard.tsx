@@ -2,23 +2,31 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
+import { oan } from '@/theme/oan';
 import { inter } from './inter';
 
 type Props = {
   image: string;
   imageAlt: string;
-  type: string;
+  // Label above the title, e.g. "WEBINAR"
+  category: string;
   date: string;
+  // Machine-readable date for the <time> element (ISO)
+  dateTime?: string;
   title: string;
-  description: string;
-  // Small pill on the right, e.g. "Ongoing"; left out when the event file has no tag
+  summary: string;
+  // Small pill on the right, e.g. "Ongoing" or a location; left out when not given
   tag?: string;
+  // e.g. "View Details"; shown only with an href. Addresses starting with http open in a new tab
   linkLabel: string;
-  // View Details / View Highlights shows only when the event has a link; external links open in a new tab
   href?: string;
 };
 
-export default function EventCard({ image, imageAlt, type, date, title, description, tag, linkLabel, href }: Props) {
+const { card, tag: tagStyle } = oan.layout;
+
+// Figma card used by the Events page: image, category and date, title, summary, then a link and a tag.
+// Styled from the OAN style sheet (theme/oan.ts)
+export default function ContentCard({ image, imageAlt, category, date, dateTime, title, summary, tag, linkLabel, href }: Props) {
   const external = href?.startsWith('http');
 
   return (
@@ -28,46 +36,41 @@ export default function EventCard({ image, imageAlt, type, date, title, descript
         display: 'flex',
         flexDirection: 'column',
         gap: 2,
-        px: 2,
-        py: '12px',
+        p: card.padding,
         border: '1px solid',
         borderColor: 'card.border',
-        borderRadius: '16px',
+        borderRadius: card.radius,
         bgcolor: 'background.paper',
         position: 'relative',
         transition: 'transform 200ms ease-out, box-shadow 200ms ease-out',
         // Same hover zoom as the About Us team cards; pointer devices only, so touch screens never get a stuck state
         '@media (hover: hover)': {
-          '&:hover': { transform: 'scale(1.03)', boxShadow: '0 8px 28px rgba(0, 0, 0, 0.14)', zIndex: 1 },
+          '&:hover': { transform: 'scale(1.03)', boxShadow: card.shadowHover, zIndex: 1 },
         },
         '@media (prefers-reduced-motion: reduce)': { transition: 'none', '&:hover': { transform: 'none' } },
       }}
     >
-      <Box sx={{ position: 'relative', height: 196, borderRadius: '8px', overflow: 'hidden', flexShrink: 0 }}>
-        <Image
-          src={image}
-          alt={imageAlt}
-          fill
-          sizes="(min-width: 1100px) 377px, (min-width: 600px) 50vw, 100vw"
-          style={{ objectFit: 'cover' }}
-        />
+      <Box sx={{ position: 'relative', height: card.imageHeight, borderRadius: card.imageRadius, overflow: 'hidden', flexShrink: 0 }}>
+        <Image src={image} alt={imageAlt} fill sizes="(min-width: 1100px) 377px, (min-width: 600px) 50vw, 100vw" style={{ objectFit: 'cover' }} />
       </Box>
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '13px' }}>
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '11px' }}>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: '9px' }}>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', columnGap: 2, rowGap: '4px' }}>
-              <Typography sx={{ fontSize: 14, lineHeight: '20px', fontWeight: 500, color: 'primary.main', textTransform: 'uppercase' }}>
-                {type}
+              <Typography variant="cardCategory" component="p">
+                {category}
               </Typography>
-              <Typography sx={{ fontSize: 12, lineHeight: 1.2, color: 'text.caption' }}>{date}</Typography>
+              <Typography variant="cardDate" component={dateTime ? 'time' : 'p'} {...(dateTime && { dateTime })}>
+                {date}
+              </Typography>
             </Box>
-            {/* Figma reserves two title lines and three description lines so the rows line up across cards */}
-            <Typography variant="cardTitle" component="h3" sx={{ color: 'text.title', minHeight: '2.4em' }}>
+            {/* Figma reserves two title lines and three summary lines so the rows line up across cards */}
+            <Typography variant="cardHeading" component="h3" sx={{ minHeight: '2.4em' }}>
               {title}
             </Typography>
           </Box>
-          <Typography sx={{ fontSize: 13, lineHeight: 1.4, color: 'text.heading', minHeight: { xs: '5.6em', sm: '4.2em' } }}>
-            {description}
+          <Typography variant="cardSummary" sx={{ minHeight: { xs: '5.6em', sm: '4.2em' } }}>
+            {summary}
           </Typography>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
@@ -76,11 +79,7 @@ export default function EventCard({ image, imageAlt, type, date, title, descript
               sx={{
                 position: 'relative',
                 '& a': {
-                  fontSize: 16,
-                  lineHeight: 1.5,
-                  fontWeight: 700,
-                  color: 'primary.main',
-                  textDecoration: 'underline',
+                  typography: 'cardLink',
                   textUnderlinePosition: 'from-font',
                   whiteSpace: 'nowrap',
                   '&:focus-visible': { outline: '2px solid', outlineColor: 'primary.main', outlineOffset: '2px', borderRadius: '2px' },
@@ -96,24 +95,23 @@ export default function EventCard({ image, imageAlt, type, date, title, descript
             </Box>
           )}
           {tag && (
-          <Box
-            component="span"
-            className={inter.className}
-            sx={{
-              ml: 'auto',
-              px: '12px',
-              py: 1,
-              borderRadius: '22px',
-              bgcolor: 'tag.background',
-              color: 'tag.text',
-              fontSize: 12,
-              lineHeight: 'normal',
-              fontWeight: 500,
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {tag}
-          </Box>
+            <Box
+              component="span"
+              className={inter.className}
+              sx={{
+                ml: 'auto',
+                p: tagStyle.padding,
+                borderRadius: tagStyle.radius,
+                bgcolor: 'tag.background',
+                color: 'tag.text',
+                fontSize: tagStyle.size,
+                lineHeight: 'normal',
+                fontWeight: tagStyle.weight,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {tag}
+            </Box>
           )}
         </Box>
       </Box>
@@ -121,11 +119,11 @@ export default function EventCard({ image, imageAlt, type, date, title, descript
   );
 }
 
-// Gives each "View Details" a unique accessible name without changing what is shown
+// Gives each link a unique accessible name ("View Details: <title>") without changing what is shown
 const visuallyHidden = {
   position: 'absolute',
-  width: 1,
-  height: 1,
+  width: '1px',
+  height: '1px',
   overflow: 'hidden',
   clip: 'rect(0 0 0 0)',
   whiteSpace: 'nowrap',

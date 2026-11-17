@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
 import { eventCategories, type EventCategory } from '@/content/events/categories';
+import { toDate } from './dates';
 import type { EventSummary } from './eventTypes';
 
 // Build-time only (uses fs), the same approach as lib/blogs.ts.
@@ -19,7 +20,7 @@ function parse(locale: string, file: string): Event {
   const slug = file.replace(/\.md$/, '');
   const str = (k: string) => (typeof data[k] === 'string' && data[k].trim() ? (data[k] as string) : fail(file, `"${k}" is required`));
   const date = str('date');
-  if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(date)) fail(file, '"date" must be quoted as "yyyy-mm-ddThh:mm"');
+  if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(date) || Number.isNaN(toDate(date).getTime())) fail(file, '"date" must be a real date, quoted as "yyyy-mm-ddThh:mm"');
   if (!eventCategories.includes(data.category)) fail(file, `unknown category "${data.category}" (allowed: ${eventCategories.join(', ')})`);
   if (data.section !== 'upcoming' && data.section !== 'past') fail(file, '"section" must be upcoming or past');
   if (data.type !== 'internal' && data.type !== 'external') fail(file, '"type" must be internal or external');
@@ -67,12 +68,4 @@ export function toSummary(event: Event): EventSummary {
   const { body, ...summary } = event;
   void body;
   return summary;
-}
-
-// Figma date format for events: "17 Nov 2026, 3:30 PM" (English); other languages use their own date and time order
-export function formatEventDate(locale: string, iso: string) {
-  const when = new Date(`${iso}:00Z`);
-  const day = new Intl.DateTimeFormat(locale === 'en' ? 'en-GB' : locale, { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }).format(when);
-  const time = new Intl.DateTimeFormat(locale === 'en' ? 'en-US' : locale, { hour: 'numeric', minute: '2-digit', timeZone: 'UTC' }).format(when);
-  return `${day}, ${time}`;
 }

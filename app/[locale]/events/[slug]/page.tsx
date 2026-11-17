@@ -4,11 +4,12 @@ import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import { Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
-import { formatEventDate, getEventBySlug, getEventSlugs } from '@/lib/events';
+import ArticleBody from '@/components/common/ArticleBody';
+import { formatDateTime } from '@/lib/dates';
+import { getEventBySlug, getEventSlugs } from '@/lib/events';
+import { oan } from '@/theme/oan';
 
 // Only slugs returned below exist; anything else is a 404 in a static export
 export const dynamicParams = false;
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-// No Figma design yet: a simple article layout built from the existing theme text styles
+// No Figma design yet: a simple article layout built from the OAN style sheet's article text styles (theme/oan.ts)
 export default async function EventPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
@@ -44,45 +45,28 @@ export default async function EventPage({ params }: { params: Promise<{ locale: 
   const t = await getTranslations('Events');
 
   return (
-    <Box component="article" sx={{ maxWidth: 800, mx: 'auto', px: { xs: 2, sm: 4 }, py: { xs: 4, lg: 8 }, display: 'flex', flexDirection: 'column', gap: 3 }}>
+    <Box
+      component="article"
+      sx={{ maxWidth: 800, mx: 'auto', px: oan.layout.pagePaddingX, py: { xs: 4, lg: 8 }, display: 'flex', flexDirection: 'column', gap: 3 }}
+    >
       <Box sx={{ '& a': { color: 'primary.main', fontWeight: 600, textDecoration: 'none' }, '& a:hover': { textDecoration: 'underline' } }}>
         <Link href="/events">← {t('backToEvents')}</Link>
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '9px' }}>
-          <Typography sx={{ fontSize: 14, lineHeight: '20px', fontWeight: 500, color: 'primary.main', textTransform: 'uppercase' }}>
+          <Typography variant="cardCategory" component="p">
             {t(`${event.section}.categories.${event.category}`)}
           </Typography>
-          <Typography component="time" dateTime={event.date} sx={{ fontSize: 14, lineHeight: 1.2, color: 'text.caption' }}>
-            {formatEventDate(locale, event.date)}
+          <Typography variant="cardDate" component="time" dateTime={event.date}>
+            {formatDateTime(locale, event.date)}
           </Typography>
         </Box>
-        <Typography variant="displayTitle" component="h1" sx={{ color: 'text.heading', fontSize: { xs: 28, sm: 36 } }}>
-          {event.title}
-        </Typography>
+        <Typography variant="articleTitle">{event.title}</Typography>
       </Box>
-      <Box sx={{ position: 'relative', aspectRatio: '16 / 9', borderRadius: '8px', overflow: 'hidden' }}>
+      <Box sx={{ position: 'relative', aspectRatio: '16 / 9', borderRadius: oan.layout.card.imageRadius, overflow: 'hidden' }}>
         <Image src={event.coverImage} alt={event.imageAlt} fill priority sizes="(min-width: 800px) 800px, 100vw" style={{ objectFit: 'cover' }} />
       </Box>
-      {/* react-markdown does not render raw HTML, which keeps event write-ups safe */}
-      <Box
-        sx={{
-          color: 'text.heading',
-          // `typography` applies a theme text style by name
-          '& p, & li': { typography: 'sectionLead', m: 0 },
-          '& p + p, & p + ul, & p + ol, & ul + p, & ol + p': { mt: 2 },
-          '& h2, & h3': { typography: 'factLead', mt: 4, mb: 1.5 },
-          '& ul, & ol': { pl: 3, my: 0 },
-          '& li + li': { mt: 1 },
-          '& a': { color: 'primary.main', fontWeight: 600 },
-          '& strong': { fontWeight: 700 },
-          '& img': { maxWidth: '100%', height: 'auto', borderRadius: '8px' },
-          '& table': { width: '100%', borderCollapse: 'collapse', my: 3 },
-          '& th, & td': { typography: 'sectionLead', border: '1px solid', borderColor: 'card.border', p: 1, textAlign: 'left' },
-        }}
-      >
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{event.body}</ReactMarkdown>
-      </Box>
+      <ArticleBody body={event.body} />
     </Box>
   );
 }
