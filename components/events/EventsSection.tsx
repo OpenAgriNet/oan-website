@@ -1,14 +1,16 @@
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Image from 'next/image';
-import { getTranslations } from 'next-intl/server';
-import SectionEyebrow from '@/components/common/SectionEyebrow';
-import EventCard from './EventCard';
-import EventsGrid from './EventsGrid';
+import { getLocale, getTranslations } from 'next-intl/server';
+import CardGrid from '@/components/common/CardGrid';
+import ContentCard from '@/components/common/ContentCard';
+import Section from '@/components/common/Section';
+import SectionHeader from '@/components/common/SectionHeader';
+import { eventHref } from '@/lib/events';
+import { formatDateTime } from '@/lib/dates';
+import type { EventSummary } from '@/lib/eventTypes';
 
 type Props = {
   section: 'upcoming' | 'past';
-  items: readonly { key: string; image: string }[];
+  // Event files from content/events/<locale> (see lib/events.ts)
+  items: EventSummary[];
   background?: string;
   // Figma spacing above and below the content at desktop width
   pt: number;
@@ -18,84 +20,30 @@ type Props = {
   mobilePb: number;
 };
 
-// Three cards and the side-by-side header need about 1100px; below that they wrap
-const wide = '@media (min-width: 1100px)';
-
+// Upcoming or past events: section header, then one row of event cards with "View All" when there are more
 export default async function EventsSection({ section, items, background, pt, pb, mobilePt, mobilePb }: Props) {
   const t = await getTranslations(`Events.${section}`);
+  const locale = await getLocale();
 
   return (
-    <Box component="section" sx={{ position: 'relative', overflow: 'hidden' }}>
-      {/* The mobile design has no section background */}
-      {background && (
-        <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-          <Image src={background} alt="" fill sizes="100vw" style={{ objectFit: 'cover' }} />
-        </Box>
-      )}
-      <Box sx={{ position: 'relative', maxWidth: 1440, mx: 'auto' }}>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: { xs: 3, sm: 4, lg: '36px' },
-            px: { xs: '20px', sm: 4, md: 5, lg: 0 },
-            pt: { xs: `${mobilePt}px`, sm: 6, lg: `${pt}px` },
-            pb: { xs: `${mobilePb}px`, sm: 6, lg: `${pb}px` },
-            // At 1440px the cards span x=79 to 1372 and the header x=85.5 to 1365.5, as in Figma
-            width: { lg: 1293 },
-            ml: { lg: 'calc(50% - 641px)' },
-          }}
-        >
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 3,
-              px: { lg: '6.5px' },
-              [wide]: { flexDirection: 'row', alignItems: 'center', gap: 2, minHeight: 91 },
-            }}
-          >
-            <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: { xs: 2, sm: 3 } }}>
-              <Box sx={{ '& .MuiTypography-root': { fontSize: { xs: 12, sm: 14 } }, '& > div': { height: { xs: 30, sm: 33 } } }}>
-                <SectionEyebrow>{t('eyebrow')}</SectionEyebrow>
-              </Box>
-              <Typography
-                variant="headline"
-                sx={{ color: 'text.heading', fontSize: { xs: 20, sm: 28 }, letterSpacing: { xs: '0.4px', sm: '0.56px' } }}
-              >
-                {t('title')}
-              </Typography>
-            </Box>
-            <Typography
-              sx={{
-                fontSize: { xs: 12, sm: 14 },
-                lineHeight: 1.4,
-                color: 'text.heading',
-                [wide]: { flex: '0 1 603px' },
-                // Figma's forced line break only applies at the designed width
-                whiteSpace: { xs: 'normal', lg: 'pre-line' },
-              }}
-            >
-              {t('description')}
-            </Typography>
-          </Box>
-          <EventsGrid actionLabel={t('action')}>
-            {items.map((item) => (
-              <EventCard
-                key={item.key}
-                image={item.image}
-                imageAlt={t(`items.${item.key}.imageAlt`)}
-                type={t(`items.${item.key}.type`)}
-                date={t(`items.${item.key}.date`)}
-                title={t(`items.${item.key}.title`)}
-                description={t(`items.${item.key}.description`)}
-                tag={t(`items.${item.key}.tag`)}
-                linkLabel={t('linkLabel')}
-              />
-            ))}
-          </EventsGrid>
-        </Box>
-      </Box>
-    </Box>
+    <Section background={background} pt={{ xs: mobilePt, lg: pt }} pb={{ xs: mobilePb, lg: pb }}>
+      <SectionHeader eyebrow={t('eyebrow')} title={t('title')} description={t('description')} />
+      <CardGrid actionLabel={t('action')} visible={3}>
+        {items.map((item) => (
+          <ContentCard
+            key={item.slug}
+            image={item.coverImage}
+            imageAlt={item.imageAlt}
+            category={t(`categories.${item.category}`)}
+            date={formatDateTime(locale, item.date)}
+            title={item.title}
+            summary={item.summary}
+            tag={item.tag}
+            linkLabel={t('linkLabel')}
+            href={eventHref(item)}
+          />
+        ))}
+      </CardGrid>
+    </Section>
   );
 }

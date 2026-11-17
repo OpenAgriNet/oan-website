@@ -491,6 +491,7 @@
     }
   },
   "Events": {
+    "backToEvents": "Back to all events",
     "hero": {
       "eyebrow": "Events",
       "titleLine1": "Connecting ideas,",
@@ -504,31 +505,10 @@
       "description": "Stay connected with upcoming events, workshops and discussions bringing\ntogether the OpenAgriNet ecosystem.",
       "linkLabel": "View Details",
       "action": "View All Events",
-      "items": {
-        "webinar": {
-          "type": "WEBINAR",
-          "date": "25 Aug 2026, 10:30 AM",
-          "title": "Open Digital Ecosystems for Sustainable Agriculture",
-          "description": "A discussion on how open networks, data and AI can enable inclusive and sustainable agriculture.",
-          "tag": "Ongoing",
-          "imageAlt": "A seedling in a field connected to digital icons for weather, farming and data"
-        },
-        "workshop": {
-          "type": "WORKSHOP",
-          "date": "25 Aug 2026, 10:30 AM",
-          "title": "Building Solutions with OpenAgriNet",
-          "description": "A hands-on workshop for developers, innovators and government partners to explore OpenAgriNet building blocks and real-world use cases.",
-          "tag": "New Delhi",
-          "imageAlt": "A farmer using a tablet in a green paddy field"
-        },
-        "conference": {
-          "type": "CONFERENCE",
-          "date": "25 Aug 2026, 10:30 AM",
-          "title": "OpenAgriNet Ecosystem Summit 2026",
-          "description": "Bringing together policymakers, institutions, innovators and ecosystem partners to accelerate open digital agriculture.",
-          "tag": "Bengaluru, India",
-          "imageAlt": "A speaker at a podium addressing a conference audience"
-        }
+      "categories": {
+        "webinar": "WEBINAR",
+        "workshop": "WORKSHOP",
+        "conference": "CONFERENCE"
       }
     },
     "past": {
@@ -537,31 +517,10 @@
       "description": "Explore highlights from past events, workshops and conversations where the OpenAgriNet community came together to share ideas, exchange knowledge and drive innovation in agriculture.",
       "linkLabel": "View Highlights",
       "action": "View All Past Events",
-      "items": {
-        "digitalAgriculture": {
-          "type": "CONFERENCE-PAST EVENTS",
-          "date": "25 Aug 2026, 10:30 AM",
-          "title": "Building Digital Agriculture Solutions",
-          "description": "An interactive workshop focused on practical tools and connected agricultural services.",
-          "tag": "Pune, India",
-          "imageAlt": "A smiling farmer working on a laptop in a green field"
-        },
-        "workshop": {
-          "type": "WORKSHOP-PAST EVENTS",
-          "date": "25 Aug 2026, 10:30 AM",
-          "title": "Building Solutions with OpenAgriNet",
-          "description": "A hands-on workshop for developers, innovators and government partners to explore OpenAgriNet building blocks and real-world use cases.",
-          "tag": "New Delhi",
-          "imageAlt": "A farmer and a field officer looking at a tablet in a paddy field"
-        },
-        "conference": {
-          "type": "CONFERENCE-PAST EVENTS",
-          "date": "25 Aug 2026, 10:30 AM",
-          "title": "OpenAgriNet Ecosystem Summit 2026",
-          "description": "Bringing together policymakers, institutions, innovators and ecosystem partners to accelerate open digital agriculture.",
-          "tag": "Bengaluru, India",
-          "imageAlt": "A speaker at a podium addressing a conference audience"
-        }
+      "categories": {
+        "webinar": "WEBINAR-PAST EVENTS",
+        "workshop": "WORKSHOP-PAST EVENTS",
+        "conference": "CONFERENCE-PAST EVENTS"
       }
     }
   },

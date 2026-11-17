@@ -3,7 +3,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { getPageMetadata } from '@/lib/metadata';
 import EventsHero from '@/components/events/EventsHero';
 import EventsSection from '@/components/events/EventsSection';
-import { pastEvents, upcomingEvents } from '@/components/events/eventItems';
+import { getEvents, toSummary } from '@/lib/events';
 
 export const generateMetadata = ({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> =>
   params.then(({ locale }) => getPageMetadata('events', '/events', locale));
@@ -17,14 +17,14 @@ export default async function EventsPage({ params }: { params: Promise<{ locale:
       <EventsHero />
       <EventsSection
         section="upcoming"
-        items={upcomingEvents}
+        items={getEvents(locale, 'upcoming').map(toSummary)}
         background="/images/events-upcoming-bg.png"
         pt={60}
         pb={37}
         mobilePt={32}
         mobilePb={40}
       />
-      <EventsSection section="past" items={pastEvents} pt={60} pb={64} mobilePt={0} mobilePb={28} />
+      <EventsSection section="past" items={getEvents(locale, 'past').map(toSummary)} pt={60} pb={64} mobilePt={0} mobilePb={28} />
     </>
   );
 }
