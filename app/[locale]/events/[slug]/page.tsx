@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
+import { getArticleMetadata } from '@/lib/metadata';
 import ArticleBody from '@/components/common/ArticleBody';
 import { formatDateTime } from '@/lib/dates';
 import { getEventBySlug, getEventSlugs } from '@/lib/events';
@@ -27,13 +28,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale, slug } = await params;
   const event = getEventBySlug(locale, slug);
   if (!event) return {};
-  const url = `/${locale}/events/${slug}/`;
-  return {
-    title: `${event.title} | OpenAgriNet`,
-    description: event.summary,
-    alternates: { canonical: url },
-    openGraph: { type: 'article', title: event.title, description: event.summary, url, images: [{ url: event.coverImage, alt: event.imageAlt }] },
-  };
+  return getArticleMetadata({
+    path: `/events/${slug}`,
+    locale,
+    title: event.title,
+    summary: event.summary,
+    image: { url: event.coverImage, alt: event.imageAlt },
+    // Plain category name for search data, e.g. "Workshop" (the card labels add "-PAST EVENTS")
+    section: event.category.charAt(0).toUpperCase() + event.category.slice(1),
+  });
 }
 
 // No Figma design yet: a simple article layout built from the OAN style sheet's article text styles (theme/oan.ts)
