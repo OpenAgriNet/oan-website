@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { hasLocale } from 'next-intl';
 import { NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -10,6 +10,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { siteUrl } from '@/lib/metadata';
 import { routing } from '@/i18n/routing';
 import theme from '@/theme';
+import { oan } from '@/theme/oan';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { montserrat, notoSans } from '../fonts';
@@ -26,8 +27,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     metadataBase: new URL(siteUrl),
     title: t('title'),
     description: t('description'),
+    icons: { apple: '/icons/pwa/apple-touch-icon.png' },
+    appleWebApp: { capable: true, title: t('siteName'), statusBarStyle: 'default' },
   };
 }
+
+export const viewport: Viewport = { themeColor: oan.colors.primary };
 
 export default async function RootLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
