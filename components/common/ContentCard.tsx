@@ -6,10 +6,11 @@ import { oan } from '@/theme/oan';
 import { inter } from './inter';
 
 type Props = {
-  image: string;
-  imageAlt: string;
-  // Label above the title, e.g. "WEBINAR"
-  category: string;
+  // Optional: a card without an image has no image area
+  image?: string;
+  imageAlt?: string;
+  // Label above the title, e.g. "WEBINAR"; left out when not given
+  category?: string;
   date: string;
   // Machine-readable date for the <time> element (ISO)
   dateTime?: string;
@@ -50,16 +51,20 @@ export default function ContentCard({ image, imageAlt, category, date, dateTime,
         '@media (prefers-reduced-motion: reduce)': { transition: 'none', '&:hover': { transform: 'none' } },
       }}
     >
-      <Box sx={{ position: 'relative', height: card.imageHeight, borderRadius: card.imageRadius, overflow: 'hidden', flexShrink: 0 }}>
-        <Image src={image} alt={imageAlt} fill sizes="(min-width: 1100px) 377px, (min-width: 600px) 50vw, 100vw" style={{ objectFit: 'cover' }} />
-      </Box>
+      {image && (
+        <Box sx={{ position: 'relative', height: card.imageHeight, borderRadius: card.imageRadius, overflow: 'hidden', flexShrink: 0 }}>
+          <Image src={image} alt={imageAlt ?? title} fill sizes="(min-width: 1100px) 377px, (min-width: 600px) 50vw, 100vw" style={{ objectFit: 'cover' }} />
+        </Box>
+      )}
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '13px' }}>
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '11px' }}>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: '9px' }}>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', columnGap: 2, rowGap: '4px' }}>
-              <Typography variant="cardCategory" component="p">
-                {category}
-              </Typography>
+              {category && (
+                <Typography variant="cardCategory" component="p">
+                  {category}
+                </Typography>
+              )}
               <Typography variant="cardDate" component={dateTime ? 'time' : 'p'} {...(dateTime && { dateTime })}>
                 {date}
               </Typography>

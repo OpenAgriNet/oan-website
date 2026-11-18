@@ -27,7 +27,7 @@ export default async function BlogsPage({ params }: { params: Promise<{ locale: 
 
   const cardProps = (blog: BlogSummary) => ({
     blog,
-    categoryLabel: t(`categories.${blog.category}`),
+    categoryLabel: blog.category ? t(`categories.${blog.category}`) : undefined,
     // Formatted for the page's language at build time, e.g. "Oct 28, 2026"
     dateLabel: formatBlogCardDate(locale, blog.date),
     linkLabel: t('readMore'),
@@ -39,7 +39,8 @@ export default async function BlogsPage({ params }: { params: Promise<{ locale: 
       {featured.length > 0 && (
         // Figma: 60px below the hero, 62px to the end of the section background
         <Section background="/images/events-upcoming-bg.png" pt={{ xs: 32, lg: 60 }} pb={{ xs: 40, lg: 62 }}>
-          <SectionHeader eyebrow={t('featured.eyebrow')} title={t('featured.title')} description={t('featured.description')} />
+          {/* Updated Figma: only the small "Featured Blog" heading, like "All Blogs" */}
+          <SectionHeader eyebrow={t('featured.eyebrow')} />
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: oan.layout.cardGap }}>
             {featured.map((blog) => (
               <FeaturedBlogCard key={blog.slug} {...cardProps(blog)} />
@@ -47,16 +48,18 @@ export default async function BlogsPage({ params }: { params: Promise<{ locale: 
           </Box>
         </Section>
       )}
-      {/* Figma: 60px above, 106px to the footer */}
-      <Section pt={{ xs: 32, lg: 60 }} pb={{ xs: 40, lg: 106 }}>
-        <SectionHeader eyebrow={t('all.eyebrow')} />
-        {/* Figma shows two rows of three */}
-        <CardGrid actionLabel={t('all.viewAll')} visible={6} rowGap={{ xs: '24px', sm: oan.layout.cardRowGap }}>
-          {rest.map((blog) => (
-            <BlogCard key={blog.slug} {...cardProps(blog)} />
-          ))}
-        </CardGrid>
-      </Section>
+      {/* Shown only when there are blogs besides the featured ones. Figma: 60px above, 106px to the footer */}
+      {rest.length > 0 && (
+        <Section pt={{ xs: 32, lg: 60 }} pb={{ xs: 40, lg: 106 }}>
+          <SectionHeader eyebrow={t('all.eyebrow')} />
+          {/* Figma shows two rows of three */}
+          <CardGrid actionLabel={t('all.viewAll')} visible={6} rowGap={{ xs: '24px', sm: oan.layout.cardRowGap }}>
+            {rest.map((blog) => (
+              <BlogCard key={blog.slug} {...cardProps(blog)} />
+            ))}
+          </CardGrid>
+        </Section>
+      )}
     </>
   );
 }

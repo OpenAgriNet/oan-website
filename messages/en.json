@@ -727,9 +727,7 @@
       "imageAlt": "A watercolour village with paddy fields, palm trees and hills"
     },
     "featured": {
-      "eyebrow": "Featured Blog",
-      "title": "Explore what’s coming up.",
-      "description": "Stay connected with upcoming events, workshops and discussions bringing together the OpenAgriNet ecosystem."
+      "eyebrow": "Featured Blog"
     },
     "all": {
       "eyebrow": "All Blogs",
