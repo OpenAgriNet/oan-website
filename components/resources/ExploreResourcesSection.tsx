@@ -8,7 +8,7 @@ import ResourceCard from './ResourceCard';
 
 // Add a resource's `href` once the client shares it; cards without one show the Upcoming tag instead of the arrow
 const items: { key: string; icon: string; href?: string }[] = [
-  { key: 'whitepapers', icon: '/icons/resources/file-text.svg' },
+  { key: 'whitepapers', icon: '/icons/resources/file-text.svg', href: 'https://drive.google.com/file/d/1bpqfAqFwy8nuPDbuXV-MdPLKt4NQr9bA/view?usp=sharing' },
   { key: 'policy', icon: '/icons/resources/film.svg' },
   { key: 'playbooks', icon: '/icons/resources/folder.svg' },
   { key: 'technical', icon: '/icons/resources/flag.svg' },
