@@ -63,7 +63,7 @@ export default async function AboutCtaSection() {
       >
         <Box
           sx={{
-            maxWidth: { xs: 335, sm: 610 },
+            maxWidth: { xs: 335, sm: 610, md: 900 },
             mx: 'auto',
             display: 'flex',
             flexDirection: 'column',
@@ -83,6 +83,10 @@ export default async function AboutCtaSection() {
           >
             <SectionEyebrow align="center">{t('eyebrow')}</SectionEyebrow>
           </Box>
+          {/* "JOIN OUR COMMUNITY" eyebrow above the title */}
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+            <SectionEyebrow align="center">{shared('eyebrow')}</SectionEyebrow>
+          </Box>
           <Typography
             variant="headline"
             component="h2"
@@ -91,6 +95,7 @@ export default async function AboutCtaSection() {
               fontSize: { xs: 20, sm: 26, md: 28 },
               lineHeight: { md: '34px' },
               letterSpacing: { xs: '0.4px', sm: '0.56px' },
+              whiteSpace: { md: 'nowrap' },
             }}
           >
             {shared('titleStart')}
@@ -101,7 +106,7 @@ export default async function AboutCtaSection() {
           </Typography>
           <Typography
             variant="blockBody"
-            sx={{ color: 'text.heading', fontSize: { xs: 12, sm: 14 }, lineHeight: { xs: '17px', sm: '20px' } }}
+            sx={{ color: 'text.heading', fontSize: { xs: 12, sm: 14 }, lineHeight: { xs: '17px', sm: '20px' }, maxWidth: { sm: 610, md: 650 } }}
           >
             {shared('description')}
           </Typography>
