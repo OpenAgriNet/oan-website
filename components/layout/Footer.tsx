@@ -3,8 +3,9 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
-import { Fragment, type MouseEvent } from 'react';
+import { Fragment } from 'react';
 import { Link, usePathname } from '@/i18n/navigation';
+import { scrollToTop } from '@/components/common/scrollToTop';
 import { siteLinks } from '@/lib/siteLinks';
 import Logo from './Logo';
 import SiteContainer from './SiteContainer';
@@ -15,13 +16,6 @@ const legalLinks = [
   { key: 'terms', href: '/privacy-terms#terms-of-use' },
   { key: 'contact', href: `mailto:${siteLinks.email}` },
 ] as const;
-
-// A link to the page already open would do nothing, so it scrolls back to the top instead
-function scrollToTop(event: MouseEvent) {
-  event.preventDefault();
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
-}
 
 // Row-major slot in the mobile two-column grid
 const mobileOrder = { buildingBlocks: 0, community: 1, aboutUs: 2, events: 3, resources: 4 };

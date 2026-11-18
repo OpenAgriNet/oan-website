@@ -9,11 +9,20 @@ import SectionEyebrow from '@/components/common/SectionEyebrow';
 import SiteContainer from '@/components/layout/SiteContainer';
 
 const members = [
-  { key: 'ravi', image: '/images/about-us/team-01.png' },
-  { key: 'meeraOne', image: '/images/about-us/team-02.png' },
-  { key: 'meeraTwo', image: '/images/about-us/team-03.png' },
-  { key: 'meenu', image: '/images/about-us/team-04.png' },
-  { key: 'karthika', image: '/images/about-us/team-05.png' },
+  { key: 'nirant', image: '/images/about-us/team-01.png' },
+  { key: 'mili', image: '/images/about-us/team-02.png' },
+  { key: 'niharika', image: '/images/about-us/team-03.png' },
+  { key: 'thejaswini', image: '/images/about-us/team-04.png' },
+  { key: 'shubhmoy', image: '/images/about-us/team-05.png' },
+  { key: 'sunny', image: '/images/about-us/team-06.png' },
+  { key: 'gautam', image: '/images/about-us/team-07.png' },
+  { key: 'neha', image: '/images/about-us/team-08.png' },
+  { key: 'kelvin', image: '/images/about-us/team-09.png' },
+  { key: 'ashwin', image: '/images/about-us/team-10.png' },
+  { key: 'jesvin', image: '/images/about-us/team-11.png' },
+  { key: 'mubarak', image: '/images/about-us/team-12.png' },
+  { key: 'yaseen', image: '/images/about-us/team-13.png' },
+  { key: 'yeswanth', image: '/images/about-us/team-14.png' },
 ] as const;
 
 export default async function AboutTeamSection() {
