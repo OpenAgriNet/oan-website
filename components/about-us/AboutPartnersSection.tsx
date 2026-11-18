@@ -2,7 +2,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
-import ActionButton from '@/components/common/ActionButton';
 import SectionEyebrow from '@/components/common/SectionEyebrow';
 import SiteContainer from '@/components/layout/SiteContainer';
 import PartnerLogos from './PartnerLogos';
@@ -14,14 +13,11 @@ const groups = [
     key: 'institutions',
     logos: [
       { key: 'ekstep', width: 111.91, height: 45.1 },
-      { key: 'fide', width: 131, height: 46.63 },
+      { key: 'iiitb', file: 'iiitb', ext: 'jpeg', width: 98.7, height: 81.87 },
       { key: 'coss', width: 75.5, height: 81.87 },
-      { key: 'ondc', width: 124.5, height: 59.25 },
-      { key: 'cdpi', width: 155, height: 48.15 },
-      { key: 'cgiar', width: 74.75, height: 88.57 }, // test logo
     ],
   },
-  {
+  /*{
     key: 'research',
     logos: [
       { key: 'cgiar', width: 74.75, height: 88.57 },
@@ -31,7 +27,7 @@ const groups = [
       { key: 'iffcoKisan', file: 'iffco-kissan', width: 129, height: 54 },
       { key: 'cdpi', width: 155, height: 48.15 }, // test logo
     ],
-  },
+  },*/
 ] as const;
 
 export default async function AboutPartnersSection() {
@@ -120,7 +116,7 @@ export default async function AboutPartnersSection() {
               label={t(`groups.${key}`)}
               logos={logos.map((logo) => ({
                 key: logo.key,
-                src: `${dir}/${'file' in logo ? logo.file : logo.key}.png`,
+                src: `${dir}/${'file' in logo ? logo.file : logo.key}.${'ext' in logo ? logo.ext : 'png'}`,
                 alt: t(`logos.${logo.key}`),
                 width: logo.width,
                 height: logo.height,
@@ -128,20 +124,6 @@ export default async function AboutPartnersSection() {
             />
           </Box>
         ))}
-        <ActionButton
-          href="#"
-          sx={{
-            px: '22px',
-            fontWeight: 700,
-            lineHeight: '20px',
-            minWidth: 200,
-            width: { xs: '100%', sm: 'auto' },
-            minHeight: { xs: 42, sm: 52 },
-            fontSize: { xs: 12, sm: 14 },
-          }}
-        >
-          {t('cta')}
-        </ActionButton>
       </SiteContainer>
     </Box>
   );

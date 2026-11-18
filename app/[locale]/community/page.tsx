@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { getPageMetadata } from '@/lib/metadata';
-import CommunityCta from '@/components/community/CommunityCta';
 import CommunityHero from '@/components/community/CommunityHero';
 import GetInvolvedSection from '@/components/community/GetInvolvedSection';
 
@@ -16,7 +15,6 @@ export default async function CommunityPage({ params }: { params: Promise<{ loca
     <>
       <CommunityHero />
       <GetInvolvedSection />
-      <CommunityCta />
     </>
   );
 }

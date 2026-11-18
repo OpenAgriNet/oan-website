@@ -55,13 +55,20 @@ function LogoImage({ logo }: { logo: PartnerLogo }) {
 export default function PartnerLogos({ logos, label }: Props) {
   if (logos.length <= MAX_STATIC) {
     return (
-      <Box
+      <>
+        {/* Mobile: carousel when there is more than two logos */}
+        {logos.length > 2 && (
+          <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
+            <LogoCarousel logos={logos} label={label} />
+          </Box>
+        )}
+        <Box
         component="ul"
         sx={{
+          display: { xs: logos.length > 2 ? 'none' : 'flex', sm: 'flex' },
           listStyle: 'none',
           m: 0,
           p: 0,
-          display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'center',
           gap: { xs: '16px 20px', sm: 2, md: 3, lg: '30px' },
@@ -81,7 +88,8 @@ export default function PartnerLogos({ logos, label }: Props) {
             <LogoImage logo={logo} />
           </Box>
         ))}
-      </Box>
+        </Box>
+      </>
     );
   }
   return <LogoCarousel logos={logos} label={label} />;
