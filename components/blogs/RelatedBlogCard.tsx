@@ -7,7 +7,8 @@ import BlogLink from './BlogLink';
 
 type Props = {
   blog: BlogSummary;
-  categoryLabel: string;
+  // Left out when the blog has no category
+  categoryLabel?: string;
   dateLabel: string;
   linkLabel: string;
 };
@@ -29,13 +30,15 @@ export default function RelatedBlogCard({ blog, categoryLabel, dateLabel, linkLa
         bgcolor: 'background.paper',
       }}
     >
-      <Box sx={{ position: 'relative', flexShrink: 0, width: 136, height: 105, borderRadius: card.imageRadius, overflow: 'hidden' }}>
-        <Image src={blog.coverImage} alt={blog.imageAlt} fill sizes="136px" style={{ objectFit: 'cover' }} />
-      </Box>
+      {blog.coverImage && (
+        <Box sx={{ position: 'relative', flexShrink: 0, width: 136, height: 105, borderRadius: card.imageRadius, overflow: 'hidden' }}>
+          <Image src={blog.coverImage} alt={blog.imageAlt ?? blog.title} fill sizes="136px" style={{ objectFit: 'cover' }} />
+        </Box>
+      )}
       <Box sx={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '13px', mt: '-1.5px' }}>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '9px' }}>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', columnGap: '12px' }}>
-            <Typography variant="cardCategory">{categoryLabel}</Typography>
+            {categoryLabel && <Typography variant="cardCategory">{categoryLabel}</Typography>}
             <Typography variant="featuredDate" component="time" dateTime={blog.date}>
               {dateLabel}
             </Typography>

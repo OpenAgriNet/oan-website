@@ -4,7 +4,7 @@ import type { BlogSummary } from '@/lib/blogTypes';
 
 type Props = {
   blog: BlogSummary;
-  categoryLabel: string;
+  categoryLabel?: string;
   dateLabel: string;
   linkLabel: string;
 };

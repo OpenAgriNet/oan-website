@@ -37,8 +37,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     locale,
     title: blog.title,
     summary: blog.summary,
-    image: { url: blog.coverImage, alt: blog.imageAlt },
-    section: t(`categories.${blog.category}`),
+    image: blog.coverImage ? { url: blog.coverImage, alt: blog.imageAlt ?? blog.title } : undefined,
+    section: blog.category ? t(`categories.${blog.category}`) : undefined,
     publishedTime: blog.date,
     author: blog.author,
   });
@@ -77,7 +77,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
               <RelatedBlogCard
                 key={b.slug}
                 blog={b}
-                categoryLabel={t(`categories.${b.category}`)}
+                categoryLabel={b.category ? t(`categories.${b.category}`) : undefined}
                 dateLabel={formatBlogCardDate(locale, b.date)}
                 linkLabel={t('readMore')}
               />
@@ -96,15 +96,15 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
     '@type': 'BlogPosting',
     headline: blog.title,
     description: shortDescription(blog.summary),
-    image: `${siteUrl}${blog.coverImage}`,
+    ...(blog.coverImage && { image: `${siteUrl}${blog.coverImage}` }),
     // The plain date: content files give no time zone for a time
     datePublished: blog.date.slice(0, 10),
-    author: { '@type': 'Organization', name: blog.author },
+    ...(blog.author && { author: { '@type': 'Organization', name: blog.author } }),
     publisher: { '@type': 'Organization', name: tMeta('siteName'), url: `${siteUrl}/` },
     mainEntityOfPage: url,
     url,
     inLanguage: locale,
-    articleSection: t(`categories.${blog.category}`),
+    ...(blog.category && { articleSection: t(`categories.${blog.category}`) }),
   };
 
   return (
@@ -151,24 +151,26 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
               copiedLabel={t('article.linkCopied')}
             />
           </Box>
-          <Box
-            sx={{
-              position: 'relative',
-              mt: '24px',
-              aspectRatio: '740 / 325',
-              borderRadius: article.imageRadius,
-              overflow: 'hidden',
-            }}
-          >
-            <Image
-              src={blog.coverImage}
-              alt={blog.imageAlt}
-              fill
-              priority
-              sizes="(min-width: 1360px) 740px, (min-width: 900px) 60vw, 100vw"
-              style={{ objectFit: 'cover' }}
-            />
-          </Box>
+          {blog.coverImage && (
+            <Box
+              sx={{
+                position: 'relative',
+                mt: '24px',
+                aspectRatio: '740 / 325',
+                borderRadius: article.imageRadius,
+                overflow: 'hidden',
+              }}
+            >
+              <Image
+                src={blog.coverImage}
+                alt={blog.imageAlt ?? blog.title}
+                fill
+                priority
+                sizes="(min-width: 1360px) 740px, (min-width: 900px) 60vw, 100vw"
+                style={{ objectFit: 'cover' }}
+              />
+            </Box>
+          )}
           {/* Article text from the Markdown file (shared with the event pages); Figma: paragraphs are 730px wide */}
           <Box sx={{ mt: '33px' }}>
             <ArticleBody body={blog.body} headingIds={headings.map((h) => h.id)} textMaxWidth={article.textWidth} />

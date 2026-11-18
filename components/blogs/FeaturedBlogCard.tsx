@@ -7,14 +7,16 @@ import BlogLink from './BlogLink';
 
 type Props = {
   blog: BlogSummary;
-  categoryLabel: string;
+  // Left out when the blog has no category
+  categoryLabel?: string;
   dateLabel: string;
   linkLabel: string;
 };
 
 const { card } = oan.layout;
 
-// Figma "Featured Blog" card: image on the left (494 x 262) and text on the right; stacked on smaller screens
+// Figma "Featured Blog" card: image on the left (494 x 262) and text on the right; stacked on smaller screens.
+// A blog without a cover image has no image area: the text uses the full width of the card
 export default function FeaturedBlogCard({ blog, categoryLabel, dateLabel, linkLabel }: Props) {
   return (
     <Box
@@ -30,24 +32,33 @@ export default function FeaturedBlogCard({ blog, categoryLabel, dateLabel, linkL
         bgcolor: 'background.paper',
       }}
     >
-      <Box
-        sx={{
-          position: 'relative',
-          flexShrink: 0,
-          width: { xs: '100%', md: '40%', lg: 494 },
-          aspectRatio: '494 / 262',
-          alignSelf: 'flex-start',
-          borderRadius: card.imageRadius,
-          overflow: 'hidden',
-        }}
-      >
-        <Image src={blog.coverImage} alt={blog.imageAlt} fill priority sizes="(min-width: 1360px) 494px, (min-width: 900px) 40vw, 100vw" style={{ objectFit: 'cover' }} />
-      </Box>
+      {blog.coverImage && (
+        <Box
+          sx={{
+            position: 'relative',
+            flexShrink: 0,
+            width: { xs: '100%', md: '40%', lg: 494 },
+            aspectRatio: '494 / 262',
+            alignSelf: 'flex-start',
+            borderRadius: card.imageRadius,
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            src={blog.coverImage}
+            alt={blog.imageAlt ?? blog.title}
+            fill
+            priority
+            sizes="(min-width: 1360px) 494px, (min-width: 900px) 40vw, 100vw"
+            style={{ objectFit: 'cover' }}
+          />
+        </Box>
+      )}
       <Box sx={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '13px' }}>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: '9px' }}>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '9px' }}>
-              <Typography variant="cardCategory">{categoryLabel}</Typography>
+              {categoryLabel && <Typography variant="cardCategory">{categoryLabel}</Typography>}
               <Typography variant="featuredDate" component="time" dateTime={blog.date}>
                 {dateLabel}
               </Typography>

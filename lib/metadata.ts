@@ -48,7 +48,8 @@ type ArticleMetadata = {
   locale: string;
   title: string;
   summary: string;
-  image: { url: string; alt: string };
+  // The page's own picture; without one, the site's standard share image is used, as on the other pages
+  image?: { url: string; alt: string };
   // Category label, e.g. "Implementation" (article:section)
   section?: string;
   // Publication date as written in the file (blogs only; an event's date is when it happens, not when it was published)
@@ -60,6 +61,7 @@ type ArticleMetadata = {
 export async function getArticleMetadata({ path, locale, title, summary, image, section, publishedTime, author }: ArticleMetadata): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'Metadata' });
   const description = shortDescription(summary);
+  const shareImage = image ?? { ...ogImage, alt: t('imageAlt') };
   const url = `/${locale}${path}/`;
 
   return {
@@ -72,12 +74,12 @@ export async function getArticleMetadata({ path, locale, title, summary, image, 
       title,
       description,
       url,
-      images: [image],
+      images: [shareImage],
       ...(section && { section }),
       // The plain date: content files give no time zone for a time, so it is left out of search data
       ...(publishedTime && { publishedTime: publishedTime.slice(0, 10) }),
       ...(author && { authors: [author] }),
     },
-    twitter: { card: 'summary_large_image', title, description, images: [image] },
+    twitter: { card: 'summary_large_image', title, description, images: [shareImage] },
   };
 }

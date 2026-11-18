@@ -23,18 +23,22 @@ function parse(locale: string, file: string): Blog {
   const date = data.date instanceof Date ? data.date.toISOString().slice(0, 10) : str('date');
   if (!/^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2})?$/.test(date) || Number.isNaN(toDate(date).getTime()))
     fail(file, '"date" must be yyyy-mm-dd, or "yyyy-mm-ddThh:mm" in quotes');
-  if (!blogCategories.includes(data.category)) fail(file, `unknown category "${data.category}" (allowed: ${blogCategories.join(', ')})`);
+  // Category, author and cover image are optional; when a category is given it must be one of the listed ones
+  if (data.category !== undefined && !blogCategories.includes(data.category))
+    fail(file, `unknown category "${data.category}" (allowed: ${blogCategories.join(', ')})`);
+  const opt = (k: string) => (typeof data[k] === 'string' && data[k].trim() ? (data[k] as string) : undefined);
+  const coverImage = opt('coverImage');
   if (data.type !== 'internal' && data.type !== 'external') fail(file, '"type" must be internal or external');
   if (data.type === 'external' && !/^https:\/\//.test(data.externalUrl ?? '')) fail(file, 'external blogs need an https "externalUrl"');
   return {
     slug,
     title: str('title'),
     date,
-    author: str('author'),
+    author: opt('author'),
     summary: str('summary'),
-    coverImage: str('coverImage'),
-    imageAlt: typeof data.imageAlt === 'string' && data.imageAlt.trim() ? data.imageAlt : str('title'),
-    category: data.category as BlogCategory,
+    coverImage,
+    imageAlt: coverImage ? (opt('imageAlt') ?? str('title')) : undefined,
+    category: data.category as BlogCategory | undefined,
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     location: typeof data.location === 'string' ? data.location : undefined,
     featured: data.featured === true,
@@ -71,7 +75,8 @@ export function getRelatedBlogs(locale: string, slug: string, limit = 2): Blog[]
   const all = getAllBlogs(locale);
   const current = all.find((b) => b.slug === slug);
   const others = all.filter((b) => b.slug !== slug);
-  return [...others.filter((b) => b.category === current?.category), ...others.filter((b) => b.category !== current?.category)].slice(0, limit);
+  const sameCategory = (b: Blog) => !!current?.category && b.category === current.category;
+  return [...others.filter(sameCategory), ...others.filter((b) => !sameCategory(b))].slice(0, limit);
 }
 
 // Card date, e.g. "Oct 28, 2026"
