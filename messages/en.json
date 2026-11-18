@@ -481,6 +481,14 @@
         }
       }
     },
+    "gallery": {
+      "eyebrow": "GALLERY",
+      "title": "In Action Across the Ecosystem",
+      "description": "Snapshots from pilots, field engagements, community events and collaborative initiatives.",
+      "viewAll": "View All",
+      "previous": "Previous photos",
+      "next": "Next photos"
+    },
     "cta": {
       "eyebrow": "JOIN OUR COMMUNITY",
       "titleStart": "Let’s build the future of ",

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { getPageMetadata } from '@/lib/metadata';
 import CommunityHero from '@/components/community/CommunityHero';
+import GallerySection from '@/components/community/GallerySection';
 import GetInvolvedSection from '@/components/community/GetInvolvedSection';
 
 export const generateMetadata = ({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> =>
@@ -15,6 +16,7 @@ export default async function CommunityPage({ params }: { params: Promise<{ loca
     <>
       <CommunityHero />
       <GetInvolvedSection />
+      <GallerySection />
     </>
   );
 }
