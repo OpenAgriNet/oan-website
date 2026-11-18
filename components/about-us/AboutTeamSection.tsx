@@ -7,23 +7,8 @@ import CardCarousel from '@/components/common/CardCarousel';
 // import ActionButton from '@/components/common/ActionButton';
 import SectionEyebrow from '@/components/common/SectionEyebrow';
 import SiteContainer from '@/components/layout/SiteContainer';
-
-const members = [
-  { key: 'nirant', image: '/images/about-us/team-01.png' },
-  { key: 'mili', image: '/images/about-us/team-02.png' },
-  { key: 'niharika', image: '/images/about-us/team-03.png' },
-  { key: 'thejaswini', image: '/images/about-us/team-04.png' },
-  { key: 'shubhmoy', image: '/images/about-us/team-05.png' },
-  { key: 'sunny', image: '/images/about-us/team-06.png' },
-  { key: 'gautam', image: '/images/about-us/team-07.png' },
-  { key: 'neha', image: '/images/about-us/team-08.png' },
-  { key: 'kelvin', image: '/images/about-us/team-09.png' },
-  { key: 'ashwin', image: '/images/about-us/team-10.png' },
-  { key: 'jesvin', image: '/images/about-us/team-11.png' },
-  { key: 'mubarak', image: '/images/about-us/team-12.png' },
-  { key: 'yaseen', image: '/images/about-us/team-13.png' },
-  { key: 'yeswanth', image: '/images/about-us/team-14.png' },
-] as const;
+// The team, in display order: name, role and photo for each person
+import members from '@/content/team/members.json';
 
 export default async function AboutTeamSection() {
   const t = await getTranslations('AboutUs.team');
@@ -155,21 +140,21 @@ export default async function AboutTeamSection() {
             '@media (prefers-reduced-motion: reduce)': { transition: 'none', '&:hover': { transform: 'none' } },
           }}
         >
-          {members.map(({ key, image }) => (
-            <Fragment key={key}>
+          {members.map(({ name, role, photo }) => (
+            <Fragment key={photo}>
               <Image
-                src={image}
-                alt={t(`members.${key}.name`)}
+                src={photo}
+                alt={name}
                 width={130}
                 height={130}
                 style={{ borderRadius: '50%', objectFit: 'cover', width: 130, height: 130 }}
               />
               <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '2px' }}>
                 <Typography variant="cardTitle" component="h3" sx={{ color: 'text.heading' }}>
-                  {t(`members.${key}.name`)}
+                  {name}
                 </Typography>
                 <Typography variant="cardBody" sx={{ color: 'text.heading' }}>
-                  {t(`members.${key}.role`)}
+                  {role}
                 </Typography>
               </Box>
             </Fragment>

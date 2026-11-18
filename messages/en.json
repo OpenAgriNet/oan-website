@@ -92,23 +92,7 @@
       "description": "OAN is being built by a multidisciplinary team bringing together expertise across digital public infrastructure, agriculture, artificial intelligence, technology, ecosystem development and implementation.<br></br>Our team works across the network—from architecture and technology to ecosystem partnerships, product development and field implementation.",
       "cta": "Meet the Team",
       "previous": "Previous team members",
-      "next": "Next team members",
-      "members": {
-        "nirant": { "name": "Nirant Ramakuru", "role": "Implementation Lead, OAN" },
-        "mili": { "name": "Mili Budhiraja", "role": "Product Manager" },
-        "niharika": { "name": "Niharika", "role": "Country Engagement Manager" },
-        "thejaswini": { "name": "Thejaswini Anand", "role": "Program Manager" },
-        "shubhmoy": { "name": "Shubhmoy Garg", "role": "Engagement Lead – Bharat Vistaar" },
-        "sunny": { "name": "Sunny Roy Kolla", "role": "Engagement Lead – MahaVISTAAR & AMUL" },
-        "gautam": { "name": "Gautam Rajeev", "role": "AI Architect" },
-        "neha": { "name": "Neha R", "role": "Associate Product Manager" },
-        "kelvin": { "name": "A Anto Kelvin Prabhu", "role": "Software Engineer" },
-        "ashwin": { "name": "Ashwin Rajan", "role": "Software Engineer" },
-        "jesvin": { "name": "Jesvin K Justin", "role": "Software Engineer – AI" },
-        "mubarak": { "name": "Md Mubarak Ansari", "role": "Consultant – Software Engineer" },
-        "yaseen": { "name": "Yaseen Ahmad M", "role": "Software Engineer" },
-        "yeswanth": { "name": "Yeswanth Suresh", "role": "Software Engineer" }
-      }
+      "next": "Next team members"
     },
     "partners": {
       "eyebrow": "Our Partners",
