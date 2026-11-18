@@ -503,6 +503,12 @@
   },
   "Events": {
     "backToEvents": "Back to all events",
+    "categories": {
+      "webinar": "WEBINAR",
+      "workshop": "WORKSHOP",
+      "conference": "CONFERENCE",
+      "panel-discussion": "PANEL DISCUSSION"
+    },
     "hero": {
       "eyebrow": "Events",
       "titleLine1": "Connecting ideas,",
@@ -515,26 +521,14 @@
       "title": "Explore what’s coming up.",
       "description": "Stay connected with upcoming events, workshops and discussions bringing\ntogether the OpenAgriNet ecosystem.",
       "linkLabel": "View Details",
-      "action": "View All Events",
-      "categories": {
-        "webinar": "WEBINAR",
-        "workshop": "WORKSHOP",
-        "conference": "CONFERENCE",
-          "panel-discussion": "PANEL DISCUSSION"
-      }
+      "action": "View All Events"
     },
     "past": {
       "eyebrow": "PAST EVENTS",
       "title": "Moments that brought us together.",
       "description": "Explore highlights from past events, workshops and conversations where the OpenAgriNet community came together to share ideas, exchange knowledge and drive innovation in agriculture.",
       "linkLabel": "View Highlights",
-      "action": "View All Past Events",
-      "categories": {
-        "webinar": "WEBINAR-PAST EVENTS",
-        "workshop": "WORKSHOP-PAST EVENTS",
-        "conference": "CONFERENCE-PAST EVENTS",
-          "panel-discussion": "PANEL DISCUSSION-PAST EVENTS"
-      }
+      "action": "View All Past Events"
     }
   },
   "Legal": {

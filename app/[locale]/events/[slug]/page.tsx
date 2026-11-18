@@ -58,7 +58,7 @@ export default async function EventPage({ params }: { params: Promise<{ locale: 
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '9px' }}>
           <Typography variant="cardCategory" component="p">
-            {t(`${event.section}.categories.${event.category}`)}
+            {t(`categories.${event.category}`)}
           </Typography>
           <Typography variant="cardDate" component="time" dateTime={event.date}>
             {formatDateTime(locale, event.date)}
