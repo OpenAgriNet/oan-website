@@ -8,6 +8,10 @@ type Props = {
   eyebrow: string;
   titleLine1: string;
   titleLine2: string;
+  // Plain (not highlighted) words at the start of line 2, e.g. "from " in "from OpenAgriNet."
+  titleLine2Lead?: string;
+  // Figma width of the title box at desktop, when it is wider than the text column (e.g. Blog: 563px)
+  titleWidth?: number;
   description: string;
   image: string;
   imageAlt: string;
@@ -29,7 +33,7 @@ type Props = {
   };
 };
 
-export default function PageHero({ eyebrow, titleLine1, titleLine2, description, image, imageAlt, height, overlay, crop, mobile }: Props) {
+export default function PageHero({ eyebrow, titleLine1, titleLine2, titleLine2Lead, titleWidth, description, image, imageAlt, height, overlay, crop, mobile }: Props) {
   // Below 600px the mobile design replaces the stacked photo, when the page provides one
   const xsOnly = mobile ? { xs: 'block', sm: 'none' } : { xs: 'none' };
   const fromSm = mobile ? { xs: 'none', sm: 'block' } : { xs: 'block' };
@@ -161,11 +165,12 @@ export default function PageHero({ eyebrow, titleLine1, titleLine2, description,
           >
             <PillBadge>{eyebrow}</PillBadge>
             {/* The mobile design of a page (e.g. Events) uses a smaller title on phones */}
-            <Typography variant="pageHeroTitle" sx={{ ...(mobile && { fontSize: { xs: 24, sm: 36 } }) }}>
+            <Typography variant="pageHeroTitle" sx={{ ...(mobile && { fontSize: { xs: 24, sm: 36 } }), ...(titleWidth && { width: { lg: titleWidth } }) }}>
               {titleLine1}
               {/* The mobile design lets the title wrap naturally */}
               <Box component="br" sx={{ display: { xs: mobile ? 'none' : 'inline', sm: 'inline' } }} />
               {mobile && ' '}
+              {titleLine2Lead}
               <Box component="span" sx={{ color: 'secondary.main' }}>
                 {titleLine2}
               </Box>

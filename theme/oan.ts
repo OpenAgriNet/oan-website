@@ -7,7 +7,7 @@ export const oan = {
     primary: '#1B5138',
     accent: '#B45F06',
     success: '#128937',
-    text: { body: '#2B2D2F', muted: '#9E9E9E', heading: '#232323', title: '#171717', caption: '#737373' },
+    text: { body: '#2B2D2F', muted: '#9E9E9E', heading: '#232323', title: '#171717', caption: '#737373', meta: '#404040' },
     background: {
       default: '#FFFFFF',
       paper: '#FFFFFF',
@@ -28,6 +28,8 @@ export const oan = {
       hoverBackground: '#EBF6DB',
       arrowBackground: '#E7F7E9',
       outline: 'rgba(27, 81, 56, 0.1)',
+      // Panel and round button borders, e.g. "Inside This Article" on the blog page
+      divider: '#D9D9D9',
     },
     footer: { background: '#1B5138', text: '#FFFFFF', divider: 'rgba(255, 255, 255, 0.1)' },
   },
@@ -59,11 +61,19 @@ export const oan = {
     cardSummary: { size: { xs: 13 }, lineHeight: 1.4, weight: 400, color: 'heading' },
     // Card link, e.g. "Read More"
     cardLink: { size: { xs: 16 }, lineHeight: 1.5, weight: 700, underline: true, color: 'primary' },
+    // Wide featured card (Blog page)
+    featuredDate: { size: { xs: 14 }, lineHeight: 1.2, weight: 400, color: 'caption' },
+    featuredTitle: { size: { xs: 16, sm: 18 }, lineHeight: 1.2, weight: 700, color: 'title' },
+    featuredSummary: { size: { xs: 13, sm: 14 }, lineHeight: 1.6, weight: 400, color: 'heading' },
     // Article pages (event and blog pages with a write-up)
     articleTitle: { size: { xs: 24, sm: 32 }, lineHeight: 1.1875, weight: 700, color: 'title' },
-    // Section headings in the article
+    // Date under the blog title, e.g. "28 Oct 2026, 10:30 AM"
+    articleDate: { size: { xs: 16, sm: 20 }, lineHeight: 1.2, weight: 400, color: 'meta' },
+    // Section headings in the article, and the blog sidebar titles ("Inside This Article", "Related Blog")
     articleHeading: { size: { xs: 18 }, lineHeight: 1.2, weight: 700, color: 'title' },
     articleBody: { size: { xs: 13 }, lineHeight: '18px', weight: 400, color: 'heading' },
+    // "Inside This Article" links (blog page)
+    contentsLink: { size: { xs: 14 }, lineHeight: '28px', weight: 400, color: 'title' },
   },
 
   layout: {
@@ -75,6 +85,8 @@ export const oan = {
     cardRowGap: '36px',
     card: { radius: '16px', padding: '12px 16px', imageRadius: '8px', imageHeight: 196, shadowHover: '0 8px 28px rgba(0, 0, 0, 0.14)' },
     tag: { radius: '22px', padding: '8px 12px', size: 12, weight: 500 },
+    // Blog detail page at 1440px: article column x=80-820, sidebar x=930-1370
+    article: { width: 1290, columnGap: '110px', mainWidth: 740, titleWidth: 511, textWidth: 730, sidebarWidth: 440, panelRadius: '12px', imageRadius: '12px' },
   },
 } as const;
 

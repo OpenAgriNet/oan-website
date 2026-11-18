@@ -28,6 +28,10 @@
       "privacyTerms": {
         "title": "Terms of Use & Privacy Policy | OpenAgriNet",
         "description": "Terms of Use and Privacy Policy for the OpenAgriNet website, maintained by EkStep Foundation."
+      },
+      "blogs": {
+        "title": "Blog | OpenAgriNet",
+        "description": "Stories, insights and updates from OpenAgriNet: perspectives on AI, open networks and digital public infrastructure for agriculture."
       }
     }
   },
@@ -41,7 +45,8 @@
     "language": "Language",
     "home": "OpenAgriNet home",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "blogs": "Blog"
   },
   "Footer": {
     "copyright": "@{year} OpenAgriNet. All rights reserved.",
@@ -65,7 +70,8 @@
     "aboutUs": "About Us",
     "community": "Community",
     "resources": "Resources",
-    "events": "Events"
+    "events": "Events",
+    "blogs": "Blog"
   },
   "AboutUs": {
     "hero": {
@@ -712,6 +718,45 @@
           ]
         }
       ]
+    }
+  },
+  "Blogs": {
+    "hero": {
+      "eyebrow": "Blog",
+      "titleLine1": "Stories, insights and updates",
+      "titleLine2Lead": "from ",
+      "titleLine2": "OpenAgriNet.",
+      "description": "Perspectives on AI, open networks and digital public infrastructure for agriculture.",
+      "imageAlt": "A watercolour village with paddy fields, palm trees and hills"
+    },
+    "featured": {
+      "eyebrow": "Featured Blog",
+      "title": "Explore what’s coming up.",
+      "description": "Stay connected with upcoming events, workshops and discussions bringing together the OpenAgriNet ecosystem."
+    },
+    "all": {
+      "eyebrow": "All Blogs",
+      "viewAll": "View All Blogs"
+    },
+    "categories": {
+      "implementation": "Implementation",
+      "technology": "Technology",
+      "partnerships": "Partnerships",
+      "insights": "Insights"
+    },
+    "readMore": "Read More",
+    "article": {
+      "share": "Share this blog",
+      "save": "Save this blog",
+      "copyLink": "Copy link to this blog",
+      "linkCopied": "Link copied",
+      "contents": "Inside This Article",
+      "subscribe": {
+        "title": "Stay updated with OpenAgriNet",
+        "description": "Get the latest stories, insights and implementations in your inbox.",
+        "button": "Subscribe"
+      },
+      "related": "Related Blog"
     }
   }
 }

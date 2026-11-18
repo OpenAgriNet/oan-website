@@ -16,17 +16,18 @@ declare module '@mui/material/styles' {
     heading: string;
     title: string;
     caption: string;
+    meta: string;
   }
   interface Palette {
     footer: { background: string; text: string; divider: string };
-    card: { shadow: string; iconBackground: string; hoverOverlay: string; border: string; hoverBackground: string; arrowBackground: string; outline: string };
+    card: { shadow: string; iconBackground: string; hoverOverlay: string; border: string; hoverBackground: string; arrowBackground: string; outline: string; divider: string };
     statCard: { background: string; border: string };
     scrollCue: { circle: string; glow: string };
     tag: { background: string; text: string };
   }
   interface PaletteOptions {
     footer?: { background: string; text: string; divider: string };
-    card?: { shadow: string; iconBackground: string; hoverOverlay: string; border: string; hoverBackground: string; arrowBackground: string; outline: string };
+    card?: { shadow: string; iconBackground: string; hoverOverlay: string; border: string; hoverBackground: string; arrowBackground: string; outline: string; divider: string };
     statCard?: { background: string; border: string };
     scrollCue?: { circle: string; glow: string };
     tag?: { background: string; text: string };
@@ -67,9 +68,14 @@ declare module '@mui/material/styles' {
     cardHeading: CSSProperties;
     cardSummary: CSSProperties;
     cardLink: CSSProperties;
+    featuredDate: CSSProperties;
+    featuredTitle: CSSProperties;
+    featuredSummary: CSSProperties;
     articleTitle: CSSProperties;
+    articleDate: CSSProperties;
     articleHeading: CSSProperties;
     articleBody: CSSProperties;
+    contentsLink: CSSProperties;
   }
   interface TypographyVariantsOptions {
     navLink?: CSSProperties;
@@ -106,9 +112,14 @@ declare module '@mui/material/styles' {
     cardHeading?: CSSProperties;
     cardSummary?: CSSProperties;
     cardLink?: CSSProperties;
+    featuredDate?: CSSProperties;
+    featuredTitle?: CSSProperties;
+    featuredSummary?: CSSProperties;
     articleTitle?: CSSProperties;
+    articleDate?: CSSProperties;
     articleHeading?: CSSProperties;
     articleBody?: CSSProperties;
+    contentsLink?: CSSProperties;
   }
 }
 
@@ -148,9 +159,14 @@ declare module '@mui/material/Typography' {
     cardHeading: true;
     cardSummary: true;
     cardLink: true;
+    featuredDate: true;
+    featuredTitle: true;
+    featuredSummary: true;
     articleTitle: true;
+    articleDate: true;
     articleHeading: true;
     articleBody: true;
+    contentsLink: true;
   }
 }
 
@@ -185,7 +201,7 @@ const theme = createTheme({
     primary: { main: colors.primary },
     secondary: { main: colors.accent },
     success: { main: colors.success },
-    text: { primary: colors.text.body, muted: colors.text.muted, heading: colors.text.heading, title: colors.text.title, caption: colors.text.caption },
+    text: { primary: colors.text.body, muted: colors.text.muted, heading: colors.text.heading, title: colors.text.title, caption: colors.text.caption, meta: colors.text.meta },
     background: colors.background,
     statCard: colors.statCard,
     scrollCue: colors.scrollCue,
@@ -231,9 +247,14 @@ const theme = createTheme({
     cardHeading: oanText(oan.text.cardHeading),
     cardSummary: oanText(oan.text.cardSummary),
     cardLink: oanText(oan.text.cardLink),
+    featuredDate: oanText(oan.text.featuredDate),
+    featuredTitle: oanText(oan.text.featuredTitle),
+    featuredSummary: oanText(oan.text.featuredSummary),
     articleTitle: oanText(oan.text.articleTitle),
+    articleDate: oanText(oan.text.articleDate),
     articleHeading: oanText(oan.text.articleHeading),
     articleBody: oanText(oan.text.articleBody),
+    contentsLink: oanText(oan.text.contentsLink),
   },
   components: {
     MuiTypography: {
@@ -273,9 +294,14 @@ const theme = createTheme({
           cardHeading: 'h3',
           cardSummary: 'p',
           cardLink: 'span',
+          featuredDate: 'span',
+          featuredTitle: 'h3',
+          featuredSummary: 'p',
           articleTitle: 'h1',
+          articleDate: 'p',
           articleHeading: 'h2',
           articleBody: 'p',
+          contentsLink: 'span',
         },
       },
     },

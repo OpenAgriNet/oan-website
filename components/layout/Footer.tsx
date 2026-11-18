@@ -24,7 +24,7 @@ function scrollToTop(event: MouseEvent) {
 }
 
 // Row-major slot in the mobile two-column grid
-const mobileOrder = { buildingBlocks: 0, community: 1, aboutUs: 2, events: 3, resources: 4 };
+const mobileOrder = { buildingBlocks: 0, community: 1, aboutUs: 2, events: 3, resources: 4, blogs: 5 };
 
 // Official OAN social channels, in Figma order (client review)
 const socialLinks = ['linkedin', 'gitbook', 'youtube', 'discord'] as const;
