@@ -23,6 +23,7 @@ type Props = {
 // Upcoming or past events: section header, then one row of event cards with "View All" when there are more
 export default async function EventsSection({ section, items, background, pt, pb, mobilePt, mobilePb }: Props) {
   const t = await getTranslations(`Events.${section}`);
+  const tCategory = await getTranslations('Events.categories');
   const locale = await getLocale();
 
   return (
@@ -34,7 +35,7 @@ export default async function EventsSection({ section, items, background, pt, pb
             key={item.slug}
             image={item.coverImage}
             imageAlt={item.imageAlt}
-            category={t(`categories.${item.category}`)}
+            category={tCategory(item.category)}
             date={formatDateTime(locale, item.date)}
             title={item.title}
             summary={item.summary}
