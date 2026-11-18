@@ -39,7 +39,8 @@ export default async function BlogsPage({ params }: { params: Promise<{ locale: 
       {featured.length > 0 && (
         // Figma: 60px below the hero, 62px to the end of the section background
         <Section background="/images/events-upcoming-bg.png" pt={{ xs: 32, lg: 60 }} pb={{ xs: 40, lg: 62 }}>
-          <SectionHeader eyebrow={t('featured.eyebrow')} title={t('featured.title')} description={t('featured.description')} />
+          {/* Updated Figma: only the small "Featured Blog" heading, like "All Blogs" */}
+          <SectionHeader eyebrow={t('featured.eyebrow')} />
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: oan.layout.cardGap }}>
             {featured.map((blog) => (
               <FeaturedBlogCard key={blog.slug} {...cardProps(blog)} />
