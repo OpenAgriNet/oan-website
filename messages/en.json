@@ -506,7 +506,8 @@
       "categories": {
         "webinar": "WEBINAR",
         "workshop": "WORKSHOP",
-        "conference": "CONFERENCE"
+        "conference": "CONFERENCE",
+          "panel-discussion": "PANEL DISCUSSION"
       }
     },
     "past": {
@@ -518,7 +519,8 @@
       "categories": {
         "webinar": "WEBINAR-PAST EVENTS",
         "workshop": "WORKSHOP-PAST EVENTS",
-        "conference": "CONFERENCE-PAST EVENTS"
+        "conference": "CONFERENCE-PAST EVENTS",
+          "panel-discussion": "PANEL DISCUSSION-PAST EVENTS"
       }
     }
   },
