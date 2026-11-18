@@ -3,18 +3,21 @@ import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import SectionEyebrow from '@/components/common/SectionEyebrow';
+import GalleryTrack from './GalleryTrack';
 import SiteContainer from '@/components/layout/SiteContainer';
 
-const dir = '/images/community/gallery';
+// The photos, in display order: path and alt text for each (add new ones to the end of this file)
+import photos from '@/content/gallery/photos.json';
 
-// Figma 1440: one large photo (409x346) spanning two rows, four smaller photos (255x160) beside it
-const photos = [
-  { key: 'one', file: 'gallery-01.png', area: 'a' },
-  { key: 'two', file: 'gallery-02.png', area: 'b' },
-  { key: 'three', file: 'gallery-03.png', area: 'c' },
-  { key: 'four', file: 'gallery-04.png', area: 'd' },
-  { key: 'five', file: 'gallery-05.png', area: 'e' },
-] as const;
+// every slide is the same five-photo collage: one large photo (409x346) spanning two rows plus four smaller photos (255x160)
+const areas = ['a', 'b', 'c', 'd', 'e'] as const;
+const PER_SLIDE = areas.length;
+
+// Photos fill the slides five at a time; a last slide with fewer photos shows only those, in the same collage (the free spots stay empty)
+const slides = Array.from({ length: Math.max(1, Math.ceil(photos.length / PER_SLIDE)) }, (_, i) =>
+  photos.slice(i * PER_SLIDE, (i + 1) * PER_SLIDE),
+);
+
 
 export default async function GallerySection() {
   const t = await getTranslations('Community.gallery');
@@ -56,49 +59,63 @@ export default async function GallerySection() {
             {t('description')}
           </Typography>
         </Box>
-        <Box
-          component="ul"
-          sx={{
-            listStyle: 'none',
-            m: 0,
-            p: 0,
-            flex: 1,
-            minWidth: 0,
-            // Figma mobile: the photo column is 338px inside a 335px text column
-            width: { xs: 'calc(100% + 3px)', sm: 'auto' },
-            alignSelf: { xs: 'flex-start', sm: 'auto' },
-            display: 'grid',
-            gap: { xs: '16px', lg: '25px 20px' },
-            // Mobile: five photos stacked; sm: large photo on top, four small ones in a 2x2 grid; from md the Figma layout
-            gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1.6fr 1fr 1fr', lg: '410fr 254fr 254fr' },
-            gridTemplateAreas: { xs: '"a" "b" "c" "d" "e"', sm: '"a a" "b c" "d e"', md: '"a b c" "a d e"' },
-            aspectRatio: { md: '958 / 347' },
-          }}
-        >
-          {photos.map(({ key, file, area }) => (
+        <GalleryTrack label={t('title')} viewAll={t('viewAll')} previousLabel={t('previous')} nextLabel={t('next')}>
+          {slides.map((slide, slideIndex) => {
+            // Five photos make the Figma collage; any other count is split into equal tiles
+            const collage = slide.length === PER_SLIDE;
+            return (
             <Box
-              component="li"
-              key={key}
+              component="ul"
+              key={slideIndex}
               sx={{
-                gridArea: area,
-                position: 'relative',
-                overflow: 'hidden',
-                borderRadius: '12px',
-                // Figma mobile: five full-width photos stacked (338x256 large, 338x161 for the rest)
-                aspectRatio: { xs: area === 'a' ? '338 / 256' : '338 / 161', sm: area === 'a' ? '409 / 346' : '255 / 160', md: 'auto' },
-                minHeight: 0,
+                listStyle: 'none',
+                m: 0,
+                p: 0,
+                display: 'grid',
+                gap: { xs: '16px', lg: '25px 20px' },
+                // Mobile: photos stacked; from sm the Figma collage (large photo plus four small ones)
+                gridTemplateColumns: collage
+                  ? { xs: '1fr', sm: '1.6fr 1fr 1fr', lg: '410fr 254fr 254fr' }
+                  : { xs: '1fr', sm: slide.length === 3 ? '1fr 1fr 1fr' : slide.length === 1 ? '1fr' : '1fr 1fr' },
+                gridAutoRows: collage ? undefined : { sm: '1fr' },
+                gridTemplateAreas: collage ? { xs: '"a" "b" "c" "d" "e"', sm: '"a b c" "a d e"' } : undefined,
+                // Tablet and up keep the desktop collage proportions, so every slide has the same height
+                aspectRatio: { sm: '958 / 347' },
+                // Space between slides when the track scrolls sideways
+                pr: { sm: slides.length > 1 ? 2 : 0 },
+                boxSizing: 'border-box',
               }}
             >
-              <Image
-                src={`${dir}/${file}`}
-                alt={t(`images.${key}`)}
-                fill
-                sizes={area === 'a' ? '(min-width: 900px) 409px, 100vw' : '(min-width: 900px) 255px, 50vw'}
-                style={{ objectFit: 'cover' }}
-              />
+              {slide.map(({ photo, alt }, i) => {
+                const area = areas[i];
+                return (
+                  <Box
+                    component="li"
+                    key={photo}
+                    sx={{
+                      gridArea: collage ? area : undefined,
+                      position: 'relative',
+                      overflow: 'hidden',
+                      borderRadius: '12px',
+                      // Figma mobile: five full-width photos stacked (338x256 large, 338x161 for the rest)
+                      aspectRatio: { xs: area === 'a' ? '338 / 256' : '338 / 161', sm: 'auto' },
+                      minHeight: 0,
+                    }}
+                  >
+                    <Image
+                      src={photo}
+                      alt={alt}
+                      fill
+                      sizes={area === 'a' ? '(min-width: 900px) 409px, 100vw' : '(min-width: 900px) 255px, 50vw'}
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </Box>
+                );
+              })}
             </Box>
-          ))}
-        </Box>
+            );
+          })}
+        </GalleryTrack>
       </SiteContainer>
     </Box>
   );

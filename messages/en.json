@@ -485,13 +485,9 @@
       "eyebrow": "GALLERY",
       "title": "In Action Across the Ecosystem",
       "description": "Snapshots from pilots, field engagements, community events and collaborative initiatives.",
-      "images": {
-        "one": "OAN community members gathered for a group photo at an ecosystem event",
-        "two": "Participants at an EkStep people and possibilities event",
-        "three": "Attendees at an OAN community engagement event",
-        "four": "Participants joining an OAN session over video call",
-        "five": "Audience at an OAN conference"
-      }
+      "viewAll": "View All",
+      "previous": "Previous photos",
+      "next": "Next photos"
     },
     "cta": {
       "eyebrow": "JOIN OUR COMMUNITY",
