@@ -98,14 +98,7 @@
       "description": "OAN is being built by a multidisciplinary team bringing together expertise across digital public infrastructure, agriculture, artificial intelligence, technology, ecosystem development and implementation.<br></br>Our team works across the network—from architecture and technology to ecosystem partnerships, product development and field implementation.",
       "cta": "Meet the Team",
       "previous": "Previous team members",
-      "next": "Next team members",
-      "members": {
-        "ravi": { "name": "Ravi Kumar", "role": "Program Director" },
-        "meeraOne": { "name": "Meera Srinivasan", "role": "Product Lead" },
-        "meeraTwo": { "name": "Meera Srinivasan", "role": "Product Lead" },
-        "meenu": { "name": "Meenu Bansal", "role": "Product Lead" },
-        "karthika": { "name": "Karthika", "role": "UI/UX Designer" }
-      }
+      "next": "Next team members"
     },
     "partners": {
       "eyebrow": "Our Partners",
@@ -424,22 +417,22 @@
         },
         "contribute": {
           "title": "Contribute",
-          "summary": "Contribute code, standards, data or expertise.",
+          "summary": "Contribute code, knowledge or expertise.",
           "badge": "03 CONTRIBUTE",
           "heading": "Contribute to OpenAgriNet",
-          "description": "Help shape OpenAgriNet by sharing code, standards, data\nand expertise with an open community working for farmers.",
+          "description": "Help shape OpenAgriNet in the open. Improve its building\nblocks and share the language and knowledge that make\nanswers better for farmers.",
           "ways": [
             {
               "title": "Contribute code",
-              "description": "Improve OAN building blocks, tools and reference\nimplementations."
+              "description": "Improve OAN’s open building blocks, tools and\nreference implementations on GitHub."
             },
             {
               "title": "Shape open standards",
-              "description": "Help define specifications that keep services\ninteroperable."
+              "description": "Give feedback on the specifications that keep\nservices interoperable."
             },
             {
-              "title": "Share data and expertise",
-              "description": "Bring domain knowledge and datasets that make\nsolutions more useful."
+              "title": "Share language and knowledge",
+              "description": "Bring local-language terms, verified knowledge\nand field expertise."
             }
           ]
         },
@@ -448,19 +441,19 @@
           "summary": "Advance DPI, AI and interoperability thinking.",
           "badge": "04 RESEARCH",
           "heading": "Research with OpenAgriNet",
-          "description": "Advance thinking on digital public infrastructure, AI and\ninteroperability for agriculture through open research.",
+          "description": "Advance research on digital public infrastructure and AI for\nagriculture, in the open, so the wider ecosystem can build\non what is learned.",
           "ways": [
             {
-              "title": "Study DPI for agriculture",
-              "description": "Explore how open infrastructure can improve\nagricultural services."
+              "title": "Study agri-DPI",
+              "description": "Explore how open, interoperable infrastructure\ncan improve agricultural services."
             },
             {
-              "title": "Advance responsible AI",
-              "description": "Research AI approaches that are safe, inclusive\nand useful for farmers."
+              "title": "Advance AI for local languages",
+              "description": "Research voice and language AI that is accurate,\nsafe and inclusive for farmers."
             },
             {
-              "title": "Publish open insights",
-              "description": "Share findings that help the wider ecosystem\nlearn and improve."
+              "title": "Publish open findings",
+              "description": "Share findings and methods openly so others can\nlearn from and build on them."
             }
           ]
         },
@@ -477,11 +470,11 @@
             },
             {
               "title": "Support implementations",
-              "description": "Bring resources and expertise to real-world\ndeployments."
+              "description": "Bring resources and expertise to live and planned\ndeployments."
             },
             {
-              "title": "Grow the network",
-              "description": "Connect organisations to expand the reach\nof open agricultural services."
+              "title": "Join as a provider",
+              "description": "Connect your services or knowledge to the\nnetwork. Your data stays at its source."
             }
           ]
         }
@@ -492,7 +485,6 @@
       "titleStart": "Let’s build the future of ",
       "titleAccent": "agriculture together",
       "description": "Connect with the OpenAgriNet community and explore opportunities to build, implement, contribute, research and collaborate.",
-      "action": "Get Involved",
       "join": "Join Our Community"
     }
   },

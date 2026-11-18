@@ -61,13 +61,17 @@ export default async function CommunityCta() {
         <Typography sx={{ maxWidth: 676, fontSize: { xs: 12, sm: 14 }, lineHeight: 1.4, color: 'text.heading' }}>
           {t('description')}
         </Typography>
-        <ActionButton sx={{ display: { xs: 'none', sm: 'inline-flex' } }}>{t('action')}</ActionButton>
+        {/* Same orange "Join Our Community" button as the other pages' banners */}
+        <ActionButton href="/community" tone="secondary" sx={{ display: { xs: 'none', sm: 'inline-flex' } }}>
+          {t('join')}
+        </ActionButton>
         {/* Mobile Figma: a full-width orange button */}
         <ActionButton
+          href="/community"
           tone="secondary"
           sx={{ display: { xs: 'inline-flex', sm: 'none' }, width: '100%', minHeight: 42, fontSize: 12, '& .arrow': { display: 'none' } }}
         >
-          {t('action')}
+          {t('join')}
         </ActionButton>
       </SiteContainer>
     </Box>

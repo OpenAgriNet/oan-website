@@ -1,7 +1,8 @@
 'use client';
 import Button, { type ButtonProps } from '@mui/material/Button';
 import MaskIcon from './MaskIcon';
-import { Link } from '@/i18n/navigation';
+import { Link, usePathname } from '@/i18n/navigation';
+import { scrollToTop } from './scrollToTop';
 
 type Props = Omit<ButtonProps, 'variant' | 'color' | 'href' | 'LinkComponent'> & {
   tone?: 'primary' | 'secondary';
@@ -13,6 +14,10 @@ type Props = Omit<ButtonProps, 'variant' | 'color' | 'href' | 'LinkComponent'> &
 const transition = '300ms ease-in-out';
 
 export default function ActionButton({ tone = 'primary', sx, children, ...props }: Props) {
+  const pathname = usePathname();
+  // Like the footer links: a button to the page already open scrolls back to the top
+  const samePage = typeof props.href === 'string' && pathname.replace(/\/$/, '') === props.href;
+
   return (
     <Button
       LinkComponent={Link}
@@ -20,6 +25,7 @@ export default function ActionButton({ tone = 'primary', sx, children, ...props 
       color={tone}
       disableElevation
       {...props}
+      {...(samePage && { onClick: scrollToTop })}
       sx={[
         (theme) => ({
           ...theme.typography.actionLabel,

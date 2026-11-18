@@ -7,14 +7,8 @@ import CardCarousel from '@/components/common/CardCarousel';
 // import ActionButton from '@/components/common/ActionButton';
 import SectionEyebrow from '@/components/common/SectionEyebrow';
 import SiteContainer from '@/components/layout/SiteContainer';
-
-const members = [
-  { key: 'ravi', image: '/images/about-us/team-01.png' },
-  { key: 'meeraOne', image: '/images/about-us/team-02.png' },
-  { key: 'meeraTwo', image: '/images/about-us/team-03.png' },
-  { key: 'meenu', image: '/images/about-us/team-04.png' },
-  { key: 'karthika', image: '/images/about-us/team-05.png' },
-] as const;
+// The team, in display order: name, role and photo for each person
+import members from '@/content/team/members.json';
 
 export default async function AboutTeamSection() {
   const t = await getTranslations('AboutUs.team');
@@ -146,21 +140,21 @@ export default async function AboutTeamSection() {
             '@media (prefers-reduced-motion: reduce)': { transition: 'none', '&:hover': { transform: 'none' } },
           }}
         >
-          {members.map(({ key, image }) => (
-            <Fragment key={key}>
+          {members.map(({ name, role, photo }) => (
+            <Fragment key={photo}>
               <Image
-                src={image}
-                alt={t(`members.${key}.name`)}
+                src={photo}
+                alt={name}
                 width={130}
                 height={130}
                 style={{ borderRadius: '50%', objectFit: 'cover', width: 130, height: 130 }}
               />
               <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '2px' }}>
                 <Typography variant="cardTitle" component="h3" sx={{ color: 'text.heading' }}>
-                  {t(`members.${key}.name`)}
+                  {name}
                 </Typography>
                 <Typography variant="cardBody" sx={{ color: 'text.heading' }}>
-                  {t(`members.${key}.role`)}
+                  {role}
                 </Typography>
               </Box>
             </Fragment>
