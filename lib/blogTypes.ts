@@ -6,12 +6,15 @@ export type BlogSummary = {
   title: string;
   // ISO yyyy-mm-dd, or yyyy-mm-ddThh:mm when the blog gives a time
   date: string;
-  author: string;
+  // Optional: shown in search data when given
+  author?: string;
   summary: string;
-  coverImage: string;
+  // Optional: a blog without a picture shows its card without the image area
+  coverImage?: string;
   // Describes the cover image for screen readers; defaults to the title
-  imageAlt: string;
-  category: BlogCategory;
+  imageAlt?: string;
+  // Optional: a blog without a category shows no label above the title
+  category?: BlogCategory;
   tags: string[];
   location?: string;
   featured: boolean;
