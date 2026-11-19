@@ -1,6 +1,7 @@
 'use client';
 import { createTheme } from '@mui/material/styles';
 import type { CSSProperties } from 'react';
+import { oan, type OanTextStyle } from './oan';
 
 declare module '@mui/material/styles' {
   interface TypeBackground {
@@ -15,17 +16,18 @@ declare module '@mui/material/styles' {
     heading: string;
     title: string;
     caption: string;
+    meta: string;
   }
   interface Palette {
     footer: { background: string; text: string; divider: string };
-    card: { shadow: string; iconBackground: string; hoverOverlay: string; border: string; hoverBackground: string; arrowBackground: string; outline: string };
+    card: { shadow: string; iconBackground: string; hoverOverlay: string; border: string; hoverBackground: string; arrowBackground: string; outline: string; divider: string };
     statCard: { background: string; border: string };
     scrollCue: { circle: string; glow: string };
     tag: { background: string; text: string };
   }
   interface PaletteOptions {
     footer?: { background: string; text: string; divider: string };
-    card?: { shadow: string; iconBackground: string; hoverOverlay: string; border: string; hoverBackground: string; arrowBackground: string; outline: string };
+    card?: { shadow: string; iconBackground: string; hoverOverlay: string; border: string; hoverBackground: string; arrowBackground: string; outline: string; divider: string };
     statCard?: { background: string; border: string };
     scrollCue?: { circle: string; glow: string };
     tag?: { background: string; text: string };
@@ -56,6 +58,24 @@ declare module '@mui/material/styles' {
     actionLabel: CSSProperties;
     displayTitle: CSSProperties;
     label: CSSProperties;
+    // OAN style sheet text styles (theme/oan.ts)
+    pageHeroTitle: CSSProperties;
+    pageHeroDescription: CSSProperties;
+    sectionHeadline: CSSProperties;
+    sectionDescription: CSSProperties;
+    cardCategory: CSSProperties;
+    cardDate: CSSProperties;
+    cardHeading: CSSProperties;
+    cardSummary: CSSProperties;
+    cardLink: CSSProperties;
+    featuredDate: CSSProperties;
+    featuredTitle: CSSProperties;
+    featuredSummary: CSSProperties;
+    articleTitle: CSSProperties;
+    articleDate: CSSProperties;
+    articleHeading: CSSProperties;
+    articleBody: CSSProperties;
+    contentsLink: CSSProperties;
   }
   interface TypographyVariantsOptions {
     navLink?: CSSProperties;
@@ -83,6 +103,23 @@ declare module '@mui/material/styles' {
     actionLabel?: CSSProperties;
     displayTitle?: CSSProperties;
     label?: CSSProperties;
+    pageHeroTitle?: CSSProperties;
+    pageHeroDescription?: CSSProperties;
+    sectionHeadline?: CSSProperties;
+    sectionDescription?: CSSProperties;
+    cardCategory?: CSSProperties;
+    cardDate?: CSSProperties;
+    cardHeading?: CSSProperties;
+    cardSummary?: CSSProperties;
+    cardLink?: CSSProperties;
+    featuredDate?: CSSProperties;
+    featuredTitle?: CSSProperties;
+    featuredSummary?: CSSProperties;
+    articleTitle?: CSSProperties;
+    articleDate?: CSSProperties;
+    articleHeading?: CSSProperties;
+    articleBody?: CSSProperties;
+    contentsLink?: CSSProperties;
   }
 }
 
@@ -113,28 +150,64 @@ declare module '@mui/material/Typography' {
     actionLabel: true;
     displayTitle: true;
     label: true;
+    pageHeroTitle: true;
+    pageHeroDescription: true;
+    sectionHeadline: true;
+    sectionDescription: true;
+    cardCategory: true;
+    cardDate: true;
+    cardHeading: true;
+    cardSummary: true;
+    cardLink: true;
+    featuredDate: true;
+    featuredTitle: true;
+    featuredSummary: true;
+    articleTitle: true;
+    articleDate: true;
+    articleHeading: true;
+    articleBody: true;
+    contentsLink: true;
   }
 }
 
-const fonts = {
-  primary: 'var(--font-montserrat), "Helvetica Neue", Arial, sans-serif',
-  secondary: 'var(--font-noto-sans), "Helvetica Neue", Arial, sans-serif',
-};
+const { fonts, colors } = oan;
+
+// Builds an MUI text style from an OAN style sheet entry: phone size first, larger screens via media queries
+function oanText(style: (typeof oan.text)[OanTextStyle]): CSSProperties {
+  const { size, lineHeight, weight, color } = style;
+  const css: Record<string, unknown> = {
+    fontFamily: fonts.primary,
+    fontSize: size.xs,
+    lineHeight,
+    fontWeight: weight,
+    color: color === 'primary' ? colors.primary : colors.text[color],
+  };
+  if ('letterSpacing' in style) css.letterSpacing = style.letterSpacing.xs;
+  if ('uppercase' in style) css.textTransform = 'uppercase';
+  if ('underline' in style) css.textDecoration = 'underline';
+  for (const bp of ['sm', 'md', 'lg'] as const) {
+    const fontSize = (size as Partial<Record<typeof bp, number>>)[bp];
+    const letterSpacing = 'letterSpacing' in style ? (style.letterSpacing as Partial<Record<typeof bp, string>>)[bp] : undefined;
+    if (fontSize === undefined && letterSpacing === undefined) continue;
+    css[`@media (min-width:${oan.breakpoints[bp]}px)`] = { ...(fontSize !== undefined && { fontSize }), ...(letterSpacing !== undefined && { letterSpacing }) };
+  }
+  return css as CSSProperties;
+}
 
 const theme = createTheme({
   cssVariables: true,
-  breakpoints: { values: { xs: 0, sm: 600, md: 900, lg: 1360, xl: 1536 } },
+  breakpoints: { values: oan.breakpoints },
   palette: {
-    primary: { main: '#1B5138' },
-    secondary: { main: '#B45F06' },
-    success: { main: '#128937' },
-    text: { primary: '#2B2D2F', muted: '#9E9E9E', heading: '#232323', title: '#171717', caption: '#737373' },
-    background: { default: '#FFFFFF', paper: '#FFFFFF', header: '#F9F9F9', section: '#F4F6F1', subtle: '#FAFBFA', sky: '#ECF7FE', panel: '#FAFDFE' },
-    statCard: { background: '#FAFBF6', border: '#EAEFE3' },
-    scrollCue: { circle: '#FFFFFF', glow: 'rgba(134, 219, 168, 0.6)' },
-    tag: { background: '#EBF9F1', text: '#1F9254' },
-    card: { shadow: 'rgba(0, 0, 0, 0.07)', iconBackground: '#DAEFC0', hoverOverlay: '#006D75', border: '#E5E5E5', hoverBackground: '#EBF6DB', arrowBackground: '#E7F7E9', outline: 'rgba(27, 81, 56, 0.1)' },
-    footer: { background: '#1B5138', text: '#FFFFFF', divider: 'rgba(255, 255, 255, 0.1)' },
+    primary: { main: colors.primary },
+    secondary: { main: colors.accent },
+    success: { main: colors.success },
+    text: { primary: colors.text.body, muted: colors.text.muted, heading: colors.text.heading, title: colors.text.title, caption: colors.text.caption, meta: colors.text.meta },
+    background: colors.background,
+    statCard: colors.statCard,
+    scrollCue: colors.scrollCue,
+    tag: colors.tag,
+    card: colors.card,
+    footer: colors.footer,
   },
   typography: {
     fontFamily: fonts.primary,
@@ -164,6 +237,24 @@ const theme = createTheme({
     actionLabel: { fontFamily: fonts.primary, fontSize: 14, lineHeight: '20px', fontWeight: 700, letterSpacing: 0 },
     displayTitle: { fontFamily: fonts.primary, fontSize: 36, lineHeight: 1.2, fontWeight: 800, letterSpacing: '0.2px' },
     label: { fontFamily: fonts.primary, fontSize: 14, lineHeight: 1.2, fontWeight: 700, letterSpacing: 0 },
+    // OAN style sheet text styles, generated from theme/oan.ts
+    pageHeroTitle: oanText(oan.text.pageHeroTitle),
+    pageHeroDescription: oanText(oan.text.pageHeroDescription),
+    sectionHeadline: oanText(oan.text.sectionHeadline),
+    sectionDescription: oanText(oan.text.sectionDescription),
+    cardCategory: oanText(oan.text.cardCategory),
+    cardDate: oanText(oan.text.cardDate),
+    cardHeading: oanText(oan.text.cardHeading),
+    cardSummary: oanText(oan.text.cardSummary),
+    cardLink: oanText(oan.text.cardLink),
+    featuredDate: oanText(oan.text.featuredDate),
+    featuredTitle: oanText(oan.text.featuredTitle),
+    featuredSummary: oanText(oan.text.featuredSummary),
+    articleTitle: oanText(oan.text.articleTitle),
+    articleDate: oanText(oan.text.articleDate),
+    articleHeading: oanText(oan.text.articleHeading),
+    articleBody: oanText(oan.text.articleBody),
+    contentsLink: oanText(oan.text.contentsLink),
   },
   components: {
     MuiTypography: {
@@ -194,6 +285,23 @@ const theme = createTheme({
           actionLabel: 'span',
           displayTitle: 'h1',
           label: 'span',
+          pageHeroTitle: 'h1',
+          pageHeroDescription: 'p',
+          sectionHeadline: 'h2',
+          sectionDescription: 'p',
+          cardCategory: 'span',
+          cardDate: 'span',
+          cardHeading: 'h3',
+          cardSummary: 'p',
+          cardLink: 'span',
+          featuredDate: 'span',
+          featuredTitle: 'h3',
+          featuredSummary: 'p',
+          articleTitle: 'h1',
+          articleDate: 'p',
+          articleHeading: 'h2',
+          articleBody: 'p',
+          contentsLink: 'span',
         },
       },
     },

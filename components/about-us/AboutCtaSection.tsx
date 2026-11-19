@@ -19,6 +19,8 @@ const buttonSx = {
 
 export default async function AboutCtaSection() {
   const t = await getTranslations('AboutUs.cta');
+  // Title, description and button text are shared by every page's bottom banner
+  const shared = await getTranslations('Community.cta');
 
   return (
     <Box
@@ -61,7 +63,7 @@ export default async function AboutCtaSection() {
       >
         <Box
           sx={{
-            maxWidth: { xs: 335, sm: 610 },
+            maxWidth: { xs: 335, sm: 610, md: 900 },
             mx: 'auto',
             display: 'flex',
             flexDirection: 'column',
@@ -81,6 +83,10 @@ export default async function AboutCtaSection() {
           >
             <SectionEyebrow align="center">{t('eyebrow')}</SectionEyebrow>
           </Box>
+          {/* "JOIN OUR COMMUNITY" eyebrow above the title */}
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+            <SectionEyebrow align="center">{shared('eyebrow')}</SectionEyebrow>
+          </Box>
           <Typography
             variant="headline"
             component="h2"
@@ -89,21 +95,20 @@ export default async function AboutCtaSection() {
               fontSize: { xs: 20, sm: 26, md: 28 },
               lineHeight: { md: '34px' },
               letterSpacing: { xs: '0.4px', sm: '0.56px' },
+              whiteSpace: { md: 'nowrap' },
             }}
           >
-            {t.rich('title', {
-              accent: (chunks) => (
-                <Box component="span" sx={{ color: 'secondary.main', fontWeight: 800, display: { xs: 'block', sm: 'inline' } }}>
-                  {chunks}
-                </Box>
-              ),
-            })}
+            {shared('titleStart')}
+            {/* The longer title wraps in the 610px column: keep the highlighted phrase on one line */}
+            <Box component="span" sx={{ color: 'secondary.main', fontWeight: 800, display: { xs: 'block', sm: 'inline' }, whiteSpace: { sm: 'nowrap' } }}>
+              {shared('titleAccent')}
+            </Box>
           </Typography>
           <Typography
             variant="blockBody"
-            sx={{ color: 'text.heading', fontSize: { xs: 12, sm: 14 }, lineHeight: { xs: '17px', sm: '20px' } }}
+            sx={{ color: 'text.heading', fontSize: { xs: 12, sm: 14 }, lineHeight: { xs: '17px', sm: '20px' }, maxWidth: { sm: 610, md: 650 } }}
           >
-            {t('description')}
+            {shared('description')}
           </Typography>
           <Box
             sx={{
@@ -115,6 +120,7 @@ export default async function AboutCtaSection() {
               maxWidth: { xs: 335, sm: 'none' },
             }}
           >
+            {/* "Explore Building Blocks" removed as per client review; only Join Our Community stays
             <ActionButton
               href="/building-blocks"
               tone="primary"
@@ -122,12 +128,13 @@ export default async function AboutCtaSection() {
             >
               {t('explore')}
             </ActionButton>
+            */}
             <ActionButton
               href="/community"
               tone="secondary"
               sx={{ ...buttonSx, minWidth: { sm: 198 } }}
             >
-              {t('join')}
+              {shared('join')}
             </ActionButton>
           </Box>
         </Box>

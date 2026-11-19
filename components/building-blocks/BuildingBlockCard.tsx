@@ -37,7 +37,8 @@ export default function BuildingBlockCard({ icon, number, title, description, ca
         '&:hover': {
           borderColor: 'primary.main',
           boxShadow: '0 4px 24px rgba(0, 0, 0, 0.12)',
-          '& [data-hover="out"]': { opacity: 0 },
+          // Number stays visible while the arrow is hidden (until the dedicated Building Block pages exist)
+          // '& [data-hover="out"]': { opacity: 0 },
           '& [data-hover="in"]': { opacity: 1 },
         },
         '@media (prefers-reduced-motion: reduce)': {
@@ -57,7 +58,9 @@ export default function BuildingBlockCard({ icon, number, title, description, ca
                 {number}
               </Typography>
             </Box>
+            {/* Hover arrow hidden until the dedicated Building Block pages exist
             <img data-hover="in" src="/icons/arrow-right-badge.svg" alt="" width={44} height={44} />
+            */}
           </Box>
         </Box>
         <Typography variant="cardTitle" sx={{ color: 'text.heading', fontSize: { xs: 16, sm: 18 } }}>

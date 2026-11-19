@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Image from 'next/image';
+import Image, { type ImageProps } from 'next/image';
+import ScreenOnlyImage from '@/components/common/ScreenOnlyImage';
 import PillBadge from '@/components/common/PillBadge';
 import { edgeFade } from '@/components/common/edgeFade';
 
@@ -8,6 +9,10 @@ type Props = {
   eyebrow: string;
   titleLine1: string;
   titleLine2: string;
+  // Plain (not highlighted) words at the start of line 2, e.g. "from " in "from OpenAgriNet."
+  titleLine2Lead?: string;
+  // Figma width of the title box at desktop, when it is wider than the text column (e.g. Blog: 563px)
+  titleWidth?: number;
   description: string;
   image: string;
   imageAlt: string;
@@ -29,14 +34,18 @@ type Props = {
   };
 };
 
-export default function PageHero({ eyebrow, titleLine1, titleLine2, description, image, imageAlt, height, overlay, crop, mobile }: Props) {
+export default function PageHero({ eyebrow, titleLine1, titleLine2, titleLine2Lead, titleWidth, description, image, imageAlt, height, overlay, crop, mobile }: Props) {
   // Below 600px the mobile design replaces the stacked photo, when the page provides one
   const xsOnly = mobile ? { xs: 'block', sm: 'none' } : { xs: 'none' };
   const fromSm = mobile ? { xs: 'none', sm: 'block' } : { xs: 'block' };
+  // With a mobile design the photo is placed twice (phone and larger screens), each copy hidden on the other screens:
+  // each copy is then only downloaded where it shows. Without one, the single copy is preloaded as before
+  const photoFromSm = (props: Omit<ImageProps, 'priority' | 'preload'>) =>
+    mobile ? <ScreenOnlyImage hiddenBelow={600} fetchPriority="high" loading="eager" {...props} /> : <Image priority {...props} />;
 
   return (
     <Box component="section" sx={{ overflow: 'hidden', bgcolor: 'background.paper' }}>
-      {/* Like the home hero: the photo sits in the centred 1440px area with the text; below lg it stacks under the text */}
+      {/* From 900px (like the About Us and Resources heroes) the photo sits behind the text in the centred 1440px area; narrower screens stack it under the text */}
       <Box
         sx={{
           position: 'relative',
@@ -45,7 +54,8 @@ export default function PageHero({ eyebrow, titleLine1, titleLine2, description,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: { xs: mobile ? 'flex-start' : 'center', sm: 'center' },
-          minHeight: { xs: mobile?.height ?? 0, sm: 0, lg: height },
+          // About Us hero height between 900px and the desktop design; Figma height from 1360px
+          minHeight: { xs: mobile?.height ?? 0, sm: 0, md: 300, lg: height },
         }}
       >
         {mobile && (
@@ -64,7 +74,7 @@ export default function PageHero({ eyebrow, titleLine1, titleLine2, description,
               aspectRatio: crop ? `${crop.width} / ${crop.height}` : undefined,
             }}
           >
-            <Image src={image} alt={imageAlt} fill priority sizes={`${mobile.photo.width}px`} />
+            <ScreenOnlyImage hiddenFrom={600} src={image} alt={imageAlt} fill fetchPriority="high" loading="eager" sizes={`${mobile.photo.width}px`} />
           </Box>
         )}
         {mobile?.overlay && (
@@ -73,10 +83,10 @@ export default function PageHero({ eyebrow, titleLine1, titleLine2, description,
         <Box
           sx={{
             display: fromSm,
-            position: { xs: 'relative', lg: 'absolute' },
+            position: { xs: 'relative', md: 'absolute' },
             order: 1,
-            inset: { lg: 0 },
-            height: { xs: 220, sm: 280, md: 334, lg: 'auto' },
+            inset: { md: 0 },
+            height: { xs: 220, sm: 280, md: 'auto' },
             '@media (min-width: 1441px)': { maskImage: edgeFade },
             ...(crop && { containerType: 'size' }),
           }}
@@ -103,21 +113,31 @@ export default function PageHero({ eyebrow, titleLine1, titleLine2, description,
                   height: `calc(100% * ${crop.height} / ${crop.stripHeight})`,
                 }}
               >
-                <Image src={image} alt={mobile ? '' : imageAlt} fill priority sizes="(min-width: 1360px) 1440px, 100vw" />
+                {photoFromSm({ src: image, alt: mobile ? '' : imageAlt, fill: true, sizes: '(min-width: 1360px) 1440px, 100vw' })}
               </Box>
             </Box>
           ) : (
-            <Image
-              src={image}
-              alt={imageAlt}
-              fill
-              priority
-              sizes="(min-width: 1360px) 1440px, 100vw"
-              style={{ objectFit: 'cover', objectPosition: 'right center' }}
-            />
+            photoFromSm({
+              src: image,
+              alt: imageAlt,
+              fill: true,
+              sizes: '(min-width: 1360px) 1440px, 100vw',
+              style: { objectFit: 'cover', objectPosition: 'right center' },
+            })
           )}
-          {overlay && (
-            <Box aria-hidden sx={{ position: 'absolute', inset: 0, display: { xs: 'none', lg: 'block' }, background: overlay }} />
+          {overlay ? (
+            <Box aria-hidden sx={{ position: 'absolute', inset: 0, display: { xs: 'none', md: 'block' }, background: overlay }} />
+          ) : (
+            // Between 900px and the desktop layout the text covers more of the photo: fade its left side so the text stays readable
+            <Box
+              aria-hidden
+              sx={{
+                position: 'absolute',
+                inset: 0,
+                display: { xs: 'none', md: 'block', lg: 'none' },
+                background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.92) 40%, rgba(255, 255, 255, 0) 75%)',
+              }}
+            />
           )}
         </Box>
         <Box
@@ -126,12 +146,12 @@ export default function PageHero({ eyebrow, titleLine1, titleLine2, description,
             display: 'flex',
             flexDirection: 'column',
             gap: 2,
-            maxWidth: { lg: 'calc(516px + max(80px, 50% - 570px))' },
+            maxWidth: { md: 'calc(516px + 40px)', lg: 'calc(516px + max(80px, 50% - 570px))' },
             // At 1440px the text starts at x=150, as in Figma
             pl: { xs: mobile ? '20px' : 2, sm: 4, md: 5, lg: 'max(80px, calc(50% - 570px))' },
             pr: { xs: mobile ? '20px' : 2, sm: 4, md: 5, lg: 0 },
-            pt: { xs: mobile ? `${mobile.textTop ?? 43}px` : 6, sm: 6, lg: 0 },
-            pb: { xs: mobile ? 0 : 4, sm: 4, lg: 0 },
+            pt: { xs: mobile ? `${mobile.textTop ?? 43}px` : 6, sm: 6, md: '60px', lg: 0 },
+            pb: { xs: mobile ? 0 : 4, sm: 4, md: '60px', lg: 0 },
           }}
         >
           <Box
@@ -147,18 +167,20 @@ export default function PageHero({ eyebrow, titleLine1, titleLine2, description,
               }),
             }}
           >
-            <PillBadge icon={null}>{eyebrow}</PillBadge>
-            <Typography variant="displayTitle" sx={{ color: 'text.heading', fontSize: { xs: mobile ? 24 : 28, sm: 36 } }}>
+            <PillBadge>{eyebrow}</PillBadge>
+            {/* The mobile design of a page (e.g. Events) uses a smaller title on phones */}
+            <Typography variant="pageHeroTitle" sx={{ ...(mobile && { fontSize: { xs: 24, sm: 36 } }), ...(titleWidth && { width: { lg: titleWidth } }) }}>
               {titleLine1}
               {/* The mobile design lets the title wrap naturally */}
               <Box component="br" sx={{ display: { xs: mobile ? 'none' : 'inline', sm: 'inline' } }} />
               {mobile && ' '}
+              {titleLine2Lead}
               <Box component="span" sx={{ color: 'secondary.main' }}>
                 {titleLine2}
               </Box>
             </Typography>
           </Box>
-          <Typography variant="heroBody" sx={{ color: 'text.heading', maxWidth: 516, fontSize: { xs: mobile ? 12 : 14, sm: 14 } }}>
+          <Typography variant="pageHeroDescription" sx={{ maxWidth: 516, ...(mobile && { fontSize: { xs: 12, sm: 14 } }) }}>
             {description}
           </Typography>
         </Box>

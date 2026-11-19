@@ -1,18 +1,15 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
+import ScreenOnlyImage from '@/components/common/ScreenOnlyImage';
 import { getTranslations } from 'next-intl/server';
-import ActionButton from '@/components/common/ActionButton';
+import { Fragment } from 'react';
+import CardCarousel from '@/components/common/CardCarousel';
+// import ActionButton from '@/components/common/ActionButton';
 import SectionEyebrow from '@/components/common/SectionEyebrow';
 import SiteContainer from '@/components/layout/SiteContainer';
-
-const members = [
-  { key: 'ravi', image: '/images/about-us/team-01.png' },
-  { key: 'meeraOne', image: '/images/about-us/team-02.png' },
-  { key: 'meeraTwo', image: '/images/about-us/team-03.png' },
-  { key: 'meenu', image: '/images/about-us/team-04.png' },
-  { key: 'karthika', image: '/images/about-us/team-05.png' },
-] as const;
+// The team, in display order: name, role and photo for each person
+import members from '@/content/team/members.json';
 
 export default async function AboutTeamSection() {
   const t = await getTranslations('AboutUs.team');
@@ -32,7 +29,9 @@ export default async function AboutTeamSection() {
         }}
       />
       <Box aria-hidden sx={{ position: 'absolute', top: { lg: '25px' }, right: 0, bottom: 0, left: 0 }}>
-        <Image
+        {/* Only visible from 1360px (the box has no height below that): not downloaded on smaller screens */}
+        <ScreenOnlyImage
+          hiddenBelow={1360}
           src="/images/about-us/team-bg.png"
           alt=""
           fill
@@ -100,6 +99,7 @@ export default async function AboutTeamSection() {
               {t.rich('description', { br: () => <br /> })}
             </Typography>
           </Box>
+          {/* "Meet the Team" removed as per client review (team is a carousel instead)
           <ActionButton
             href="#"
             tone="secondary"
@@ -107,66 +107,62 @@ export default async function AboutTeamSection() {
           >
             {t('cta')}
           </ActionButton>
+          */}
         </Box>
-        <Box
-          component="ul"
+        {/* One row of cards on every screen; arrows appear whenever there are more cards than fit */}
+        <CardCarousel
+          label={t('eyebrow')}
+          previousLabel={t('previous')}
+          nextLabel={t('next')}
           sx={{
-            listStyle: 'none',
-            m: 0,
-            p: 0,
+            '--carousel-count': { xs: 1, sm: 2, md: 4 },
+            '--carousel-gap': { xs: '16px', md: '24px', lg: '30px' },
+            '@media (min-width: 1100px)': { '--carousel-count': 5 },
+          }}
+          itemSx={{
             display: 'flex',
-            flexWrap: 'wrap',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 2,
+            p: 2,
+            minHeight: { lg: 217 },
+            boxSizing: 'border-box',
             justifyContent: 'center',
-            gap: { xs: '30px', sm: 2, md: 3, lg: '30px' },
+            border: '1px solid',
+            borderColor: 'card.border',
+            borderRadius: '12px 0',
+            bgcolor: 'background.paper',
+            boxShadow: '0 4px 24px var(--mui-palette-card-shadow)',
+            textAlign: 'center',
+            position: 'relative',
+            transition: 'transform 200ms ease-out, box-shadow 200ms ease-out',
+            // Hover zoom for pointer devices only, so touch screens never get a stuck state
+            '@media (hover: hover)': {
+              '&:hover': { transform: 'scale(1.03)', boxShadow: '0 8px 28px rgba(0, 0, 0, 0.14)', zIndex: 1 },
+            },
+            '@media (prefers-reduced-motion: reduce)': { transition: 'none', '&:hover': { transform: 'none' } },
           }}
         >
-          {members.map(({ key, image }) => (
-            <Box
-              component="li"
-              key={key}
-              sx={{
-                width: { xs: '100%', sm: 'calc(50% - 8px)', md: 'calc(33.333% - 16px)', lg: 'calc(20% - 24px)' },
-                                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: 2,
-                p: 2,
-                minHeight: { lg: 217 },
-                boxSizing: 'border-box',
-                justifyContent: 'center',
-                border: '1px solid',
-                borderColor: 'card.border',
-                borderRadius: '12px 0',
-                bgcolor: 'background.paper',
-                boxShadow: '0 4px 24px var(--mui-palette-card-shadow)',
-                textAlign: 'center',
-                position: 'relative',
-                transition: 'transform 200ms ease-out, box-shadow 200ms ease-out',
-                // Hover zoom for pointer devices only, so touch screens never get a stuck state
-                '@media (hover: hover)': {
-                  '&:hover': { transform: 'scale(1.03)', boxShadow: '0 8px 28px rgba(0, 0, 0, 0.14)', zIndex: 1 },
-                },
-                '@media (prefers-reduced-motion: reduce)': { transition: 'none', '&:hover': { transform: 'none' } },
-              }}
-            >
+          {members.map(({ name, role, photo }) => (
+            <Fragment key={photo}>
               <Image
-                src={image}
-                alt={t(`members.${key}.name`)}
+                src={photo}
+                alt={name}
                 width={130}
                 height={130}
                 style={{ borderRadius: '50%', objectFit: 'cover', width: 130, height: 130 }}
               />
               <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '2px' }}>
                 <Typography variant="cardTitle" component="h3" sx={{ color: 'text.heading' }}>
-                  {t(`members.${key}.name`)}
+                  {name}
                 </Typography>
                 <Typography variant="cardBody" sx={{ color: 'text.heading' }}>
-                  {t(`members.${key}.role`)}
+                  {role}
                 </Typography>
               </Box>
-            </Box>
+            </Fragment>
           ))}
-        </Box>
+        </CardCarousel>
       </SiteContainer>
     </Box>
   );

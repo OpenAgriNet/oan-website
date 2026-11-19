@@ -1,0 +1,19 @@
+[
+  {"name": "Jagadish Babu", "role": "COO, EkStep Foundation", "photo": "/images/about-us/team-15.jpeg"},
+  {"name": "Nirant Ramakuru", "role": "Implementation Lead, OAN", "photo": "/images/about-us/team-01.png"},
+  {"name": "Kushagra Gupta", "role": "Engineering Manager", "photo": "/images/about-us/team-16.jpg"},
+  {"name": "Mili Budhiraja", "role": "Product Manager", "photo": "/images/about-us/team-02.png"},
+  {"name": "Karandeep Singh Chadha", "role": "Product Manager", "photo": "/images/about-us/team-17.jpg"},
+  {"name": "Niharika Vasumitra", "role": "Country Engagement Manager", "photo": "/images/about-us/team-03.png"},
+  {"name": "Thejaswini Anand", "role": "Program Manager", "photo": "/images/about-us/team-04.png"},
+  {"name": "Shubhmoy Garg", "role": "Engagement Lead – Bharat Vistaar", "photo": "/images/about-us/team-05.png"},
+  {"name": "Sunny Roy Kolla", "role": "Engagement Lead – MahaVISTAAR & AMUL", "photo": "/images/about-us/team-06.png"},
+  {"name": "Gautam Rajeev", "role": "AI Architect", "photo": "/images/about-us/team-07.png"},
+  {"name": "Neha R", "role": "Associate Product Manager", "photo": "/images/about-us/team-08.png"},
+  {"name": "A Anto Kelvin Prabhu", "role": "Software Engineer", "photo": "/images/about-us/team-09.png"},
+  {"name": "Ashwin Rajan", "role": "Software Engineer", "photo": "/images/about-us/team-10.png"},
+  {"name": "Jesvin K Justin", "role": "Software Engineer – AI", "photo": "/images/about-us/team-11.png"},
+  {"name": "Md Mubarak Ansari", "role": "Consultant – Software Engineer", "photo": "/images/about-us/team-12.png"},
+  {"name": "Yaseen Ahmad M", "role": "Software Engineer", "photo": "/images/about-us/team-13.png"},
+  {"name": "Yeswanth Suresh", "role": "Software Engineer", "photo": "/images/about-us/team-14.png"}
+]

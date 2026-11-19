@@ -1,0 +1,104 @@
+name: Deploy staging
+
+on:
+  push:
+    branches: [release-0.0.1]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-staging
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+  deploy:
+    needs: check
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment: staging
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ vars.SITE_URL }}
+          NEXT_PUBLIC_SITE_ENV: ${{ vars.SITE_ENV }}
+
+      # The build already ran scripts/verify-images.mjs (postbuild): it fails if a page uses an optimized image that was
+      # not built, or an image over 500 KB. This drops the unused original PNG/JPEG files so they are not uploaded.
+      - name: Remove unused original images
+        run: node scripts/verify-images.mjs --prune
+
+      # Fail before any upload if the build output is incomplete,
+      # because the page sync below uses --delete.
+      - name: Verify build output
+        run: |
+          test -f out/en/index.html && test -f out/404.html && test -f out/og-image.jpg && test -d out/images && test -d out/icons && test -d out/_optimized/images || { echo "Build output incomplete"; exit 1; }
+          echo "Build output looks complete"
+
+      - name: Log in to AWS
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4.3.1
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ap-south-1
+
+      # _next chunks are never deleted (no --delete), so visitors with cached pages keep working.
+      - name: Upload hashed assets (cache for a year)
+        run: >
+          aws s3 sync out/_next s3://${{ vars.S3_BUCKET }}/_next
+          --cache-control "public,max-age=31536000,immutable"
+
+      - name: Upload pages and other files (always revalidate)
+        run: >
+          aws s3 sync out s3://${{ vars.S3_BUCKET }}
+          --exclude "_next/*" --exclude "_optimized/*" --exclude "images/*" --exclude "icons/*" --exclude "og-image.jpg"
+          --delete
+          --cache-control "public,max-age=0,must-revalidate"
+
+      - name: Upload images, optimized images and icons (cache for one day)
+        env:
+          BUCKET: ${{ vars.S3_BUCKET }}
+        run: |
+          aws s3 sync out/images s3://$BUCKET/images --delete --cache-control "public,max-age=86400"
+          aws s3 sync out/_optimized s3://$BUCKET/_optimized --delete --cache-control "public,max-age=86400"
+          aws s3 sync out/icons s3://$BUCKET/icons --delete --cache-control "public,max-age=86400"
+          aws s3 cp out/og-image.jpg s3://$BUCKET/og-image.jpg --cache-control "public,max-age=86400"
+
+      - name: Clear CDN cache and wait for it to finish
+        env:
+          DIST_ID: ${{ vars.CF_DIST_ID }}
+        run: |
+          INVALIDATION_ID=$(aws cloudfront create-invalidation --distribution-id "$DIST_ID" --paths "/*" --query 'Invalidation.Id' --output text)
+          aws cloudfront wait invalidation-completed --distribution-id "$DIST_ID" --id "$INVALIDATION_ID"

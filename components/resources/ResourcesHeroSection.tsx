@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
+import ScreenOnlyImage from '@/components/common/ScreenOnlyImage';
 import { getTranslations } from 'next-intl/server';
 import PillBadge from '@/components/common/PillBadge';
 import { edgeFade } from '@/components/common/edgeFade';
@@ -47,11 +48,14 @@ export default async function ResourcesHeroSection() {
             '@media (min-width: 1441px)': { maskImage: edgeFade },
           }}
         >
-          <Image
+          {/* Hidden on phones, which show hero-bg-mobile.png: not downloaded there. Loads first on larger screens */}
+          <ScreenOnlyImage
+            hiddenBelow={600}
             src="/images/resources/hero-bg.png"
             alt=""
             fill
-            priority
+            fetchPriority="high"
+            loading="eager"
             sizes="(min-width: 1440px) 1440px, 100vw"
             style={{ objectFit: 'cover', objectPosition: 'right bottom' }}
           />
@@ -73,7 +77,7 @@ export default async function ResourcesHeroSection() {
         >
           <Box sx={{ maxWidth: { xs: 335, sm: 516 }, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '16px' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '12px' }}>
-              <PillBadge icon={null}>{t('badge')}</PillBadge>
+              <PillBadge>{t('badge')}</PillBadge>
               <Typography
                 variant="heroTitle"
                 sx={{ color: 'text.heading', fontSize: { xs: 24, sm: 32, md: 36 }, whiteSpace: { md: 'nowrap' } }}

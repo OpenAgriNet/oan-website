@@ -19,6 +19,8 @@ const mobileButton = {
 
 export default async function BuildingBlocksCta() {
   const t = await getTranslations('BuildingBlocks.cta');
+  // Title, description and button text are shared by every page's bottom banner
+  const shared = await getTranslations('Community.cta');
 
   return (
     <Box
@@ -101,19 +103,21 @@ export default async function BuildingBlocksCta() {
               variant="headline"
               sx={{ color: 'text.heading', fontSize: { xs: 20, sm: 28 }, letterSpacing: { xs: '0.4px', sm: '0.56px' } }}
             >
-              {t('titleLine1')}
+              {shared('titleStart')}
               <br />
               <Box component="span" sx={{ color: 'secondary.main', fontWeight: 800 }}>
-                {t('titleLine2')}
+                {shared('titleAccent')}
               </Box>
             </Typography>
           </Box>
-          <Typography sx={{ fontSize: { xs: 12, sm: 14 }, lineHeight: 1.4, color: 'text.heading' }}>{t('description')}</Typography>
+          <Typography sx={{ fontSize: { xs: 12, sm: 14 }, lineHeight: 1.4, color: 'text.heading' }}>{shared('description')}</Typography>
           {/* In Figma the button row is wider than the 423px text column */}
           <Box sx={{ display: 'flex', flexWrap: { xs: 'wrap', sm: 'nowrap' }, gap: 2, width: { xs: '100%', sm: 'max-content' } }}>
+            {/* "Explore Building Blocks" removed as per client review; only Join Our Community stays
             <ActionButton sx={mobileButton}>{t('primaryAction')}</ActionButton>
-            <ActionButton tone="secondary" sx={mobileButton}>
-              {t('secondaryAction')}
+            */}
+            <ActionButton href="/community" tone="secondary" sx={mobileButton}>
+              {shared('join')}
             </ActionButton>
           </Box>
         </Box>

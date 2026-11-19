@@ -1,7 +1,39 @@
 {
   "Metadata": {
     "title": "OpenAgriNet",
-    "description": "Open infrastructure for accessible agricultural knowledge"
+    "description": "Open infrastructure for accessible agricultural knowledge",
+    "siteName": "OpenAgriNet",
+    "imageAlt": "OpenAgriNet - open infrastructure for accessible agricultural knowledge",
+    "pages": {
+      "buildingBlocks": {
+        "title": "Building Blocks | OpenAgriNet",
+        "description": "Explore the open, modular building blocks that power OpenAgriNet and make agricultural knowledge accessible to every farmer."
+      },
+      "aboutUs": {
+        "title": "About Us | OpenAgriNet",
+        "description": "Learn about OpenAgriNet, the coalition behind it, its story and the team building open agricultural infrastructure."
+      },
+      "community": {
+        "title": "Community | OpenAgriNet",
+        "description": "Join the OpenAgriNet community: build, implement and contribute to open infrastructure for agriculture."
+      },
+      "resources": {
+        "title": "Resources | OpenAgriNet",
+        "description": "Documentation, guides, code and media to help you learn about and implement OpenAgriNet."
+      },
+      "events": {
+        "title": "Events | OpenAgriNet",
+        "description": "Upcoming and past OpenAgriNet webinars, workshops and conferences."
+      },
+      "privacyTerms": {
+        "title": "Terms of Use & Privacy Policy | OpenAgriNet",
+        "description": "Terms of Use and Privacy Policy for the OpenAgriNet website, maintained by EkStep Foundation."
+      },
+      "blogs": {
+        "title": "Blog | OpenAgriNet",
+        "description": "Stories, insights and updates from OpenAgriNet: perspectives on AI, open networks and digital public infrastructure for agriculture."
+      }
+    }
   },
   "Nav": {
     "brand": "OpenAgriNet",
@@ -13,14 +45,21 @@
     "language": "Language",
     "home": "OpenAgriNet home",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "blogs": "Blog"
   },
   "Footer": {
     "copyright": "@{year} OpenAgriNet. All rights reserved.",
     "privacy": "Privacy",
     "terms": "Terms",
     "contact": "Contact",
-    "separator": " - "
+    "separator": " - ",
+    "social": {
+      "linkedin": "OpenAgriNet on LinkedIn",
+      "gitbook": "OpenAgriNet documentation on GitBook",
+      "youtube": "OpenAgriNet on YouTube",
+      "discord": "OpenAgriNet community on Discord"
+    }
   },
   "LocaleSwitcher": {
     "en": "EN"
@@ -31,7 +70,8 @@
     "aboutUs": "About Us",
     "community": "Community",
     "resources": "Resources",
-    "events": "Events"
+    "events": "Events",
+    "blogs": "Blog"
   },
   "AboutUs": {
     "hero": {
@@ -57,13 +97,8 @@
       "title": "People driving <accent>OpenAgriNet</accent>",
       "description": "OAN is being built by a multidisciplinary team bringing together expertise across digital public infrastructure, agriculture, artificial intelligence, technology, ecosystem development and implementation.<br></br>Our team works across the network—from architecture and technology to ecosystem partnerships, product development and field implementation.",
       "cta": "Meet the Team",
-      "members": {
-        "ravi": { "name": "Ravi Kumar", "role": "Program Director" },
-        "meeraOne": { "name": "Meera Srinivasan", "role": "Product Lead" },
-        "meeraTwo": { "name": "Meera Srinivasan", "role": "Product Lead" },
-        "meenu": { "name": "Meenu Bansal", "role": "Product Lead" },
-        "karthika": { "name": "Karthika", "role": "UI/UX Designer" }
-      }
+      "previous": "Previous team members",
+      "next": "Next team members"
     },
     "partners": {
       "eyebrow": "Our Partners",
@@ -77,6 +112,7 @@
         "ekstep": "EkStep",
         "fide": "FIDE",
         "coss": "COSS",
+        "iiitb": "IIIT Bangalore",
         "ondc": "ONDC",
         "cdpi": "CDPI",
         "cgiar": "CGIAR",
@@ -91,10 +127,7 @@
     },
     "cta": {
       "eyebrow": "OpenAgriNet",
-      "title": "Build With <accent>OpenAgriNet</accent>",
-      "description": "Explore how OAN’s open building blocks can help create connected agricultural services for farmers and ecosystem participants.",
-      "explore": "Explore Building Blocks",
-      "join": "Join the Community"
+      "explore": "Explore Building Blocks"
     }
   },
   "Resources": {
@@ -109,6 +142,7 @@
       "description": "Explore a comprehensive collection of research, technical documentation, policy frameworks and practical resources designed to help institutions, developers and ecosystem partners understand, adopt and implement OpenAgriNet. Discover valuable insights, implementation guides, reference architectures and real-world examples that support innovation, collaboration and the development of connected digital agricultural services.",
       "exploreAria": "Explore {title}",
       "viewAll": "View All",
+      "upcoming": "Upcoming",
       "items": {
         "whitepapers": {
           "title": "Whitepapers & Research",
@@ -237,10 +271,7 @@
     },
     "cta": {
       "eyebrow": "Explore OpenAgriNet",
-      "title": "Ready to turn <accent>knowledge into action?</accent>",
-      "description": "Discover how OpenAgriNet's open capabilities, practical tools and collaborative ecosystem can help <br></br>you build connected agricultural solutions. Explore Building Blocks Join the Community",
-      "explore": "Explore Building Blocks",
-      "join": "Join the Community"
+      "explore": "Explore Building Blocks"
     }
   },
   "BuildingBlocks": {
@@ -323,11 +354,7 @@
     },
     "cta": {
       "eyebrow": "OpenAgriNet",
-      "titleLine1": "Build With",
-      "titleLine2": "OpenAgriNet",
-      "description": "Explore how OAN’s open building blocks can help create connected agricultural services for farmers and ecosystem participants.",
-      "primaryAction": "Explore Building Blocks",
-      "secondaryAction": "Join the Community"
+      "primaryAction": "Explore Building Blocks"
     }
   },
   "Community": {
@@ -344,6 +371,7 @@
       "titleAccent": "OpenAgriNet",
       "titleEnd": " ecosystem",
       "description": "Explore the different ways you can contribute, collaborate and help shape an open digital future for agriculture.",
+      "contact": "Contact Us",
       "waysTitle": "Ways to get involved",
       "tabs": {
         "build": {
@@ -365,8 +393,7 @@
               "title": "Build reusable digital solutions",
               "description": "Share and scale solutions for broader impact"
             }
-          ],
-          "action": "Explore Build Opportunities"
+          ]
         },
         "implement": {
           "title": "Implement",
@@ -387,32 +414,97 @@
               "title": "Scale Connected Services",
               "description": "Expand successful implementations across institutions,\nregions and farming communities."
             }
-          ],
-          "action": "Explore Implementation Opportunities"
+          ]
         },
         "contribute": {
           "title": "Contribute",
-          "summary": "Contribute code, standards, data or expertise."
+          "summary": "Contribute code, knowledge or expertise.",
+          "badge": "03 CONTRIBUTE",
+          "heading": "Contribute to OpenAgriNet",
+          "description": "Help shape OpenAgriNet in the open. Improve its building\nblocks and share the language and knowledge that make\nanswers better for farmers.",
+          "ways": [
+            {
+              "title": "Contribute code",
+              "description": "Improve OAN’s open building blocks, tools and\nreference implementations on GitHub."
+            },
+            {
+              "title": "Shape open standards",
+              "description": "Give feedback on the specifications that keep\nservices interoperable."
+            },
+            {
+              "title": "Share language and knowledge",
+              "description": "Bring local-language terms, verified knowledge\nand field expertise."
+            }
+          ]
         },
         "research": {
           "title": "Research",
-          "summary": "Advance DPI, AI and interoperability thinking."
+          "summary": "Advance DPI, AI and interoperability thinking.",
+          "badge": "04 RESEARCH",
+          "heading": "Research with OpenAgriNet",
+          "description": "Advance research on digital public infrastructure and AI for\nagriculture, in the open, so the wider ecosystem can build\non what is learned.",
+          "ways": [
+            {
+              "title": "Study agri-DPI",
+              "description": "Explore how open, interoperable infrastructure\ncan improve agricultural services."
+            },
+            {
+              "title": "Advance AI for local languages",
+              "description": "Research voice and language AI that is accurate,\nsafe and inclusive for farmers."
+            },
+            {
+              "title": "Publish open findings",
+              "description": "Share findings and methods openly so others can\nlearn from and build on them."
+            }
+          ]
         },
         "partner": {
           "title": "Partner",
-          "summary": "Collaborate on pilots and implementations."
+          "summary": "Collaborate on pilots and implementations.",
+          "badge": "05 PARTNER",
+          "heading": "Partner with OpenAgriNet",
+          "description": "Work with OpenAgriNet on pilots and implementations that\nbring open, connected services to farming communities.",
+          "ways": [
+            {
+              "title": "Co-design pilots",
+              "description": "Test new solutions together with institutions\nand farmers."
+            },
+            {
+              "title": "Support implementations",
+              "description": "Bring resources and expertise to live and planned\ndeployments."
+            },
+            {
+              "title": "Join as a provider",
+              "description": "Connect your services or knowledge to the\nnetwork. Your data stays at its source."
+            }
+          ]
         }
       }
+    },
+    "gallery": {
+      "eyebrow": "GALLERY",
+      "title": "In Action Across the Ecosystem",
+      "description": "Snapshots from pilots, field engagements, community events and collaborative initiatives.",
+      "viewAll": "View All",
+      "previous": "Previous photos",
+      "next": "Next photos"
     },
     "cta": {
       "eyebrow": "JOIN OUR COMMUNITY",
       "titleStart": "Let’s build the future of ",
       "titleAccent": "agriculture together",
       "description": "Connect with the OpenAgriNet community and explore opportunities to build, implement, contribute, research and collaborate.",
-      "action": "Get Involved"
+      "join": "Join Our Community"
     }
   },
   "Events": {
+    "backToEvents": "Back to all events",
+    "categories": {
+      "webinar": "WEBINAR",
+      "workshop": "WORKSHOP",
+      "conference": "CONFERENCE",
+      "panel-discussion": "PANEL DISCUSSION"
+    },
     "hero": {
       "eyebrow": "Events",
       "titleLine1": "Connecting ideas,",
@@ -425,66 +517,241 @@
       "title": "Explore what’s coming up.",
       "description": "Stay connected with upcoming events, workshops and discussions bringing\ntogether the OpenAgriNet ecosystem.",
       "linkLabel": "View Details",
-      "action": "View All Events",
-      "items": {
-        "webinar": {
-          "type": "WEBINAR",
-          "date": "25 Aug 2026, 10:30 AM",
-          "title": "Open Digital Ecosystems for Sustainable Agriculture",
-          "description": "A discussion on how open networks, data and AI can enable inclusive and sustainable agriculture.",
-          "tag": "Ongoing",
-          "imageAlt": "A seedling in a field connected to digital icons for weather, farming and data"
-        },
-        "workshop": {
-          "type": "WORKSHOP",
-          "date": "25 Aug 2026, 10:30 AM",
-          "title": "Building Solutions with OpenAgriNet",
-          "description": "A hands-on workshop for developers, innovators and government partners to explore OpenAgriNet building blocks and real-world use cases.",
-          "tag": "New Delhi",
-          "imageAlt": "A farmer using a tablet in a green paddy field"
-        },
-        "conference": {
-          "type": "CONFERENCE",
-          "date": "25 Aug 2026, 10:30 AM",
-          "title": "OpenAgriNet Ecosystem Summit 2026",
-          "description": "Bringing together policymakers, institutions, innovators and ecosystem partners to accelerate open digital agriculture.",
-          "tag": "Bengaluru, India",
-          "imageAlt": "A speaker at a podium addressing a conference audience"
-        }
-      }
+      "action": "View All Events"
     },
     "past": {
       "eyebrow": "PAST EVENTS",
       "title": "Moments that brought us together.",
       "description": "Explore highlights from past events, workshops and conversations where the OpenAgriNet community came together to share ideas, exchange knowledge and drive innovation in agriculture.",
       "linkLabel": "View Highlights",
-      "action": "View All Past Events",
-      "items": {
-        "digitalAgriculture": {
-          "type": "CONFERENCE-PAST EVENTS",
-          "date": "25 Aug 2026, 10:30 AM",
-          "title": "Building Digital Agriculture Solutions",
-          "description": "An interactive workshop focused on practical tools and connected agricultural services.",
-          "tag": "Pune, India",
-          "imageAlt": "A smiling farmer working on a laptop in a green field"
+      "action": "View All Past Events"
+    }
+  },
+  "Legal": {
+    "title": "Terms of Use & Privacy Policy",
+    "termsOfUse": {
+      "title": "Terms of Use",
+      "sections": [
+        {
+          "paragraphs": [
+            "This website [https://openagrinet.global/](https://openagrinet.global/) **(“Website”)** has been developed and is being maintained by EkStep Foundation **(“EkStep”)**.",
+            "This Website provides information related to OpenAgriNet (“OAN”), an alliance advancing agricultural transformation with digital infrastructure and AI solutions.",
+            "The Website is an invitation for users to learn about OAN, its building blocks, various use-cases, access technical documentation, engage with the OAN community to learn how to use and/or adopt OAN for digital agricultural transformation **(“Purpose”)**.",
+            "EkStep is a not-for-profit company registered under the Indian Companies Act, 2013, having its office at No. 85, 7th Cross, Koramangala 4th Block, Bangalore 560034, Karnataka, India.",
+            "By using the Website, you have accepted and agree to be governed by these Terms of Use **(“Terms”)**, as may be amended from time to time. The terms ‘you’, ‘your’ refer to anyone who accesses, views or uses the Website. The terms \"we\", \"us\", \"our\" refer to EkStep.",
+            "Set out below are the Terms of Use of this Website:"
+          ]
         },
-        "workshop": {
-          "type": "WORKSHOP-PAST EVENTS",
-          "date": "25 Aug 2026, 10:30 AM",
-          "title": "Building Solutions with OpenAgriNet",
-          "description": "A hands-on workshop for developers, innovators and government partners to explore OpenAgriNet building blocks and real-world use cases.",
-          "tag": "New Delhi",
-          "imageAlt": "A farmer and a field officer looking at a tablet in a paddy field"
+        {
+          "heading": "1. DEFINITIONS",
+          "paragraphs": [
+            "a. **“Asset”** means and refers to a piece of content or software code. A piece of content can be expressed as text, documents, presentations, scripts, graphics, photos, sounds, music, videos, audiovisual combinations, RLO (reusable learning object) or other such mediums of expression and other materials you may view on, access through, or contribute to the Website, and includes all postings on the Website by Users.",
+            "b. **\"Intellectual Property\"** shall singly or collectively mean to include, as the case may be, all patents, copyrights, trademarks, trade names, service marks, service names, designs and any other proprietary information or other similar right arising or enforceable under Indian law.",
+            "c. **“User”** means and refers to all users of the Website who access the Website and Use the Assets on the Website in accordance with these Terms.",
+            "d. **“Use”** or **“Using”** means and refers to learning, finding, viewing, using, contributing to, modifying, replicating, downloading, and sharing Assets with other Users, through the Website."
+          ]
         },
-        "conference": {
-          "type": "CONFERENCE-PAST EVENTS",
-          "date": "25 Aug 2026, 10:30 AM",
-          "title": "OpenAgriNet Ecosystem Summit 2026",
-          "description": "Bringing together policymakers, institutions, innovators and ecosystem partners to accelerate open digital agriculture.",
-          "tag": "Bengaluru, India",
-          "imageAlt": "A speaker at a podium addressing a conference audience"
+        {
+          "heading": "2. ACCESS AND USE",
+          "paragraphs": [
+            "a. As a User, you represent and warrant that you are of legal age and are legally competent to form a binding contract (or if not, you've received your parent's or guardian's permission to Use the Website and they have agreed to these Terms on your behalf).",
+            "b. If you’re agreeing to these Terms on behalf of a department, institution, organization or legal entity, you represent and warrant that you are duly authorized to agree to these Terms on behalf of that department, institution, organization or entity and these Terms are binding on them.",
+            "c. All Users shall have access to all the Assets available on the Website for the purpose of learning, finding, viewing, Using, contributing to, modifying, replicating, downloading, and sharing Assets with other Users, through the Website.",
+            "d. It is possible that your access and Use of Assets on the Website may be disrupted due to technical or operational difficulties and with no prior notice of downtime. EkStep makes no guarantee as to the continuous uptime and availability of the Website or the quality of Assets on the Website."
+          ]
+        },
+        {
+          "heading": "3. OBLIGATIONS OF USERS",
+          "paragraphs": [
+            "a. You access the Website only to Use the Assets.",
+            "b. You will be responsible and liable for any activity on the Website by you.",
+            "c. You will follow these Terms and all the policies of the Website."
+          ]
+        },
+        {
+          "heading": "4. INTELLECTUAL PROPERTY RIGHTS",
+          "paragraphs": [
+            "a. The Website contains copyrighted material, trademarks and other Intellectual Property owned by EkStep. Unless specifically permitted, you agree not to copy, modify, publish, transmit, distribute, perform, display, or sell any such Intellectual Property. Access to or Use of the Website does not confer upon anyone any license to EkStep's Intellectual Property rights.",
+            "b. You agree to abide by all licenses and copyright notices accompanying any Asset published on the Website. Any Asset (other than software code) you contribute to OAN or the Website is licensed under the Creative Commons Attribution-ShareAlike 4.0 International - CC BY-SA License. You can share and adapt the licensed Assets under the terms of the same license, provided you cite the creator as EkStep or another party if the creator is not EkStep, include a link to the original publication on the Website with copyright notice, license notice and disclaimer notice, and indicate if changes were made. You may do so in any reasonable manner, but not in any way which suggests that EkStep (or the creator as the case may be) endorses you or your Use. For any assistance with contributing to OAN or the Website or understanding any license, please contact us at oansocial@coss.org.in and info@ekstep.org",
+            "c. You agree that you will not use the Website to scrape or attempt to scrape any Asset available on the Website.",
+            "d. Assets that are software code and are released under OAN and made available on/through the Website are licensed under the MIT license reproduced below:",
+            "Copyright (c) 2024 EkStep Foundation Permission is hereby granted, free of charge, to any person obtaining a copy of all software and associated documentation files (the \"Software\") listed on this website under this OAN (website link), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:",
+            "The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.",
+            "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+          ]
+        },
+        {
+          "heading": "5. PRIVACY POLICY",
+          "paragraphs": [
+            "By Using the Website and/or by providing your information, if applicable, you consent to the collection and use of the information you disclose on the Website in accordance with our Privacy Policy. We take the privacy of our Users very seriously. Please refer to our Privacy Policy for complete details."
+          ]
+        },
+        {
+          "heading": "6. LIMITED LIABILITY",
+          "paragraphs": [
+            "We do not guarantee the accuracy, veracity, correctness, validity, usability, currency, of any Assets made available on or linked through the Website. We shall not be held responsible for any offensive or unlawful Asset posted, transmitted, sent or communicated through the Website."
+          ]
+        },
+        {
+          "heading": "7. DISCLAIMER",
+          "paragraphs": [
+            "EKSTEP PROVIDES THE WEBSITE ON AN \"AS IS\" BASIS AND GRANTS NO WARRANTIES OF ANY KIND WITH RESPECT TO THE WEBSITE. EKSTEP SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT. ACCESS AND USE OF THE WEBSITE (INCLUDING ANY ASSET OR INFORMATION AVAILABLE ON/THROUGH THE WEBSITE) IS ENTIRELY AT YOUR OWN RISK."
+          ]
+        },
+        {
+          "heading": "8. INDEMNITY",
+          "paragraphs": [
+            "You hereby agree to keep and hold EkStep, its affiliates, directors, officers, employees, partners, and agents, fully indemnified and harmless from and against all claims, proceedings, penalties, damages, losses, actions, costs and expenses arising out of or in relation to your Use of the Website, your breach of these Terms, or violation of any law, rules or regulations in relation to your Use of the Website."
+          ]
+        },
+        {
+          "heading": "9. TERMINATION",
+          "paragraphs": [
+            "Any violation or breach of the Terms may lead to automatic suspension or termination of your access to the Website, for any reason whatsoever, including while investigating complaints or alleged violation of these Terms, or for use or attempt to use the Website for any purpose other than those permitted under these Terms."
+          ]
+        },
+        {
+          "heading": "10. ELECTRONIC AGREEMENT",
+          "paragraphs": [
+            "This document is a written agreement and an electronic record and valid and enforceable electronic agreement / contract under Information Technology Act, 2000 (as applicable in the Republic of India) and rules there under as applicable and the amended provisions pertaining to electronic records in various statutes under applicable Indian laws. This electronic record is generated by a computer system and does not require any physical or digital signatures. Your usage of the Website shall be your deemed acceptance of these Terms and all the modifications and updates thereto."
+          ]
+        },
+        {
+          "heading": "11. GOVERNING LAW AND DISPUTE RESOLUTION",
+          "paragraphs": [
+            "These Terms shall be governed by the laws of India and any disputes or proceedings arising hereunder shall be subject to the jurisdiction of the courts in Bangalore."
+          ]
         }
-      }
+      ]
+    },
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "sections": [
+        {
+          "paragraphs": [
+            "This privacy policy **(“Privacy Policy”)** defines the rights in relation to User (as defined in the Terms of Use) information, and answers questions that you may have about the manner in which User information may be collected, used, stored, transferred, disclosed and safeguarded.",
+            "By accessing or Using the Website and/or providing your information, you are accepting the terms of our Privacy Policy, you confirm that you are legally competent to form a legally binding contract and consent to the collection and use by us of the information you disclose on the Website in accordance with these Terms.",
+            "This Privacy Policy should be read in conjunction with the Terms of Use. Defined terms not specifically defined herein, shall have the meaning ascribed to them in the Terms of Use."
+          ]
+        },
+        {
+          "heading": "1. WHAT USER INFORMATION AND DATA IS AUTOMATICALLY COLLECTED BY THE WEBSITE?",
+          "paragraphs": [
+            "None"
+          ]
+        },
+        {
+          "heading": "2. DOES THE WEBSITE COLLECT PERSONALLY IDENTIFIABLE INFORMATION?",
+          "paragraphs": [
+            "a.No personal information or personally identifiable information of the User nor sensitive personal information of the User is collected by us unless you choose to provide us with your information such as your name, email address, GitHub user credentials, or any other details you provide by:",
+            "i. emailing us at oansocial@coss.org.in and/or info@ekstep.org,",
+            "ii. Contacting us via the form on the Website,",
+            "iii. Registering for our events, and/or",
+            "iv. Engaging with the OAN community through the use of your GitHub, Discord or Slack account.",
+            "b. EkStep is not responsible for any personal information or sensitive personal information being collected by other platforms, websites, third-party services or external links or Assets linked on the Website. All such third party services and Asset creators are bound by the respective data protection laws applicable to them and should have their own terms of use and privacy policy documents which would be applicable to such third parties."
+          ]
+        },
+        {
+          "heading": "3. WHO HAS ACCESS TO USER INFORMATION AND DATA?",
+          "paragraphs": [
+            "Employees, contractors, or subcontractors of EkStep authorized to monitor and manage any communication or submissions made through the Website, including but not limited to emails or forms."
+          ]
+        },
+        {
+          "heading": "4. WHAT IS YOUR INFORMATION AND DATA USED FOR?",
+          "paragraphs": [
+            "To contact you and deliver information, notices, seek feedback or other communications in connection with your usage of the Website."
+          ]
+        },
+        {
+          "heading": "5. DISCLOSURE AND TRANSFER",
+          "paragraphs": [
+            "We will not publish or disclose your information without your prior consent, unless (i) the law requires us to do so, (ii) you have consented to disclosure of the information, or (iii) it is required to do so in order to provide services to you.",
+            "We will make sure that whoever we share the information with will also adhere to strict non-disclosure and confidentiality requirements."
+          ]
+        },
+        {
+          "heading": "6. SECURITY PRACTICES AND PROCEDURES",
+          "paragraphs": [
+            "We ensure the confidentiality and security of the information by implementing reasonable and appropriate security practices and procedures that includes administrative, physical security and technical controls in order to safeguard your information in accordance with Indian laws currently in force, including the Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011."
+          ]
+        },
+        {
+          "heading": "7. Access to user Information",
+          "paragraphs": [
+            "a. If you want to change, alter or otherwise modify or update your information, at any time, please contact us at oansocial@coss.org.in. .",
+            "b. Do note that EkStep reserves the rights to save any non-personal, device information and usage information (if any) and you are not entitled to seek the deletion of the same.",
+            "c. EkStep at its sole discretion may permit or deny the change of any information, if it is believed the same is required to observe applicable laws."
+          ]
+        },
+        {
+          "heading": "8. LINKS TO OTHER WEBSITES",
+          "paragraphs": [
+            "a. We may, on the Website, provide links to third-party websites or applications, which in turn may collect information about you. We will not be responsible or liable for the privacy standards, practices and policies implemented on such websites.",
+            "b. Pages that have YouTube videos embedded, may allow YouTube to collect information about you. Please read [YouTube’s Privacy Policy](https://policies.google.com/privacy) to learn more.",
+            "c. We may provide links to the code repository and discussion forum on GitHub, a website and cloud-based service that allows us to store and manage our code, as well as track and control changes to the code. GitHub collects information such as full name and a valid email address during account creation. Please read the [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement) to learn more about when and how GitHub may collect information about its users.",
+            "d. We may also host discussions or community engagement via Discord and/or Slac, which are online chat and communication platforms. Discord and Slack may collect information such as your username, email address, and other details during account creation. Please read [Discord’s Privacy Policy](https://discord.com/privacy) and [Slack’s Privacy Policy](https://slack.com/intl/en-in/trust/privacy/privacy-policy) to learn more about how they collect and process your information.",
+            "e. We may, from time to time, host online events/webinars through the use of Zoom and/or Google Meet. If you choose to register, the registration information you provide, which may include name and contact information, responses to registration questions and other registration information will be safeguarded by us in the manner detailed under this Privacy Policy, but it may also be collected and processed by zoom or Google Meet. Please read [Zooms Privacy Statement](https://www.zoom.com/en/trust/privacy/) and [Google’s Privacy Policy](https://docs.github.com/en/site-policy/privacy-policies/github-subprocessors) to learn more."
+          ]
+        },
+        {
+          "heading": "9. USE OF COOKIES",
+          "paragraphs": [
+            "a. Cookies are a feature of web browsers that allow web servers to temporarily store information within your browser. Most browsers automatically accept cookies. The Website does not use any cookies.",
+            "b. However, pages that have YouTube videos embedded may enable YouTube to set certain cookies. Read [YouTube’s Cookie Policy](https://policies.google.com/technologies/cookies) for more details.",
+            "c. Similarly, GitHub uses its own cookies for analytics purposes. You can learn about this in [GitHub’s Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement#our-use-of-cookies-and-tracking) and on the [GitHub Subprocessors and Cookies Page.](https://docs.github.com/en/site-policy/privacy-policies/github-subprocessors)"
+          ]
+        },
+        {
+          "heading": "10. CHANGES TO THE PRIVACY POLICY",
+          "paragraphs": [
+            "The Privacy Policy is subject to revision at any time, as determined by EkStep, without notice, and any such changes are effective immediately upon being updated on the Website. Any continued access and use of the Website thereafter will be deemed to be an acceptance of these changes by you. You are strongly advised to periodically check this Privacy Policy for revisions regarding the use of your information."
+          ]
+        },
+        {
+          "heading": "11. COMPLAINTS",
+          "paragraphs": [
+            "We take our responsibility towards ensuring the privacy and security of your information very seriously. If you have any concerns or questions regarding this Privacy Policy, feel free to contact us at oansocial@coss.org.in and info@ekstep.org."
+          ]
+        }
+      ]
+    }
+  },
+  "Blogs": {
+    "hero": {
+      "eyebrow": "Blog",
+      "titleLine1": "Stories, insights and updates",
+      "titleLine2Lead": "from ",
+      "titleLine2": "OpenAgriNet.",
+      "description": "Perspectives on AI, open networks and digital public infrastructure for agriculture.",
+      "imageAlt": "A watercolour village with paddy fields, palm trees and hills"
+    },
+    "featured": {
+      "eyebrow": "Featured Blog"
+    },
+    "all": {
+      "eyebrow": "All Blogs",
+      "viewAll": "View All Blogs"
+    },
+    "categories": {
+      "implementation": "Implementation",
+      "technology": "Technology",
+      "partnerships": "Partnerships",
+      "insights": "Insights"
+    },
+    "readMore": "Read More",
+    "article": {
+      "share": "Share this blog",
+      "save": "Save this blog",
+      "copyLink": "Copy link to this blog",
+      "linkCopied": "Link copied",
+      "contents": "Inside This Article",
+      "subscribe": {
+        "title": "Stay updated with OpenAgriNet",
+        "description": "Get the latest stories, insights and implementations in your inbox.",
+        "button": "Subscribe"
+      },
+      "related": "Related Blog"
     }
   }
 }
