@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# WebP copies of public/images, made by scripts/optimize-images.mjs before each dev run and build
+/public/_optimized/
+
 # production
 /build
 

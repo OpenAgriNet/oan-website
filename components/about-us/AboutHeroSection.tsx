@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
+import ScreenOnlyImage from '@/components/common/ScreenOnlyImage';
 import { getTranslations } from 'next-intl/server';
 import PillBadge from '@/components/common/PillBadge';
 import { edgeFade } from '@/components/common/edgeFade';
@@ -47,11 +48,14 @@ export default async function AboutHeroSection() {
             '@media (min-width: 1441px)': { maskImage: edgeFade },
           }}
         >
-          <Image
+          {/* Hidden on phones, which show hero-bg-mobile.png: not downloaded there. Loads first on larger screens */}
+          <ScreenOnlyImage
+            hiddenBelow={600}
             src="/images/about-us/hero-bg.png"
             alt=""
             fill
-            priority
+            fetchPriority="high"
+            loading="eager"
             sizes="(min-width: 1440px) 1440px, 100vw"
             style={{ objectFit: 'cover', objectPosition: 'right center' }}
           />

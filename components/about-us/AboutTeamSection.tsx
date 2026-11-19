@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
+import ScreenOnlyImage from '@/components/common/ScreenOnlyImage';
 import { getTranslations } from 'next-intl/server';
 import { Fragment } from 'react';
 import CardCarousel from '@/components/common/CardCarousel';
@@ -28,7 +29,9 @@ export default async function AboutTeamSection() {
         }}
       />
       <Box aria-hidden sx={{ position: 'absolute', top: { lg: '25px' }, right: 0, bottom: 0, left: 0 }}>
-        <Image
+        {/* Only visible from 1360px (the box has no height below that): not downloaded on smaller screens */}
+        <ScreenOnlyImage
+          hiddenBelow={1360}
           src="/images/about-us/team-bg.png"
           alt=""
           fill

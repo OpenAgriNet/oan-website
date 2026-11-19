@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import PillBadge from '@/components/common/PillBadge';
+import ScreenOnlyImage from '@/components/common/ScreenOnlyImage';
 
 // Same artwork as the About Us team background; each layout shows a different part of it
 const heroBackground = '/images/about-us/team-bg.png';
@@ -14,7 +15,8 @@ export default async function BuildingBlocksHero() {
     <Box component="section" sx={{ position: 'relative', overflow: 'hidden', minHeight: { lg: 369 } }}>
       {/* Mobile Figma: the full background at 1446x814, its leaf 144px in from the right edge */}
       <Box sx={{ display: { xs: 'block', sm: 'none' }, position: 'absolute', top: 2, right: -144, width: 1446, height: 814 }}>
-        <Image src={heroBackground} alt="" fill priority sizes="1446px" />
+        {/* Each copy of the background is only downloaded on the screens where it shows */}
+        <ScreenOnlyImage hiddenFrom={600} src={heroBackground} alt="" fill fetchPriority="high" loading="eager" sizes="1446px" />
       </Box>
       <Box
         sx={{
@@ -40,7 +42,7 @@ export default async function BuildingBlocksHero() {
           }}
         >
           <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: 'calc(100% * 941 / 426)', transform: 'scaleX(-1)' }}>
-            <Image src={heroBackground} alt="" fill priority sizes="100vw" />
+            <ScreenOnlyImage hiddenBelow={600} src={heroBackground} alt="" fill fetchPriority="high" loading="eager" sizes="100vw" />
           </Box>
         </Box>
       </Box>

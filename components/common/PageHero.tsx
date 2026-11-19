@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Image from 'next/image';
+import Image, { type ImageProps } from 'next/image';
+import ScreenOnlyImage from '@/components/common/ScreenOnlyImage';
 import PillBadge from '@/components/common/PillBadge';
 import { edgeFade } from '@/components/common/edgeFade';
 
@@ -37,6 +38,10 @@ export default function PageHero({ eyebrow, titleLine1, titleLine2, titleLine2Le
   // Below 600px the mobile design replaces the stacked photo, when the page provides one
   const xsOnly = mobile ? { xs: 'block', sm: 'none' } : { xs: 'none' };
   const fromSm = mobile ? { xs: 'none', sm: 'block' } : { xs: 'block' };
+  // With a mobile design the photo is placed twice (phone and larger screens), each copy hidden on the other screens:
+  // each copy is then only downloaded where it shows. Without one, the single copy is preloaded as before
+  const photoFromSm = (props: Omit<ImageProps, 'priority' | 'preload'>) =>
+    mobile ? <ScreenOnlyImage hiddenBelow={600} fetchPriority="high" loading="eager" {...props} /> : <Image priority {...props} />;
 
   return (
     <Box component="section" sx={{ overflow: 'hidden', bgcolor: 'background.paper' }}>
@@ -69,7 +74,7 @@ export default function PageHero({ eyebrow, titleLine1, titleLine2, titleLine2Le
               aspectRatio: crop ? `${crop.width} / ${crop.height}` : undefined,
             }}
           >
-            <Image src={image} alt={imageAlt} fill priority sizes={`${mobile.photo.width}px`} />
+            <ScreenOnlyImage hiddenFrom={600} src={image} alt={imageAlt} fill fetchPriority="high" loading="eager" sizes={`${mobile.photo.width}px`} />
           </Box>
         )}
         {mobile?.overlay && (
@@ -108,18 +113,17 @@ export default function PageHero({ eyebrow, titleLine1, titleLine2, titleLine2Le
                   height: `calc(100% * ${crop.height} / ${crop.stripHeight})`,
                 }}
               >
-                <Image src={image} alt={mobile ? '' : imageAlt} fill priority sizes="(min-width: 1360px) 1440px, 100vw" />
+                {photoFromSm({ src: image, alt: mobile ? '' : imageAlt, fill: true, sizes: '(min-width: 1360px) 1440px, 100vw' })}
               </Box>
             </Box>
           ) : (
-            <Image
-              src={image}
-              alt={imageAlt}
-              fill
-              priority
-              sizes="(min-width: 1360px) 1440px, 100vw"
-              style={{ objectFit: 'cover', objectPosition: 'right center' }}
-            />
+            photoFromSm({
+              src: image,
+              alt: imageAlt,
+              fill: true,
+              sizes: '(min-width: 1360px) 1440px, 100vw',
+              style: { objectFit: 'cover', objectPosition: 'right center' },
+            })
           )}
           {overlay ? (
             <Box aria-hidden sx={{ position: 'absolute', inset: 0, display: { xs: 'none', md: 'block' }, background: overlay }} />
