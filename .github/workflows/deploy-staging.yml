@@ -56,11 +56,16 @@ jobs:
           NEXT_PUBLIC_SITE_URL: ${{ vars.SITE_URL }}
           NEXT_PUBLIC_SITE_ENV: ${{ vars.SITE_ENV }}
 
+      # The build already ran scripts/verify-images.mjs (postbuild): it fails if a page uses an optimized image that was
+      # not built, or an image over 500 KB. This drops the unused original PNG/JPEG files so they are not uploaded.
+      - name: Remove unused original images
+        run: node scripts/verify-images.mjs --prune
+
       # Fail before any upload if the build output is incomplete,
       # because the page sync below uses --delete.
       - name: Verify build output
         run: |
-          test -f out/en/index.html && test -f out/404.html && test -f out/og-image.jpg && test -d out/images && test -d out/icons || { echo "Build output incomplete"; exit 1; }
+          test -f out/en/index.html && test -f out/404.html && test -f out/og-image.jpg && test -d out/images && test -d out/icons && test -d out/_optimized/images || { echo "Build output incomplete"; exit 1; }
           echo "Build output looks complete"
 
       - name: Log in to AWS
@@ -78,15 +83,16 @@ jobs:
       - name: Upload pages and other files (always revalidate)
         run: >
           aws s3 sync out s3://${{ vars.S3_BUCKET }}
-          --exclude "_next/*" --exclude "images/*" --exclude "icons/*" --exclude "og-image.jpg"
+          --exclude "_next/*" --exclude "_optimized/*" --exclude "images/*" --exclude "icons/*" --exclude "og-image.jpg"
           --delete
           --cache-control "public,max-age=0,must-revalidate"
 
-      - name: Upload images and icons (cache for one day)
+      - name: Upload images, optimized images and icons (cache for one day)
         env:
           BUCKET: ${{ vars.S3_BUCKET }}
         run: |
           aws s3 sync out/images s3://$BUCKET/images --delete --cache-control "public,max-age=86400"
+          aws s3 sync out/_optimized s3://$BUCKET/_optimized --delete --cache-control "public,max-age=86400"
           aws s3 sync out/icons s3://$BUCKET/icons --delete --cache-control "public,max-age=86400"
           aws s3 cp out/og-image.jpg s3://$BUCKET/og-image.jpg --cache-control "public,max-age=86400"
 
