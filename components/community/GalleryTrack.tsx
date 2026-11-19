@@ -26,7 +26,7 @@ const arrowSx = {
 } as const;
 
 // Horizontal track of gallery slides moved with the arrows (one slide per press). On mobile the slides stack
-// vertically instead, five photos at first and five more each time "View All" is pressed.
+// vertically instead, five photos at first and all the rest once "View All" is pressed.
 export default function GalleryTrack({ children, label, viewAll, previousLabel, nextLabel }: Props) {
   const slideCount = Children.count(children);
   const [shown, setShown] = useState(1);
@@ -110,7 +110,7 @@ export default function GalleryTrack({ children, label, viewAll, previousLabel, 
       {shown < slideCount && (
         <ActionButton
           tone="secondary"
-          onClick={() => setShown((count) => count + 1)}
+          onClick={() => setShown(slideCount)}
           sx={{
             display: { xs: 'inline-flex', sm: 'none' },
             width: '100%',
