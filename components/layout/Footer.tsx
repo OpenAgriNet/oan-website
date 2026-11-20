@@ -21,7 +21,7 @@ const legalLinks = [
 const mobileOrder = { buildingBlocks: 0, community: 1, aboutUs: 2, events: 3, resources: 4, blogs: 5 };
 
 // Official OAN social channels, in Figma order (client review)
-const socialLinks = ['linkedin', 'gitbook', 'youtube', 'discord'] as const;
+const socialLinks = ['linkedin', 'gitbook', 'youtube', 'discord', 'github'] as const;
 
 export default function Footer() {
   const t = useTranslations('Nav');

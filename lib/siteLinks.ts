@@ -6,4 +6,5 @@ export const siteLinks = {
   linkedin: 'https://www.linkedin.com/company/openagrinet',
   gitbook: 'https://docs.openagrinet.global/',
   youtube: 'https://www.youtube.com/@OpenAgriNet',
+  github: 'https://github.com/OpenAgriNet',
 } as const;
