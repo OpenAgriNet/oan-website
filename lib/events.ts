@@ -33,10 +33,12 @@ function parse(locale: string, file: string): Event {
     date,
     category: data.category as EventCategory,
     section: data.section,
+    order: typeof data.order === 'number' ? data.order : undefined,
     summary: str('summary'),
     coverImage: str('coverImage'),
     imageAlt: typeof data.imageAlt === 'string' && data.imageAlt.trim() ? data.imageAlt : str('title'),
     tag: typeof data.tag === 'string' && data.tag.trim() ? data.tag : undefined,
+    linkLabel: typeof data.linkLabel === 'string' && data.linkLabel.trim() ? data.linkLabel : undefined,
     type: data.type,
     externalUrl: data.type === 'external' ? data.externalUrl : undefined,
     hasArticle: data.type === 'internal' && content.trim().length > 0,
@@ -54,11 +56,11 @@ export function getAllEvents(locale: string): Event[] {
     .map((f) => parse(locale, f));
 }
 
-// Upcoming: soonest first. Past: most recent first. Events on the same date keep their file-name order
+// Upcoming: soonest first. Past: most recent first. Events on the same date follow their "order" number, then file-name order
 export const getEvents = (locale: string, section: 'upcoming' | 'past') =>
   getAllEvents(locale)
     .filter((e) => e.section === section)
-    .sort((a, b) => (section === 'upcoming' ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date)));
+    .sort((a, b) => (section === 'upcoming' ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date)) || (a.order ?? 0) - (b.order ?? 0));
 
 export const getEventBySlug = (locale: string, slug: string) => getAllEvents(locale).find((e) => e.slug === slug);
 // Only hosted events with a write-up get a detail page (and a sitemap entry)

@@ -2,6 +2,7 @@
 title: "The Farmers Who are Never In the Dark"
 date: "2026-09-15"
 category: panel-discussion
+order: 2
 section: past
 summary: "Conversations around how technology can empower small and marginal farmers"
 coverImage: /images/events-past-charcha-panel.png

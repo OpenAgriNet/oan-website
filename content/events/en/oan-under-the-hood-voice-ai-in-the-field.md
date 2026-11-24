@@ -2,10 +2,12 @@
 title: "OAN Under The Hood: Voice AI in the Field"
 date: "2026-11-17T15:30"
 category: webinar
+order: 1
 section: upcoming
 summary: "Discover what it takes to make Voice AI work in the field and how it powers DPI^AI."
 coverImage: /images/events-webinar.png
 imageAlt: "A woman in a field talking on her phone, with a voice wave linked to digital building blocks"
-tag: "Closed"
-type: internal
+linkLabel: "Watch now"
+type: external
+externalUrl: https://youtu.be/Vsbv2hsCLtI?si=zZXe2R3g7n3AJW5v
 ---
