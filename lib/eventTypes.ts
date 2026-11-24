@@ -8,6 +8,8 @@ export type EventSummary = {
   date: string;
   category: EventCategory;
   section: 'upcoming' | 'past';
+  // Optional tie-breaker for events in the same section with the same date (lower shows first)
+  order?: number;
   summary: string;
   coverImage: string;
   // Describes the cover image for screen readers; defaults to the title

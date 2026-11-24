@@ -2,6 +2,7 @@
 title: "OAN at the 29th Bengaluru Tech Summit"
 date: "2026-11-19"
 category: summit
+order: 1
 section: past
 summary: "The OAN team was at the Bangalore International Exhibition for the Bengaluru Tech Summit 2026, talking about how open digital infrastructure can put trusted agricultural advice in farmers’ hands, in their own language."
 coverImage: /images/events-hero-photo.png
