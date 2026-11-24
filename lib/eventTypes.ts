@@ -14,6 +14,8 @@ export type EventSummary = {
   imageAlt: string;
   // Green pill on the card, e.g. a location or "Ongoing"
   tag?: string;
+  // Overrides the section's default link text, e.g. "Watch now"
+  linkLabel?: string;
   type: 'internal' | 'external';
   externalUrl?: string;
   // Hosted event with a write-up: gets its own page and a link. A hosted event without text is a card only

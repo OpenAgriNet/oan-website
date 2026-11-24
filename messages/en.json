@@ -503,7 +503,8 @@
       "webinar": "WEBINAR",
       "workshop": "WORKSHOP",
       "conference": "CONFERENCE",
-      "panel-discussion": "PANEL DISCUSSION"
+      "panel-discussion": "PANEL DISCUSSION",
+      "summit": "SUMMIT"
     },
     "hero": {
       "eyebrow": "Events",

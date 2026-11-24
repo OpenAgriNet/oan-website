@@ -37,6 +37,7 @@ function parse(locale: string, file: string): Event {
     coverImage: str('coverImage'),
     imageAlt: typeof data.imageAlt === 'string' && data.imageAlt.trim() ? data.imageAlt : str('title'),
     tag: typeof data.tag === 'string' && data.tag.trim() ? data.tag : undefined,
+    linkLabel: typeof data.linkLabel === 'string' && data.linkLabel.trim() ? data.linkLabel : undefined,
     type: data.type,
     externalUrl: data.type === 'external' ? data.externalUrl : undefined,
     hasArticle: data.type === 'internal' && content.trim().length > 0,
