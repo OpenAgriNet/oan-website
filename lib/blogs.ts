@@ -41,6 +41,7 @@ function parse(locale: string, file: string): Blog {
     category: data.category as BlogCategory | undefined,
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     location: typeof data.location === 'string' ? data.location : undefined,
+    order: typeof data.order === 'number' ? data.order : undefined,
     featured: data.featured === true,
     type: data.type,
     externalUrl: data.type === 'external' ? data.externalUrl : undefined,
@@ -56,7 +57,7 @@ export function getAllBlogs(locale: string): Blog[] {
     .readdirSync(dir)
     .filter((f) => f.endsWith('.md'))
     .map((f) => parse(locale, f))
-    .sort((a, b) => b.date.localeCompare(a.date));
+    .sort((a, b) => b.date.localeCompare(a.date) || (a.order ?? 0) - (b.order ?? 0));
 }
 
 export const getFeaturedBlogs = (locale: string, limit = 3) => getAllBlogs(locale).filter((b) => b.featured).slice(0, limit);

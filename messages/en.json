@@ -503,7 +503,8 @@
       "webinar": "WEBINAR",
       "workshop": "WORKSHOP",
       "conference": "CONFERENCE",
-      "panel-discussion": "PANEL DISCUSSION"
+      "panel-discussion": "PANEL DISCUSSION",
+      "summit": "SUMMIT"
     },
     "hero": {
       "eyebrow": "Events",
@@ -727,7 +728,7 @@
       "imageAlt": "A watercolour village with paddy fields, palm trees and hills"
     },
     "featured": {
-      "eyebrow": "Featured Blog"
+      "eyebrow": "Latest"
     },
     "all": {
       "eyebrow": "All Blogs",

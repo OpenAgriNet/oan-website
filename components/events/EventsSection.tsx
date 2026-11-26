@@ -40,7 +40,7 @@ export default async function EventsSection({ section, items, background, pt, pb
             title={item.title}
             summary={item.summary}
             tag={item.tag}
-            linkLabel={t('linkLabel')}
+            linkLabel={item.linkLabel ?? t('linkLabel')}
             href={eventHref(item)}
           />
         ))}

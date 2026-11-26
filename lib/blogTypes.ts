@@ -17,6 +17,8 @@ export type BlogSummary = {
   category?: BlogCategory;
   tags: string[];
   location?: string;
+  // Optional tie-breaker for blogs with the same date (lower shows first)
+  order?: number;
   featured: boolean;
   type: 'internal' | 'external';
   // Hosted blog with article text: gets its own page and a Read More link. A hosted blog without text is a card only
